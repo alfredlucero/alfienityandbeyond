@@ -1,0 +1,8 @@
+package learnjava4;
+
+public class extraClass {
+	public void echo(String message) {
+		System.out.println(message + " " + message);
+	}
+	
+}

@@ -1,0 +1,62 @@
+AJAX INTRODUCTION:
+
+	update web pages asynchronously by exchanging small amounts of data with the server behind the scenes without reloading the whole page
+		browser creates and sends XMLHTTPRequest object, server processes HTTPRequest and creates response, update page content
+		i.e. Google Suggest
+
+	create XMLHTTPRequest Object:
+		var = new XMLHTTPRequest();
+		// var = new ActiveXObject("Microsoft.XMLHTTP");
+
+	send request to a server:
+		xhttp.open(method, url, async) // method: GET/POST, url: server file location, async: true/false
+		xhttp.send(); sends request to server for GET
+		xhttp.send(string); used for POST
+			use POST when a cached file is not an option (update file/database on server), large amount of data, sending user input as it's more robust and secure
+
+			i.e. GET
+			xhttp.open("GET", "demo_get2.asp?fname=Henry&lname=Ford", true); // sends info. with the URL
+
+			i.e. POST
+			xhttp.open("POST", "ajax_test.asp", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("fname=Henry&lname=Ford");
+			// true allows execution of other scripts while waiting for server response
+
+			i.e.
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					document.getElementById("demo").innerHTML = xhttp.responseText;
+				}
+			};
+			xhttp.open("GET", "ajax_info.txt", true);
+			xhttp.send();
+
+	server response:
+		responseText: gets response as string
+		responseXML: gets reponse data as XML data
+		i.e.
+		xmlDoc = xhttp.responseXML;
+		txt = "";
+		x = xmlDoc.getElementByTagName("ARTIST");
+		for (i = 0; i < x.length; i++) {
+			txt += x[i].childNodes[0].nodeValue + "<br>";
+		}
+		document.getElementById("demo").innerHTML = txt;
+
+	onreadystatechange: triggered every time the readyState changes (holds status of XMLHTTPRequest)
+		onreadystatechange: stores a function to be called automatically each time readyState property changes
+		readyState: 0 - 4 status codes, 4 = request finished and response is ready
+		status: 200- "OK", 404- page not found
+		// triggered up to five times for each change in readyState
+		should create one standard function for creating the XMLHTTPRequest object and call this for each AJAX task
+		i.e.
+		function loadDoc(cFunc) {
+			var xhttp = new XMLHTTPRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					cFunc(xhttp);
+				}
+			}
+		}
+		i.e. can use with PHP/ASP/XML/other server databases

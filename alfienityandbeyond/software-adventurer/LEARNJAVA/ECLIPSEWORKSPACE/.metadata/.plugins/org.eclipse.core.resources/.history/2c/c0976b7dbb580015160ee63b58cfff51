@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class eltf {
+	/**
+	 * Practice with exceptions, lists, threads, and files
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter first number code: ");
+		int n1 = input.nextInt();
+		System.out.println("Enter second number code: ");
+		int n2 = input.nextInt();
+		int quotient = n1/n2;
+		System.out.println(quotient);
+	}
+}

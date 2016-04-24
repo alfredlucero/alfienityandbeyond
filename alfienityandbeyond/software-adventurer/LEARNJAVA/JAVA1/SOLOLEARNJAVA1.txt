@@ -1,0 +1,26 @@
+JAVA BASIC CONCEPTS:
+	platform independent
+	object-oriented: encapsulated objects that interact with one another, shift in thinking
+	
+	Development Cycle:
+		compile source code files (.java) -> text bytecode (JVM takes bytecode files and interpret them)
+			applications distributed using Java archive with .jar extension
+	JDK:
+		single software package, collection of Java development tools, oracle.com
+		Java compiler javac, Java Archiving tool jar, Java debugging tool jdb, JRE (Java Runtime Environment)
+		download and install, set PATH variable to bin, javac in command prompt
+	JVM:
+		translation dictionary for object files with .class extension, translates it to machine code
+	Running a Java program:
+		Every Java program has at least one Java class
+		refer to java11.java "Hello World" program -> javac java11.java to compile it to class file
+			run it by doing java java11
+	Creating a project using Eclipse:
+		work with eclipse, create new project, add new class to src file, run it
+			can see exceptions/bugs in console
+	Hello World Program:
+		need a class in program, create public static void main method
+		get user input by using Scanner
+	Java doc style comments: /** * */
+	
+		

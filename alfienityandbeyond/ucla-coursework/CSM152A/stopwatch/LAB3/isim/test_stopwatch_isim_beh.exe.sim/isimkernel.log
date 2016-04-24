@@ -1,0 +1,10 @@
+Command line:
+   test_stopwatch_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49442
+
+Wed Feb 10 12:27:20 2016
+
+
+ Elaboration Time: 0.0312 sec

@@ -1,0 +1,16 @@
+LEARN R
+
+2+2, TRUE/T vs. FALSE/F
+variables: x <- 17, x<- TRUE
+functions: 
+	sum(1,2,3)
+	rep("blah", times = 3) // repeat three times
+	sqrt(16)
+	help(functionname)
+	example(functionname)
+	list.files()
+	source("filename") // runs script
+
+vectors: 
+qnorm (inverse cumulative density function): domain (0,1)
+pnorm (cdf): range (0,1)

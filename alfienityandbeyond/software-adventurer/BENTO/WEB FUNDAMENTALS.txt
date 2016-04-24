@@ -1,0 +1,82 @@
+BENTO WEB FUNDAMENTALS:
+
+History of the Internet:
+	Batch Processiing -> Time-Sharing with Multiple Users
+	Scientific, Military, Commercial Networks
+		ARPANET - IMP Subnets, Transmission Control Protocol, Distributed Network
+		NPL - Packet-Switching
+		Cyclades - inter-net, transfer nodes
+	TCP/IP Protocols -> Internet
+	
+What is the Internet, really?
+	Physical cables everywhere under seas and underground connect us all
+
+How the Internet Works in 5 Minutes
+	Clients are not connected directly to the internet but to Internet Service Provider
+		ISP have servers connected directly to internet (wire)
+		IP addresses, packets, routers shuttle packets of information across the internet
+
+DNS Explained
+	Domain Name System: www.google.com. (dot = root of DNS namespace)
+		determine IP address based off of domain name alias
+		queries resolving name server to find IP addresses
+		resolving name server -> root server -> top-level domain servers -> authoritative name servers
+		. -> .com. -> example.com. -> www.example.com.
+
+20 Things I Learned About Browsers & The Web
+	What is the Internet?
+		packets, bandwidth, TCP/IP
+	Cloud Computing
+		data safely residing on the web, plugging into computers that serve info., Internet
+	Web Apps: "Life, Libery, and the Pursuit of Appiness"
+		access data from anywhere, latest version updated automatically, works on every device with web browser, safer
+	HTML, JAVASCRIPT, CSS AND MORE
+		HTML: structures and presents content on web page
+		JAVASCRIPT: scripting language, real-time interactions
+		XHR: dynamic web with XMLHttpRequest, parts of web page altered without needing to reload entire page -> faster, responsive
+		CSS: layout and beautify page with design elements (CSS3)
+		AJAX: Asynchronous JavaScript and XML
+	HTML5:
+		<video>, offline capabilities, drag-and-drop
+	3D IN THE BROWSER:
+		open web technologies WebGL, 3D CSS
+	A BROWSER MADRIGAL:
+		old browsers vulnerable to attacks, web evolves quickly, slow
+	PLUG-INS:
+		an additional piece of software that specializes in processing particular types of content 
+		i.e. Adobe Flash Player for games/video
+	BROWSER EXTENSIONS:
+		extensions written  in HTML, JavaScript, and CSS
+	SYNCHRONIZING THE BROWSER:
+		sync lets you save your browser settings online in the cloud
+	BROWSER COOKIES:
+		memory of visits, small piece of text sent to your browser by a website  you visit 
+		"session-only cookies", permanent cookies
+	BROWSERS AND PRIVACY:
+		browser data, private/incognito modes, browser cookies
+	MALWARE, PHISHING, AND SECURITY RISKS:
+		phishing - someone masquerades as someone else with a fake website to get you to share personal information
+		malware - malicious software installed on your machine, usually without your knowledge
+	HOW MODERN BROWSERS HELP PROTECT YOU FROM MALWARE AND PHISHING:
+		limits how often you come into contact with an attacker (i.e. Google Chrome Safe Browsing technology)
+		limits how vulnerable your browser is if it's attacked (auto-updated)
+		limits how much damage is done if an attacker finds vulnerabilities in your browser ("sandbox" layer of protection)
+	USING WEB ADDRESSES TO STAY SAFE:
+		Uniform Resource Locator (URL): web address typed into browser to get to a particular web page or web app
+		http(scheme)://www.google.com(hostname)/maps(path)
+		safe: https://www.bankofamerica.com
+	IP ADDRESSES AND DNS:
+		IP (Internet Protocol): series of numbers that tells us where a particular device is on the Internet network
+		DNS ("phone book" of the Web): translates a URL/web address into the right IP address to contact
+	VALIDATING IDENTITIES ONLINE:
+		extended validation certificate - tells you name of the organization that runs the website
+	EVOLVING TO A FASTER WEB:
+		images and photos take up about 65% of information on typical web page, 35 hours of video, larger JS programs
+		WebP compression techniques, Google Chrome's V8 JS engine, DNS pre-resolution
+	OPEN SOURCE AND BROWSERS:
+		"open source" - inner workings of a software are made available to all, and the software is written in an open, collaborative way
+		i.e. Google Chrome built from parts of Mozilla Firefox and with open-source rendering engine WebKit
+	19 THINGS LATER...
+		
+What is Programming?
+	Set of Instructions -> statements

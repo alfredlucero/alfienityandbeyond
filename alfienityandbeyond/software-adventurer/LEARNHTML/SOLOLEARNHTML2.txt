@@ -1,0 +1,75 @@
+HTML FORMS:
+	<form> ... </form>
+	<input> elements
+		text, radio (one of many choices), submit button
+			<input type="text" name="firstname">
+			<input type="radio" name="sex" value="male" checked>
+			<input type="checkbox" name="vehicles[]" value="Bike"> <!-- select ZERO or MORE options of a limited number of choices -->
+			<input type="password" name="psw">
+			<input type="number" name="quantity" min="1" max="5">
+			<input type="date" name="bday">
+			<input type="color" name="favcolor">
+			<input type="range" name="points" min="0" max="10">
+			<input type="month" name="bdaymonth">
+			<input type="week" name="week_year">
+			<input type="time" name="usr_time">
+			<input type="datetime-local" name="bdaytime">
+			<input type="email" name="email">
+			<input type="search" name="googlesearch">
+			<input type="tel" name="usrtel">
+			<input type="url" name="homepage">
+			<input type="file" name="img" multiple>
+			<!-- HTML5 color, date, datetime, email, month, range, search, time, url, week, etc.
+				 Input types not supported by old web browsers will behave as input type text -->
+			<input type="submit" value="Submit">
+			<select name="cars">
+				<option value="volvo">Volvo</option> <!-- Drop-down list -->
+			<textarea name="message" rows="10" cols="30"> <!-- multi-line input field -->
+			<button type="button" onclick="alert('Hello World!')">Click me!</button>
+		HTML 5 <datalist> <keygen> <output>
+			<input list="browsers"> // list of pre-defined options for an <input> element
+			<datalist id="browsers">
+				<option value="Internet Explorer">
+				<option value="Firefox">
+			</datalist>
+			<keygen name="security"> // secure way to authenticate users
+				specifies a key-pair generator field in a form, generates one private and one public key-pair
+					private key is stored locally, public key sent to server that could be used to generate client certificate to authenticate user in future
+			<output> represents the result of a calculation
+				oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+				0
+				<input type="range" id="a" name="a" value="50">
+				100 +
+				<input type="number" id="b" name="b" value="50">
+				=
+				<output name="x" for="a b"></output>
+			
+	action attribute: normally the form is submitted to a web page on a web server
+		<form action="action_page.php">
+		HTTP methods (GET or POST)
+			<form action="action_page.php" method="GET">
+				for passive (search engine query) and without sensitive information, visible in page address
+			<form action="action_page.php" method="POST">
+				for updating data with sensitive information such as password), not visible in page address
+		each input field must have a name attribute
+		<fieldset> groups related data in a form
+		<legend> element defines a caption for the <fieldset> element
+	value attribute: specifies the initial value for an input field
+		readonly -> input field cannot be changed
+		disabled -> un-usable and un-clickable, not submitted
+		size -> in characters for input field
+		maxlength -> max length for input field
+	HTML 5 attributes:
+		autocomplete="on" -> browser automatically complete values based on values that user has entered before
+		novalidate -> not validate when submitted
+		autofocus -> boolean attribute, element automatically get focus when the page loads
+		<form action="action_page" id="form1> ... <input type="text" name="lname" form="form1">
+		formaction specifies the URL of a file that will process the input control when the form is submitted
+		formenctype specifies how th form-data should be encoded when submitting to server for method="post"
+		formmethod overrides the method attribute of the form element
+		formnovalidate, formtarget specifies a name or keyword that indicates where to display the response that is received after submitting the form
+		height, width only used with type="image", min/max for number, range, date, datetime-local, month, time, and week
+		pattern for regular expression in text, search, url, tel, email, and password
+		placeholder specifies a hint that describes the expected value of an input field
+		required must be filled out before submitting the form
+		step specifies the legal number of intervals for an <input> element; used with max/min to create range of legal values

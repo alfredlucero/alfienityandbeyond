@@ -1,0 +1,9 @@
+ARRAYS:
+	int array[] = new int[10];
+	int array[] = {0,1,2,3};
+	array.length // returns number of elements in array
+	
+	enhanced for loop:
+		for (int x: array){
+			total += x;
+		}

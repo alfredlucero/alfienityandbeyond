@@ -1,0 +1,112 @@
+ANDROID APP DEVELOPMENT: PART 1
+http://developer.android.com/training/basics/firstapp/creating-project.html
+
+TIPS:
+CTRL+N (navigate for a class name)
+CTRL+Space (completes words for you)
+Alt+F7 (find all places where a class/method/varible is used in whole project)
+CTRL+Q (find documentation for class)
+CTRL+B (go to declaration of class)
+CTRL+F12 (quickly navigate in currently edited file)
+SHIFT+F6 (easily rename classes, methods, and variables with automatic correction of all places)
+ALT+Enter (import missing classes)
+
+COMPONENTS
+	app/src/main/res/layout/activity_my.xml:
+		XML layout for file
+	app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
+		class definition for activity we created, loads layout files that says Hello world
+	app/src/main/AndroidManifest.xml
+		describes fundamental characteristics of the app and defines each of its components
+	app/build.gradle (Gradle used to compile and build the app)
+		where app's build dependencies are set, including defaultConfig settings
+	drawable<density>/
+		directories for drawable objects(bitmaps)
+	layout/
+		directory for files that define your app's user interface like activity_my.xml
+	menu/
+		directory for files that define your app's menu items
+	values/
+		directory for other XML files that contain a collection of resources, such as string and color definitions
+
+1. Create a project with Android Studio
+	Start new project, set names, set minimum SDK 15
+	Blank Activity template, set MyActivity
+		activity: provides user with access to your app
+		-> basic hello world app
+	http://developer.android.com/training/basics/firstapp/running-app.html (run on android device)
+2. Run on the emulator
+   Tools > Android > AVD Manager -> create virtual device i.e. Nexus 6
+   Run, launch emulator with proper device
+3. Building a Simple User Interface (layout in XML)
+	GUI is built using a hierarchy of View and Viewgroup objects
+		View objects: UI widgets such as buttons or text fields
+		ViewGroup: invisible view containers that define how the child views are laid out (grid or vertical list)
+	- Create a linear layout (open activity_my.xml)
+		RelativeLayout is root view, TextView is child view
+		changed to LinearLayout, change layout_width/height to match_parent resolution
+		add <EditText>: 
+			android:id="@+id/edit_message" -> id resource type, resource name to refer to in code, + for defining resource ID for first time
+			android:layout_width/height: wrap_content -> fit contents of the view
+			android:hint="@string/edit_message" -> must add string resources in strings.xml file (res/values)
+		add a button (res/layout) -> don't need id because it won't be referenced from activity code, set to button_send
+			android:onClick="sendMessage" -> go to myactivity java file and add public void method with View as parameter
+			use intents: object that provides runtime binding between separate components(such as two activities), most often used to start another activity
+				define key for intent's extra using a public constant and use app's package name as a prefix for unique names
+				have intent sent to another activity to handle send request
+		creating another activity that receives the intent (must implement the onCreate() method, define layout with setContentView()
+			right-click package to add new blank activity, set proper names/title/parent/etc.
+			every activity is invoked by an intent, can get intent that started the activity by calling getIntent() and retrieve data within intent
+4. Adding the Action Bar (indicates user location, search, navigation and view switching)
+	most basic one displays title for the activity and the app icon on the left
+	action bar is included in all activities that use the Theme.Holo theme (minSdkVersion "11" or greater)
+	add buttons relating to app's current context (action buttons), actions that can't fit in action bar or are hidden are in action overflow
+	- Alter res/menu/ directory (must add image asset to drawable directory)
+		follow template for ic_action_search with proper settings and set string value as well of action_search
+		add responses to menu items on select
+	- have up button go back to parent activity by modifying the manifest file
+	- Styling the action bar:
+		declare an appropriate parent theme fromwhich custom theme and style inherit their styles
+		create a navigation bar? state lists?
+
+
+
+
+
+Supporting different languages:
+	create values-es/fr/default and put strings files into each
+	using string Resources -
+		// Get a string resource from your app's Resources
+		String hello = getResources().getString(R.string.hello_world);
+
+		// Or supply a string resource to a method that requires a string
+		TextView textView = new TextView(this);
+		textView.setText(R.string.hello_world);
+
+		// Using in xml files
+		<TextView
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/hello_world" />
+Supporting different screens (fix size and density)
+	create different layouts for each screen size you want to support
+		i.e. -<screen_size> suffix like res/layout-large/ or layout-land
+	create different bitmaps of images to scale to each of generalized density buckets: low, medium, high, and extra-high density
+Supporting different platform versions
+	use Android Support Library in your app, which allows you to use several platform APIs on older versions
+ <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="15" />	-> in AndroidManifest.xml
+	ensure the code that depends on higher API levels is executed only when those APIs are available on the system
+		private void setUpActionBar() {
+    // Make sure we're running on Honeycomb or higher to use ActionBar APIs
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+}
+	(Android ignores XML attributes that aren't supported by the current device)
+
+	platform styles and themes
+		<activity android:theme="@android:style/Theme.Dialog"> // dialog box
+		<activity android:theme="@android:style/Theme.Translucent"> // transparent background
+		<activity android:theme="@style/CustomTheme"> // in res/values/styles.xml
+		<application android:theme="@style/CustomTheme"> // applies a theme to entire app (all activities)

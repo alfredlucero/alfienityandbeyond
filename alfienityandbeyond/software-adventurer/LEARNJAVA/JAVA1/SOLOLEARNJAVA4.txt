@@ -1,0 +1,52 @@
+OBJECT-ORIENTED PROGRAMMING:
+
+	programs split apart into self-contained objects with their own logic and data
+	class: blueprint/definition/description, defines attributes(properties)/behaviors(methods)
+	object is created from the class like creating house based on blueprint
+	
+	class className {
+		...
+	}
+	
+	className classNameObject = new className();
+	classNameObject.method(...);
+	
+	class access modifier:
+		public -> can be accessible by any other class
+		default(left blank) -> can only be accessible by a class in the same package
+	methods and variables:
+		public: no restriction
+		default: only available in same package
+		protected: same as default, can also be accessible through inheritance
+		private: only accessible from within its associated class
+		
+	CTRL+SPACE: similar to alt+insert in android studio to use getters/setters
+	
+	Constructors:
+	public className(...){
+		...
+	}
+	
+	Value types:
+	byte, short, int, long, float, double, boolean, char
+	Reference types:
+	objects such as Person, String, etc.
+	
+	Math class:
+	Math.abs/ceil/floor/max(n1,n2)/min(n1,n2)/pow(n, power)/sqrt/random()
+	
+	Static:
+	when every class has the same value or function
+	ex/ 
+	public static final int DIRT = 0, PAVED = 1, ... ; // final means it can't be changed
+	public static int CURRENT_ROAD = 0; -> Car.CURRENT_ROAD = Car.PAVED;
+	public static boolean checkLicense(String license){ check database to see if the license exists }
+	
+	Final:
+	final -> can't modify no matter what after being declared
+	ex/ private final int NUMBER;
+	
+	Packages:
+	click src folder and create new package (by convention lowercase with periods for hierarchy)
+	
+	

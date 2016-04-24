@@ -1,0 +1,30 @@
+xst -intstyle ise -ifn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.xst" -ofn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc C:/Users/152/Desktop/Alfred_Maya_Lab4/nexys3.ucf -p xc6slx16-csg324-3 notes.ngc notes.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o notes_map.ncd notes.ngd notes.pcf 
+par -w -intstyle ise -ol high -mt off notes_map.ncd notes.ncd notes.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml notes.twx notes.ncd -o notes.twr notes.pcf 
+bitgen -intstyle ise -f notes.ut notes.ncd 
+xst -intstyle ise -ifn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.xst" -ofn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc C:/Users/152/Desktop/Alfred_Maya_Lab4/nexys3.ucf -p xc6slx16-csg324-3 notes.ngc notes.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o notes_map.ncd notes.ngd notes.pcf 
+par -w -intstyle ise -ol high -mt off notes_map.ncd notes.ncd notes.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml notes.twx notes.ncd -o notes.twr notes.pcf 
+bitgen -intstyle ise -f notes.ut notes.ncd 
+xst -intstyle ise -ifn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.xst" -ofn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc C:/Users/152/Desktop/Alfred_Maya_Lab4/nexys3.ucf -p xc6slx16-csg324-3 notes.ngc notes.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o notes_map.ncd notes.ngd notes.pcf 
+par -w -intstyle ise -ol high -mt off notes_map.ncd notes.ncd notes.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml notes.twx notes.ncd -o notes.twr notes.pcf 
+bitgen -intstyle ise -f notes.ut notes.ncd 
+xst -intstyle ise -ifn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.xst" -ofn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc C:/Users/152/Desktop/Alfred_Maya_Lab4/nexys3.ucf -p xc6slx16-csg324-3 notes.ngc notes.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o notes_map.ncd notes.ngd notes.pcf 
+par -w -intstyle ise -ol high -mt off notes_map.ncd notes.ncd notes.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml notes.twx notes.ncd -o notes.twr notes.pcf 
+bitgen -intstyle ise -f notes.ut notes.ncd 
+xst -intstyle ise -ifn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.xst" -ofn "C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB4temp/notes.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc C:/Users/152/Desktop/Alfred_Maya_Lab4/nexys3.ucf -p xc6slx16-csg324-3 notes.ngc notes.ngd  
+map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o notes_map.ncd notes.ngd notes.pcf 
+par -w -intstyle ise -ol high -mt off notes_map.ncd notes.ncd notes.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml notes.twx notes.ncd -o notes.twr notes.pcf 
+bitgen -intstyle ise -f notes.ut notes.ncd 

@@ -1,0 +1,295 @@
+LEARNBOOTSTRAP:
+
+freeCodeCamp:
+	put inside container-fluid for full width container
+	img-responsive to fit width of device for <img>
+	text-center - add class to center text
+	<button class="btn btn-block btn-primary"></button> - buttons default inline
+		btn-info, btn-danger
+		i.e.
+		<div class="row">
+    	<div class="col-xs-4">
+      	<button class="btn btn-block btn-primary">Like</button>
+    	</div>
+    	<div class="col-xs-4">
+      	<button class="btn btn-block btn-info">Info</button>
+    	</div>
+    	<div class="col-xs-4">
+      	<button class="btn btn-block btn-danger">Delete</button>
+    	</div>
+  	</div>
+  icons: <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+  	<i class="fa fa-info-circle"></i> // fa fa-thumbs-up, fa fa-trash
+  well: creates a visual sense of depth for your columns
+
+
+
+W3SCHOOLS TUTORIALS:
+First Web Page:
+	add HTML5 doctype, mobile-first
+	.container - responsive fixed width container
+	.container-fluid - full width container, spanning entire width of the viewport
+	grid system = 12 columns
+	grid classes
+		xs(for phones)
+		sm(for tablets)
+		md(for desktops)
+		lg(for larger desktops)
+	structure:
+		<div class="row">
+  			<div class="col-*-*"></div>
+		</div>
+	default font-size = 14px, line-height = 1.428
+		<small> = lighter, secondary text in any heading
+		<mark> = highlight
+		<abbr>, <code>, <kbd>
+		.text-center, class="text-left"
+		look up more typography classes
+	tables: .table, .table-hover, .table-responsive
+	images: .img-rounded/circle/thumbnail/responsive
+		responsive embeds:
+			<!-- 16:9 aspect ratio -->
+			<div class="embed-responsive embed-responsive-16by9">
+  				<iframe class="embed-responsive-item" src="..."></iframe>
+			</div>
+
+			<!-- 4:3 aspect ratio -->
+			<div class="embed-responsive embed-responsive-4by3">
+  				<iframe class="embed-responsive-item" src="..."></iframe>
+			</div>
+	jumbotron = big box for calling extra attention to some special content (grey box with rounded corners)
+		put outside container to extend to screen edges
+		.page-header adds horizontal line under heading
+	well = rounded border around an element with gray background color and some padding
+	alert alert-info/alert-warning/alert-danger
+	buttons: 
+		.btn-default/primary/success/info/...
+		<button type="button" class="btn btn-default">Default</button>
+		.btn-lg/md/sm/xs
+		.btn-block (span entire width of parent element)
+		.active/disabled
+		<div class="btn-group btn-group-lg"> ... </div>
+			.btn-group-vertical/justified
+			for <button> must wrap each in a .btn-group class
+		dropdown menus:
+			<div class="btn-group">
+    			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Sony <span class="caret"></span></button>
+    			<ul class="dropdown-menu" role="menu">
+			      <li><a href="#">Tablet</a></li>
+			      <li><a href="#">Smartphone</a></li>
+    			</ul>
+  			</div>
+ 	glyphicons
+ 		little icons like search
+ 		<span class="glyphicon glyphicon-name"></span>
+ 		i.e. 
+ 		<span class="glyphicon glyphicon-search"></span>
+ 	badges: numerical indicators of how many items are associated with a link
+ 		<span class="badge">5</span>
+ 	labels provide additional information about something
+ 		.label -> label label-default
+ 	progress bar:
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+				<span class="sr-only">70% complete</span>
+			</div>
+		</div>
+		add .active to animate progress bar
+	pagination to <ul> element
+		<ul class="pagination">
+			<li><a href="#">1</a></li>
+		</ul>
+		breadcrumbs indicates the current page's location within navigational hierarchy -> class="breadcrumb"
+		pager provides previous and next buttons (links)
+			align to each side of page
+			<ul class="pager">
+				<li class="previous"><a href="#">Previous</a></li>
+				<li class="next"><a href="#">Next</a></li>
+	list groups
+		<ul class="list-group">
+		  <li class="list-group-item">First item</li>
+		  <li class="list-group-item">Second item</li>
+		  <li class="list-group-item">Third item</li>
+		</ul>
+		for linked items use <div class="list-group"><a>...<a></div>
+	panel = bordered box with some padding around its content
+		<div class="panel panel-default">
+  			<div class="panel-heading">Panel Heading</div>
+  			<div class="panel-body">Panel Content</div>
+		</div>
+	dropdowns = toggleable menu that allows the user to choose one value from a predefined list
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+			<span class="caret"></span></button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+				<li role="presentation"><a role="menuitem" href="#">HTML</a></li>
+			    <li role="presentation"><a role="menuitem" href="#">CSS</a></li>
+			    <li role="presentation"><a role="menuitem" href="#">JavaScript</a></li>
+			    <li role="presentation" class="divider"></li>
+			    <li role="presentation"><a role="menuitem" href="#">About Us</a></li>
+			</ul>
+		</div>
+		.dropdown-header,.disabled
+	collapsibles = want to hide and show large amount of content
+		<button data-toggle="collapse" data-target="#demo">Collapsible</button>
+		<div id="demo" class="collapse">
+			Lorem ipsum dolor text....
+		</div>
+		collapsible list groups/panels
+		accordion -> use data-parent attribute to make sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown
+	tabs -> <ul class="nav nav-tabs">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#">Home</a></li>
+		  <li><a href="#">Menu 1</a></li>
+		  <li><a href="#">Menu 2</a></li>
+		  <li><a href="#">Menu 3</a></li>
+		</ul>
+	pills -> <ul class="nav nav-pills"> -> add .navstacked for vertical, .nav-justified for centered
+	toggable/dynamic tabs/pills -> data-toggle="tab"
+		<ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+		  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+		  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+		</ul>
+
+		<div class="tab-content">
+		  <div id="home" class="tab-pane fade in active">
+		    <h3>HOME</h3>
+		    <p>Some content.</p>
+		  </div>
+		  <div id="menu1" class="tab-pane fade">
+		    <h3>Menu 1</h3>
+		    <p>Some content in menu 1.</p>
+		  </div>
+		  <div id="menu2" class="tab-pane fade">
+		    <h3>Menu 2</h3>
+		    <p>Some content in menu 2.</p>
+		  </div>
+		</div>
+	collapsing navigation bar:
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="#">WebSiteName</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#">Home</a></li>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Page 1-1</a></li>
+		            <li><a href="#">Page 1-2</a></li>
+		            <li><a href="#">Page 1-3</a></li>
+		          </ul>
+		        </li>
+		        <li><a href="#">Page 2</a></li>
+		        <li><a href="#">Page 3</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	form layouts: vertical/horizontal/inline
+		<form role="form">
+		wrap labels and form controls in <div class="form-group">
+		add class .form-control to all textual <input>, <textarea>, <select> elements
+	input: textarea, checkbox, radio, select, input
+		input sizing -lg,-sm for height
+			.col-lg-*/-sm-* for width
+	carousel slideshows
+		<div class="container">
+		  <br>
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		    <!-- Indicators -->
+		    <ol class="carousel-indicators">
+		      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		      <li data-target="#myCarousel" data-slide-to="1"></li>
+		      <li data-target="#myCarousel" data-slide-to="2"></li>
+		      <li data-target="#myCarousel" data-slide-to="3"></li>
+		    </ol>
+
+		    <!-- Wrapper for slides -->
+		    <div class="carousel-inner" role="listbox">
+
+		      <div class="item active">
+		        <img src="img_chania.jpg" alt="Chania" width="460" height="345">
+		        <div class="carousel-caption">
+		          <h3>Chania</h3>
+		          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+		        </div>
+		      </div>
+
+		      <div class="item">
+		        <img src="img_chania2.jpg" alt="Chania" width="460" height="345">
+		        <div class="carousel-caption">
+		          <h3>Chania</h3>
+		          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+		        </div>
+		      </div>
+		    
+		      <div class="item">
+		        <img src="img_flower.jpg" alt="Flower" width="460" height="345">
+		        <div class="carousel-caption">
+		          <h3>Flowers</h3>
+		          <p>Beatiful flowers in Kolymbari, Crete.</p>
+		        </div>
+		      </div>
+
+		      <div class="item">
+		        <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
+		        <div class="carousel-caption">
+		          <h3>Flowers</h3>
+		          <p>Beatiful flowers in Kolymbari, Crete.</p>
+		        </div>
+		      </div>
+		  
+		    </div>
+
+		    <!-- Left and right controls -->
+		    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		      <span class="sr-only">Previous</span>
+		    </a>
+		    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		      <span class="sr-only">Next</span>
+		    </a>
+		  </div>
+		</div>
+	modal plugin = dialog box/popup window that is displayed on top of the current page
+	tooltip = small pop-up box that appears when the user moves the mouse pointer over an element, data-placement
+	popover plugin = pop-up box that appears when the user clicks on an element
+	scrollspy plugin = automatically update links in a navigation list based on scroll position
+	affix plugin = allows an element to become affixed(locked) to an area on the page, used with nav menus/social icon buttons
+
+	grid system = 12 columns across the page
+		columns stack no matter the viewport
+		each class scales up, so if you wish to set the same widths for xs and sm, you only need to specify xs
+
+		rules:
+			rows placed within .container (fixed-width) or .container-fluid (full-width)
+				container, row, .col-*-*
+				can nest columns
+
+		stacked-to-horizontal: sm-6 sm-6 -> 50/50 -> stacked on top for xs
+			i.e. .col-md-6 without .col-sm-* -> medium and large split 50/50 because class scales up; small stack vertically 100% width
+
+		clear floats with .clearfix at specific breakpoints to prevent strange wrapping with uneven content
+
+		.col-md-offset-* -> increase left margin of a column, moves columns to right
+
+		change column ordering with .col-md-push/pull-*
+
+	check out templates for blog, portfolio, webpage, social, marketing, online stores -> REALLY GREAT STUFF
+
+	check out how they made themes: "Simply Me", "Company", "The Band"

@@ -1,0 +1,10 @@
+set -loop_iteration_limit 1000
+run
+-ifn stopwatch.prj
+-top stopwatch
+-p xc6slx16csg324-3
+-ofn stopwatch.ngc
+-opt_mode speed
+-opt_level 1
+-lc auto
+-bufg 16

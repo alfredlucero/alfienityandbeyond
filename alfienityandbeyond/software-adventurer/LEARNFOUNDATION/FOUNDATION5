@@ -1,0 +1,456 @@
+FOUNDATION5:
+	COLORS: #1abc9c (seagreen), #f4511e (orange), #474e5d(dark gray)
+	<div class="row"> // row/column set-up
+		<div class="medium-12 columns">
+			<div class="panel">
+				<h1>Foundation</h1>
+			</div>
+		</div>
+	</div>
+
+	Buttons, tables, lightboxes (images), alerts
+	grid (12 column span), progress bars, panels
+	dropdowns, accordions, topbars, modals, switches, sliders
+
+	mobile-first, front-end framework
+
+	CDN:
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.css">
+
+	<!-- jQuery library -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+
+	<!-- Latest compiled modernizr -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+		modernizr allows fallback features for older browsers
+
+	<script>
+	$(document).ready(function() {
+    	$(document).foundation();
+	})
+	</script>
+
+	Grid system: 12 columns
+		.small, .medium, .large
+		<div class="row"> creates a horizontal block of vertical columns
+		i.e.
+		<div class="row">
+			<div class="small-6 large-9 columns" style="background-color:yellow;">
+				<p>.small-6 .large-9</p>
+			</div>
+			<div class="small-6 large-3 columns" style="background-color:pink;">
+				<p>.small-6 .large-3</p>
+			</div>
+		</div>
+
+	Text/Typography:
+		font-size:100%; (16px/12px), "Helvetica Neue", line-height: 1.5 -> to body
+		<h1 class="subheader">h1.subheader</h1>
+		a, abbr, blockquote, dl, code, kbd, hr
+
+	Responsive Tables:
+		<div style="overflow-x:auto">
+
+	Buttons:
+		button secondary/success/info/warning/alert
+		can be used on <a>, <button>, <input> elements
+		.large/small/tiny
+		.radius/.round
+		.expand makes button span entire width of parent element (100% width)
+		.disabled
+
+		.button-group (on single line)
+			<ul class="button-group">
+				...
+			</ul>
+			add stack for a vertical button group (spans entire width of parent element)
+			or .stack-for-small
+			.radius, .round
+		evenly expanded button groups: .even-num (1-8)
+			spans buttons in group to 100% width of parent element
+
+		dropdown buttons: toggleable menu that allows user to choose one value from predefined list
+			<!-- Trigger the dropdown -->
+			<a href="#" data-dropdown="id01" class="button dropdown">Dropdown Button</a>
+
+			<!-- The actual dropdown -->
+			<ul id="id01" data-dropdown-content class="f-dropdown">
+				<li><a href="#">Link 1</a></li>
+				...
+			</ul>
+
+			<script>
+			$(document).ready(function() {
+				$(document).foundation();
+			})
+			</script>
+
+	Icon Syntax:
+		<head>:
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+		<i class="fi-name"></i>
+
+		.icon-bar -> specify number of items (.one-up through .eight-up to ensure evenly spaced)
+		i.e. horizontal
+			<div class="icon-bar five-up">
+				<a href="#" class="item"> // can mark as .disabled
+					<i class="fi-home"></i>
+					<label>Home</label>
+				</a>
+				...
+			</div>
+			vertical
+			<div class="icon-bar vertical five-up">
+				...
+			</div>
+
+	Alerts:
+		<div data-alert class="alert-box">...</div>
+		conforms to 100% container width you put them in
+		add class="close" to a link or button element to close alert box
+			<a href="#" class="close">&times;</a>
+
+	Progress Bar:
+		<div class="progress">
+			<span class="meter" style="width:70%"></span>
+		</div>
+
+	Panels: gray bordered box with some padding around its content
+		<div class="panel">...</div>
+		.callout -> light blue; .radius for rounded
+
+	Images:
+		responsive, add .th class to <a> to shape image to a thumbnail
+		<a href="..." class="th radius">
+			<img src="..." alt="Paris">
+		</a>
+
+		Lightbox: modal that fills the whole page with specific images like image gallery
+		i.e.
+		<ul class="clearing-thumbs" data-clearing>
+			<li><a href="..." class="th"><img data-caption="caption" src="..."></a></li>
+			...
+		</ul>
+		start from a specific image -> albums
+		<ul class="clearing-thumbs clearing-feature" data-clearing>
+			<li class="clearing-featured-img"><a href="..." class="th"><img data-caption="..." src="..."></a></li>
+		</ul>
+
+	Dropdown Buttons:
+		<!-- Default Dropdown -->
+		<ul id="id01" data-dropdown-content class="f-dropdown">
+
+		<!-- Dropdown with padding -->
+		<ul id="id02" data-dropdown-content class="f-dropdown content"
+
+		directions: data-options="align:left|right|top"
+		<a href="#" data-dropdown="id01" data-options="align:right" class="button dropdown">Right</a>
+
+		hoverable dropdown
+		data-options="is_hover:true"
+
+	Collapsible and accordions:
+		<ul class="accordion" data-accordion>
+			<li class="accordion-navigation">
+				<a href="#demo">Simple Collapsible</a>
+				<div id="demo" class="content">
+					...
+				</div>
+			</li>
+		</ul>
+		ability to open and close all of them
+			data-options="multi_expand:true;"
+
+	Lists:
+		<ul class="inline-list">
+	Tabs:
+		<ul class="tabs" data-tab>
+			<li class="tab-title active"><a href="#home">Home</a></li>
+		</ul>
+		.vertical to flip vertically
+		toggable tabs add the .content class then add unique ID to each tab for links inside list to href them
+		<div class="tabs-content">
+			<div class="content active" id="home">
+				...
+			</div>
+		</div>
+
+		Fade in Tabs -> 
+		.tabs-content > .content.active {
+			-webkit-animation: fadeEffect 1s;
+			animation: fadeEffect 1s;n
+		}
+		@-webkit-keyframes fadeEffect {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+		@keyframes fadeEffect {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+	Pagination:
+	<div class="pagination-centered">
+		<ul class="pagination">
+			<li class="arrow"><a href="#">&laquo;</a></li>
+			<li class="current"><a href="#">1</a></li>
+			... // .unavailable for disabled
+			<li class="arrow"><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+	<ul class="breadcrumbs"> : indicates current page's location within navigational hierarchy
+	.sub-nav to <dl> elmeent, moves between different states of a page
+
+	Pricing Tables:
+		subscription-based products
+		<ul class="pricing-table">
+			<li class="title">Title</li>
+			<li class="price">$</li>
+			<li class="description">Description</li>
+			<li class="bullet-item">...</li>
+			<li class="cta-button"><a class="button" href="#">Buy</a></li>
+		</ul> // fills 100% of its container's width, all items bordered and centered
+
+		put in a grid by putting in row (i.e. 3 of the medium-4 columns)
+
+	Top Navigation Bar
+	<nav class="top-bar" data-topbar>
+		<ul class="title-area">
+			<li class="name">
+				<!-- Remove this if you don't want a title/logo -->
+      			<h1><a href="#">WebSiteName</a></h1>
+    		</li>
+		    	<!-- Collapsible Button on small screens: remove .menu-icon to get rid of icon. 
+		    	Remove the "Menu" text if you only want to show the icon -->
+		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
+
+		    <section class="top-bar-section">
+			    <ul class="left"> // can change to right
+			    	<li class="active"><a href="#">Home</a></li>
+				    <li class="divider"><a href="#">Page 1</a></li>
+				    <li><a href="#">Page 2</a></li>
+				    <li><a href="#">Page 3</a></li>
+			    </ul>
+			</section>
+	</nav>
+
+	add dropdowns:
+	<li class="has-dropdown">
+		<a href="#">Dropdown</a>
+		<ul class="dropdown">
+			<li><a href="#">...</a></li>
+		</ul>
+	</li>
+	can do nested/multi-level dropdowns
+
+	can make clickable by data-options="is_hover: false"
+
+	wrap in <div class="fixed"> to make the navigation bar fixed at the top
+
+	wrap in <div class="sticky"> -> when nav bar hits the toop of the browser window it will act like the fixed top bar and stick to the top as the user continues to scroll
+		data-options="sticky_on: small|medium|large" or "sticky_on: [small, large]"
+
+	Side Nav
+	<ul class="side-nav">
+	use in grid
+	i.e.
+	<div class="medium-4 columns" style="background-color:#f1f1f1;">...</div>
+	<div class="medium-8 columns">...</div>
+
+	Off-canvas Menus
+	positioned outside of the viewport and slide in when activated (click on hamburger/menu button to the left)
+	<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      </section>
+
+      <section class="middle tab-bar-section">
+        <h1 class="title">Off-canvas Example</h1>
+      </section>
+    </nav>
+
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list test">
+        <li><label>Heading</label></li>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+        <li><a href="#">Link 5</a></li>
+        <li><a href="#">Link 6</a></li>
+        <li><a href="#">Link 7</a></li>
+        <li><a href="#">Link 8</a></li>
+      </ul>
+    </aside>
+    
+    <section class="main-section">
+      <h3>Lorem Ipsum</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+
+    <a class="exit-off-canvas"></a>
+
+  </div>
+</div>
+
+	Magellan:
+	fixed-position navigation and is used to automatically update links in a navigation list based on scroll position
+		can use with top bar
+		has default 10px padding remove by changing [data-magellan-expedition], [data-magellan-expedition-clone]
+
+	<div data-magellan-expedition="fixed">
+  	<dl class="sub-nav">
+	    <dd data-magellan-arrival="page1"><a href="#page1">Page 1</a></dd>
+	    <dd data-magellan-arrival="page2"><a href="#page2">Page 2</a></dd>
+  	</dl>
+	</div>
+
+	<h3 data-magellan-destination="page1">Page1</h3>
+	<a name="page1"></a>
+	...
+
+	<h3 data-magellan-destination="page2">Page2</h3>
+	<a name="page2"></a>
+	...
+
+	Forms:
+	<textarea>,<select>, <input> have width of 100%, some margin and padding, shadows, and hover effects
+	wrap in labels
+		<form>
+		  <label for="name">Input
+		    <input type="text" placeholder="Name" id="name">
+		  </label>
+
+		  <label for="adr">Label
+		    <textarea rows="4" placeholder="Address" id="adr"></textarea>
+		  </label>
+
+		  <label for="num">Select
+		    <select id="num">
+		      <option>1</option>
+		      <option>2</option>
+		      <option>3</option>
+		      <option>4</option>
+		    </select>
+		  </label>
+		</form>
+
+		.error class to specify a red error style for labels, inputs and/or textareas -> update with js
+		<label class="error">Error
+			<input type="text" placeholder="name">
+		</label>
+		<small class="error">wrong input</small>
+
+		can add pre/postfix labels that belong to input with <div class="row collapse"> followed by <element class="postfix"> or <element class="prefix">
+			can make it buttons -> <a href="#" class="postfix button">Go</a>
+			.prefix-radius/.postfix-round
+
+	Switches:
+	<div class="switch">
+	  <input id="mySwitch" type="checkbox">
+	  <label for="mySwitch"></label>
+	</div>
+	.radius/round
+	use radio buttons if you want the user to select only one of a limited number of choices, use name attribute with the same value to group the switches together
+
+	Range Sliders:
+	<div class="range-slider" data-slider>
+	<span class="range-slider-handle"> to create handle with draggable blue rectangle
+	<span class="range-slider-active-segment"> adds gray color behind the handle
+
+	options="display_selector:#id" to display value in
+	<!-- Display the slider value in this span -->
+		<span id="mySlider"></span>
+
+		<div class="range-slider" data-slider data-options="display_selector: #mySlider;">
+		  <span class="range-slider-handle"></span>
+		  <span class="range-slider-active-segment"></span>
+		</div>
+		can change start and end values
+		can use in grid (small-10 and small-2)
+			<span id="mySlider" style="display:block;margin-top:14px;"></span>
+
+	Tooltips:
+		small pop-up box that appears when the user moves the mouse pointer over an element -> tagging?
+		add data-tooltip attribute to any element and use title attribute to specify text that should appear in tooltip
+		i.e.
+		<span data-tooltip title="Pops">Hover</span>
+		.tip-top/left/right/bottom; .radius/.round
+
+	Modal:
+		dialog box/popup window that is displayed on top of the current page
+			nested modals
+			data-options="multiple_opened:true;"
+
+		<!-- Trigger the Modal -->
+		<button type="button" class="button" data-reveal-id="myModal">Click To Open Modal</button>
+
+		<!-- The Modal Content -->
+		<div id="myModal" class="reveal-modal" data-reveal>
+		  <h2>Heading in Modal.</h2>
+		  <p>Some text in the modal.</p>
+		  <p>Some text in the modal.</p>
+		  <a class="close-reveal-modal">&times;</a>
+		</div>
+
+	Joyride: useful for tutorials and tours of site or tagging??
+		create at bottom of body
+	<!-- Elements that control the tour stops -->
+	<h3 id="first">First stop!</h3>
+	<h3 id="second">Second stop!</h3>
+
+	<!-- The joyride: must be placed at the bottom of your page, but inside <body> -->
+	<ol class="joyride-list" data-joyride>
+	  <li data-id="first">
+	    <p>First stop. The ride has begun!</p>
+	  </li>
+	  <li data-id="second">
+	    <h4>Second Stop</h4>
+	    <p>Any valid HTML will work inside the Joyride.</p>
+	  </li>
+	  <li data-button="End">
+	    <h4>End Stop</h4>
+	    <p>The tour is over. You can either go back to the previous stop or close it.</p>
+	  </li>
+
+	Equalizer:
+		create content with equal height
+		<div class="row" data-equalizer>
+			<div class="medium-4 columns panel" data-equalizer-watch>
+			</div>
+			<div class="medium-4 columns panel" data-equalizer-watch>
+			</div>
+			<div class="medium-4 columns panel" data-equalizer-watch>
+			</div>
+		</div>
+		can nest with data-equalizer="first/second/..." and data-equalizer-watch="first/second/..."
+	</ol>
+
+
+	Grid system: 12 columns
+		responsive scales up
+		if using default max-width, but you want a bg-color that spans the entire width of the page, wrap a container element around row and specify background you want 
+		stacked-to-horizontal
+
+		block grids are used to evenly split containers
+			use a <ul> element and add the .small|medium|large-block-grid-num
+
+		change ordering with push and pull
+
+		centering: .large-centered or .large-uncentered "small-6 large-centered columns"
+
+		move columns to the right using .large-offset-* or .small-offset-* (increase left margin of a column)
+
+		use .end to float left or default float right if elements don't add up to 12 columns
+
+		can overwrite max width of row
+		.row {
+			max-width: 100%;
+		}

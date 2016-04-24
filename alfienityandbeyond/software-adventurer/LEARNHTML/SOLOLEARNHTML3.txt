@@ -1,0 +1,169 @@
+HTML5
+	supported in all modern browsers, automatically handle unrecognized elements as inline 
+	header, section, footer, aside, nav, main, article, figure { display: block; }
+	add new elements to HTML5
+		<script>document.createElement("myHero")</script>
+		myHero {
+			display:block;
+			background-color:#ddd;
+			padding: 50px;
+			font-size: 30px;
+		}
+		<myHero>My First Hero</myHero>
+	check new semantic/structural elements
+		<section>
+		<article> independent, self-contained content
+		<header> introductory content
+		<footer>
+		<nav> set of navigation links
+		<aside> like a sidebar related to the surrounding content
+		<figure>...<figcaption>...</figcaption></figure>
+		allows data to be shared and reused across applications, enterprises, and communities
+	migration from HTML4 to HTML5
+		<div id="menu"> -> <nav>
+		<div id="post"> -> <article>
+		<div id="content"> -> <section>
+		<!DOCTYPE html>
+		<meta charset="utf-8">
+	<article> complete, self-contained block of related elements
+	<div> block of children elements
+	<section> block of related elements
+	style guides: resemble XHTML
+		lowercase element names/attribute names
+		<!DOCTYPE html>
+		close all elements
+		close empty html elements
+		quoted attributes
+		image attributes with alt="HTML5" for when image cannot be viewed and define image size style="width:128px;height:128px"> to reduce flickering
+		< 80 characters per line
+		blank lines between logical code blocks, add 2 spaces of indentation
+		<title> required <html lang="en-US">
+		load JS in HTML <script src="myscript.js">
+			accessing elements with JavaScript
+				var obj = getElementById("demo")
+		lowercase file names
+		.htm/html extensions, .css, .js
+	Graphics:
+		<canvas id="myCanvas" width="200" height="100"> used to draw graphics on web page via scripting (usually JavaScript)
+			rectangular area on HTML page
+			no border and no content by default
+			draws 2D graphics on the fly, rendered pixel by pixel -> forgotten by browser after after and must be redrawn
+			resolution dependent, no support for event handlers, poor text rendering capabilities, for graphic-intensive gaes, save image as .png or .jpg
+		SVG: Scalable Vector Graphics to define graphics for the Web
+			language for describing 2D graphics in XML
+			every element available within the SVG DOM -> can attach JS event handlers for an element
+			each drawn shape is an object
+			resolution independent, support for event handlers, best suited for applications with large rendering areas (Google Maps), slow rendering that uses DOM, not suited for game apps
+	Multimedia: sound, music, videos, movies, and animations	
+		MP4 recommended by YouTube for internet video
+		MP3 for compressed recorded music
+		before needed plug-in like flash to run audio/video files
+		<video width="320" height="240" controls> <!-- autoplay -->
+			<source src="movie.mp4" type="video/mp4">
+		</video> <!-- 3 supported video formats: MP4, WebM, Ogg -->
+			DOM elements to play, pause, etc. -> <button onclick="fun()">Do Function</function>
+			<script> var myVideo = document.getElementById("video1");
+				function fun() {
+					if (myVideo.paused)
+						myVideo.play();
+					else 
+						myVideo.pause();
+		<audio controls>
+			<source src="horse.mp3" type="audio/mpeg"></audio> <!-- MP3, Wav, Ogg -->
+			check out DOM reference 
+		plug-ins to extend functionality of the HTML browser
+			<object> defines an embedded object within an HTML document to embed plug-ins like Java applets, PDF readers, Flash Players
+				<embed> also defines an embedded object within an HTML document
+		YouTube Video
+			display an id when you save or play a video -> use this id and refer to your vid in HTML
+			<iframe width="420" height="315"
+				src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
+			</iframe> <!-- <object>/<embed> deprecated -->
+				autohide, autoplay, controls, loop, playlist
+	Geolocation: locate a user's position
+		geographical position not available unless user approves it
+		getCurrentPosition() to get user's position
+			if (navigator.geolocation) { navigator.geolocation.getCurrentPosition(showPosition, showError);
+				error codes: PERMISSION_DENIED, POSITION_UNAVAILABLE, TIMEOUT, UNKNOWN ERROR
+			position.coords.latitude/longitude
+		displaying result in a map
+			var latlon = position.coords.latitude + "," + position.coords.longitude;
+			var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
+			document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+		other interesting methods
+			watchPosition() returns current position of the user and continues to return updated position as the user moves
+			clearWatch() stops the watchPosition()
+	Drag/Drop
+		to make an element draggable
+			<img draggable="true" ondragstart="drag(event)"...>
+			function drag(ev) {
+				ev.dataTransfer.setData("text", ev.target.id);
+			}
+		ondragover event specifies where the dragged data can be dropped
+			to allow a drop, we must prevent the default handling of the element
+				event.preventDefault()
+		do the drop - ondrop
+			function drop(ev) {
+				ev.preventDefault(); // prevent broswer default handling of data, default is open as link on drop
+				var data = ev.dataTransfer.getData("text"); // returns any data that was set to same type in setData() method
+				ev.target.appendChild(document.getElementById(data)); // append dragged element into drop element
+	HTML5 Local Storage
+		store data locally within user's browser
+			before data had to be stored in cookies, included in every server request
+			storage is more secure, larger limit, local storage is per origin (per domain and protocol)
+				all pages, from one origin, can store and access the same data
+		two objects for storing data on client
+			window.localStorage - stores data with no expiration date
+				localStorage.setItem("lastname", "Smith"); // Store
+				document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+				localStorage.removeItem("lastname"); // name/value pairs stored as strings
+				localStorage.clickcount = Number(localStorage.clickcount) + 1; // convert to another format if needed
+			window.sessionStorage - stores data for one session (lost when browser tab is closed)
+				check browser support first
+					if(typeof(Storage) !== "undefined") ...
+	Application Cache
+		web application is cached and accessible without an internet connection
+			for offline browsing, speed (cached resources load faster), reduced server load (download updated/changed resources from the server)
+			creates cache manifest file
+				<html manifest="demo.appcache">
+				manifest file needs to be served with correct media type "text/cache-manifest", configured on web server
+				three sections
+				1. CACHE MANIFEST - files listed under this header will be cached after they are downloaded for the first time
+				2. NETWORK - require a connection to the server and never cached
+				3. FALLBACK - fallback pages if a page is inaccessible
+					updating date and version in a comment line is one way to make browser re-cache your files
+					application's cache is updated only when its manifest file changes, different size limits for cached data
+	Web Workers: JavaScript running in the background without affecting the performance of the page
+		when executing scripts in HTML page, page becomes unresponsive until the script is finished
+		check browser support
+			if(typeof(Worker) !== "undefined") { ... }
+		external JavaScript example:
+			var i = 0;
+			function timedCount() {
+				i = i + 1;
+				postMessage(i); // post a message back to the HTML page
+				setTimeout("timedCount()", 500);
+			}
+			timedCount();
+		check if worker already exists
+			if(typeof(w) == "undefined") { w = new Worker("demo_workers.js"); }
+		add onmessage event listener to web worker
+			w.onmessage = function(event) {
+				document.getElementById("result").innerHTML = event.data; } // when web worker posts a message, the code with event listener is executed
+		terminate a web worker
+			w.terminate();
+		reuse web worker
+			w = undefined; // after it has been terminated
+		web workers in external files so no access to the following JavaScript objects: window, document, parent objects
+	Server-Sent Events (SSE): allow a web page to get updates from the server
+		one way messaging
+		EventSource object is used to receive SSE notifications
+			var source = new EventSource("demo_sse.php");
+			source.onmessage = function(event) { document.getElementById("result").innerHTML += event.data + "<br>";
+		check SSE support
+			if(typeof(EventSource) !== "undefined") { ... }
+		need a server capable of sending data updates (PHP or ASP)
+			set "Content-Type" header to "text/event-stream"
+				<?php header('Content-Type: text/event-stream'); header('Cache-Control: no-cache'); // page shouldn't cache 
+					$time = date('r'); echo "data: The server time is: {$time}\n\n"; flush(); // flush the output data back to web page?>
+		onopen, onmessage, onerror		

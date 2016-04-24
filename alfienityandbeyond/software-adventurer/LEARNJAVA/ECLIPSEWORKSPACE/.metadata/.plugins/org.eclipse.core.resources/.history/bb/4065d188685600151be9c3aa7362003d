@@ -1,0 +1,12 @@
+package learnjava1;
+
+public class java11 {
+	
+	/**
+	 * Prints out "Hello World" to the console
+	 * @param args
+	 */
+	public static void main(String args[]){
+		System.out.println("Hello world");
+	}
+}

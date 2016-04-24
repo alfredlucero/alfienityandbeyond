@@ -1,0 +1,40 @@
+Release 14.7 ngdbuild P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
+-intstyle ise -p xc6slx16csg324-3 -dd _ngo -uc stopwatch.ucf stopwatch.edf
+
+Executing edif2ngd -quiet "stopwatch.edf" "_ngo\stopwatch.ngo"
+Release 14.7 - edif2ngd P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading NGO file
+"E:/Alfred_Maya_Lab3/LAB3/project_1/project_1.runs/impl_1/_ngo/stopwatch.ngo"
+...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "stopwatch.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+Done...
+
+Checking expanded design ...
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings:   0
+
+Total memory usage is 186808 kilobytes
+
+Writing NGD file "stopwatch.ngd" ...
+Total REAL time to NGDBUILD completion:  7 sec
+Total CPU time to NGDBUILD completion:   3 sec
+
+Writing NGDBUILD log file "stopwatch.bld"...

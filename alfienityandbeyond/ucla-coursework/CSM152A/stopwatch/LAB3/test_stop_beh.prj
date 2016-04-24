@@ -1,0 +1,5 @@
+verilog work "display7.v"
+verilog work "clock_1hz.v"
+verilog work "stopwatch.v"
+verilog work "test_stop.v"
+verilog work "C:/Xilinx/14.6/ISE_DS/ISE//verilog/src/glbl.v"

@@ -1,0 +1,534 @@
+JAVASCRIPT THE GOOD PARTS:
+Chapter 1: Good Parts
+	JavaScript = language of web browser
+	Document Object Model(DOM) - API of the browser
+	functions, loose typing, dynamic objects, expressive object literal notation
+		functions are first class objects with lexical scoping
+		Lisp in C's clothing
+		loosely typed -> compilers unable to detect type errors
+		object literal notation -> objects created by listing their components, inspired by JSON - data interchange format
+		prototypal inheritance, classfree object system
+	bad: global variables for linkage (global object)
+	<script src="program.js"></script> -> document.writeln('Hello, world!');
+
+Chapter 2: Grammar
+	use // for comments rather than /* */ for block because of regular expression literals
+	Names for statements, variables, parameters, property names, operators, labels
+	Numbers: 64-bit floating point
+	Strings: wrapped in single/double quotes, backslash escape character, 16 bits wide characters
+		str.length, other methods such as toUppercase, substr
+		immutable strings, concatenate with + operator
+	falsy values: false, null, undefined, empty string '', 0, NaN
+	truthy values: true, string 'false', all objects
+	for-in: enumerates the property names(or keys) of an object
+	object.hasOwnProperty(variable) -> check whether property name is truly a member of the object or found on the prototype chain
+		for (myvar in obj) {
+			if (obj.hasOwnProperty(myvar)) {
+				...
+			}
+		}
+	try {
+		...
+	} catch (variable) // receives exception object
+	throw statement raises an exception -> goes to catch if within try block
+	ternary operator ?
+	typeof // 'number', 'string', 'boolean', 'undefined', 'function', 'object' (even for array or null)
+	invocation causes execution of function value
+	refinement used to specify property or element of an object or array (.name, [expression])
+
+Chapter 3: Objects
+	objects = mutable keyed collections, class-free
+		ex/ arrays, functions, regular expressions, objects
+		containers of properties (name,value)
+		collection of name/value pairs with hidden link to a prototype object
+	object literal notation:
+		var emptyObj = {};
+		var exObj = {
+			"firstName": "Alfred",
+			"lastName": "Lucero"
+		};
+		nested
+		var flight = {
+			airline: "Oceanic",
+			departure: {
+				IATA: "SYD"
+			},
+			arrival: {
+				IATA: "LAX"
+			}
+		};
+	retrieval
+		stooge["first-name"]
+		flight.departure.IATA // "SYD"
+		undefined if attempt made to retrieve nonexistent member
+		|| to fill in default values
+			var status = flight.status || "unknown";
+		attempting to retrieve values from undefined will throw TypeError exception
+			flightt.equipment && flight.equipment.model // undefined
+	update
+		stooge["first-name"] = "Alfred";
+		stooge.nickname = "Alfie"; // augmented
+	reference (objects passed by reference, never copied)
+	prototype
+		every object is linked to prototype object from which it can inherit properties (Object.prototype)
+		if desired property exists nowhere in the prototype chain, the result is undefined value -> delegation
+	reflection -> use typeof and .hasOwnProperty('...')
+	enumeration
+		var name;
+		for (name in obj) {
+			if (typeof obj[name] !== "function") {
+				document.writeln(name + ": " + obj[name]);
+			}
+		} // for better ordering use array of property names
+	delete
+		remove a property from an object
+	global abatement -> create a single global variable for application 
+		var MYAPP = {};
+		MYAPP.stooge = {
+			firstName: "Alfred"
+		};
+
+Chapter 4 Functions:
+	objects linked to Function.prototype
+	two hidden properties: context and code that implements function's behavior
+	prototype property -> value is object is constructor property whose value is the function
+	can be stored in variables, objects, and arrays
+	can have methods, invoked, passed as arguments, returned
+
+	function literal
+		var add = function (a, b) {
+			return (a + b);
+		};
+		object created by a function literal contains a link to that outer context = closure
+
+	no type checking on argument values: any type of value can be passed to any parameter
+		extra args ignored, too few lead to undefined
+		no runtime error when number of args don't match
+
+	method invocation pattern
+		var myObject = {
+			value: 0,
+			increment: function (inc) { // public method, get object context from this
+				this.value += typeof inc === 'number' ? inc: 1;
+			}
+		};
+		myObject.increment();
+		myObject.increment(2);
+		document.writeln(myObject.value);
+
+	function invocation pattern
+		var sum = add(3, 4); // bound to global object
+
+	constructor invocation pattern
+		prototypal inheritance language, objects can inherit directly from other objects, class-free
+		// create constructor function called Quo, object with status property
+		var Quo = function (string) {
+			this.status = string;
+		};
+		// give Quo a public method
+		Quo.prototype.get_status = function () {
+			return this.status;
+		};
+		// make instance of quo
+		var myQuo = new Quo("confused");
+		document.writeln(myQuo.get_status());
+
+	apply invocation pattern
+		functional object-oriented language
+		lets us construct an array of arguments to use to invoke a function
+		two parameters: value that should be bound to this, array of parameters
+		i.e. 
+			var array = [3, 4];
+			var sum = add.apply(null, array);
+			var status = Quo.prototype.get_status.apply(statusObject);
+
+	arguments
+		arguments array invoked, take unspecified number of parameters
+		var sum = function () {
+			var i, sum = 0;
+			for (i = 0; i < arguments.length; i++) {
+				sum += arguments[i];
+			}
+			return sum;
+		};
+
+	return
+		function always returns a value, undefined if anything
+	exceptions
+		var add = function (a, b) {
+			if (typeof a !== 'number' || typeof b !== 'number') {
+				throw {
+					name: 'TypeError',
+					message: 'add needs numbers'
+				};
+			}
+			return a + b;
+		}
+		var try_it = function () {
+			try {
+				add("seven");
+			} catch (e) {
+				document.writeln(e.name + ': ' + e.message);
+			}
+		}
+		try_it();
+
+	augmenting types
+		Object.prototype, Function.prototype allows for augmentation, makes method available to all objects/functions
+		i.e. Number.prototype
+		Number.method('integet', function () {
+			return Math[this < 0 ? 'ceiling' : 'floor'](this);
+		});
+		i.e. add a method conditionally
+		Function.prototype.method = function (name, func) {
+			if (!this.prototype[name]) {
+				this.prototype[name] = func;
+			}
+		};
+
+	recursive: function that calls itself, either directly or indirectly
+	var walk_the_DOM = function walk(node, func) {
+		func(node);
+		node = node.firstChild;
+		while (node) {
+			walk(node, func);
+			node = node.nextSibling;
+		}
+	};
+	var getElementsByAttribute = function (att, value) {
+		var results = [];
+		walk_the_DOM(document.body, function (node) {
+			var actual = node.nodeType ===1 && node.getAttribute(att);
+			if (typeof actual === 'string' && 
+					(actual === value || typeof value !== 'string')) {
+					results.push(node);
+					}
+		});
+
+		return results;
+	};
+	no tail recursion optimization: function returns the result of invoking itself recursively, the invocation is replaced with a loop
+	var factorial = function factorial(i, a) {
+		a = a || 1;
+		if (i < 2) {
+			return a;
+		}
+		return factorial(i - 1, a * i);
+	};
+
+	scope: controls the visibility and lifetimes of variables and parameters
+		has function scope, no block scope
+		better to declare all of variables used in a function at top of function body
+
+	closure: function has access to the context in which it was created
+	var quo = function (status) {
+		return {
+			get_status: function () {
+				return status;
+			}
+		};
+	};
+	var myQuo = quo("amazed");
+	document.writeln(myQuo.get_status());
+
+	var add_the_handlers = function (nodes) {
+		var i;
+		for (i = 0; i < nodes.length; i += 1) {
+			nodes[i].onclick = function (i) {
+				return function (e) {
+					alert(e);
+				};
+			}(i); // returns event handler bound to value of i that was passed in
+		}
+	};
+
+	Callbacks: 
+		synchronous request over the network will leave the client in a frozen state
+		asynchronous -> callback function that will be invoked when server's response is received
+
+	Modules:
+		function or object that presents an interface but that hides its state and implementation
+		takes advantage of function scope and closure to create private/binding relationships
+		great for encapsulation, eliminate global variables
+		i.e.
+		var serial_maker = function () {
+			var prefix = '';
+			var seq = 0;
+			return { 
+				set_prefix: function(p) {
+					prefix = String(p);
+				},
+				set_seq: function (s) {
+					seq = s;
+				},
+				gensym: function () {
+					var result = prefix + seq;
+					seq += 1;
+					return result;
+				}
+			};
+		};
+		var seqer = serial_maker();
+		seqer.set_prefix = ('Q');
+		seqer.set_seq = (1000);
+		var unique = seqer.gensym();
+	Cascade:
+		methods that return this, can call many methods on the same object ins equence in a single statement (i.e. Ajax library)
+		produces expressive interfaces
+	Curry:
+		allows us to produce a new function by combining a function and an argument
+	Memoization:
+		functions can use objects to remember the results of previous operations, making it possible to avoid unnecessary work
+
+Chapter 5: Inheritance
+	prototypal: objects inherit directly from other objects
+	var Mammal = function (name) {
+		this.name = name;
+	};
+	Mammal.prototype.get_name = function () {
+		return this.name;
+	};
+	Mammal.prototype.says = function () {
+		return this.saying || '';
+	};
+	var Cat = function (name) {
+		this.name = name;
+		this.saying = 'meow';
+	};
+	Cat.prototype = new Mammal();
+	Cat.prototype.get_name = function () {
+		return this.says() + ' ' + this.name + ' ' + this.says();
+	};
+	Object specifiers:
+		var myObject = maker({
+			first: f,
+			last: l,
+			state: s,
+			city: c
+		});
+	weakness of inheritance patterns: no privacy, all properties of an object are visible
+
+	functional constructor
+	var constructor = function (spec, my) {
+		var that, other private instance variables;
+		my = my || {};
+
+		add shared variables and functions to my
+
+		that = a new object;
+
+		add privileged methods to that
+		return that;
+	};
+	functional pattern used for durability/capabilities
+
+	constructor could assemble objects from a set of parts
+
+Chapter 6 Arrays:
+	array is a linear allocation of memory in which elements are accessed by integers that are used to compute offsets
+	provides object with array-like characteristics
+	converts array subscripts into strings that are used to make properties, significantly slower than real array
+	heterogeneous
+	
+	length (not an upper bound), no array bounds error (increase to contain new element)
+		largest integer property name in array plus one, not necessarily number of properties in array
+		numbers[numbers.length] = 'shi'; // new element appended to end of an array
+		numbers.push('go'); // same thing
+	
+	delete numbers[2]; // removes element from array but leaves undefined hole
+	numbers.splice(2, 1); // deletes some, replaces with other elements, slow for large arrays to shift
+
+	array literals:
+		pair of square brackets surrounding zero or more values separated by commas
+
+		inherits from Array.prototype
+
+	when property names are small sequential integers, use an array; otherwise, use an object
+
+	// handles arrays constructed in a different window or frame
+	var is_array = function (value) {
+		return value &&
+			typeof value === 'object' && 
+			typeof value.length === 'number' &&
+			typeof value.splice === 'function' &&
+			!(value.propertyIsEnumerable('length'));
+	};
+
+	methods: can add to Array.prototype
+		Array.method('reduce', function (f, value) {
+			var i;
+			for (i = 0; i < this.length; i += 1) {
+				value = f(this[i], value);
+			}
+			return value;
+		});
+	for (var i = 0; i < n; i += 1) {
+		my_array[i] = []; // creates 2D array
+	}
+	Array.matrix = function(m, n, initial) {
+		var a, i, j, mat = [];
+		for (i = 0; i < m; i += 1) {
+			a = [];
+			for (j = 0; j < n; j += 1) {
+				a[j] = initial;
+			}
+			mat[i] = a;
+		}
+		return mat;
+	};
+	var myMatrix = Array.matrix(4, 4, 0); // 4x4 filled with zeros
+	Array.identity = function(n) {
+		var i, mat = Array.matrix(n, n, 0);
+		for (i = 0; i < n; i += 1) {
+			mat[i][i] = 1;
+		}
+		return mat;
+	};
+	myMatrix = Array.identity(4);
+
+Chapter 7 Regular Expression:
+	syntax from Java, functions from Scheme, prototypal inheritance from Self, regex from Perl
+	regular expression = specification of the syntax of a simple language (for search, replace, extract info. from strings)
+	regexp.exec, regexp.test, string.match, string.replace, string.search, string.split
+
+	/^(?:([A-Za-z]+):)? // matches scheme name followed by colon, suffix ? indicates group is optional (?:...)
+		(...) capturing group copies text it matches and places it in result array
+	(\/{0,3}) 
+		capturing group 2, slash matched 0-3 times
+	([0-9.\-A-Za-z]+)
+		match a host name made up of one or more digits, letters, ., or -
+	(?::(\d+))?
+		optionally matches a port number (one or more digits preceded by a : 
+		series of one or more digits is capturing group 4
+	(?:\/([^?#]*))?
+		optional group begins with a /. character class includes all characters except ? and #, * means matched zero or more times
+	(?:\?([^#]*))?
+		optional group begins with a ?, capturing group 6 which contains zero or more characters that are not #
+	(?:#(.*))?
+		optional group begins with #, . matches any character except a line-ending character
+	$/
+		represents the end of the string, end of URL
+
+	regex is least portable
+	var parse_number = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
+	parse_number.test(num);
+
+	/^ $/i -> anchors tell us if string contains only a number, without tells us if a string contains a number
+		/i causes case to be ignored when matching letters(e/E)
+	-? -> minus sign is optional
+	\d+ -> same as [0-9] match one or more digits
+	(?:\.\d*)? -> optional noncapturing group
+		match a decimal point followed by zero or more digits
+	(?:e[+\-]?\d+)? -> optional noncapturing group
+		matches e/E, optional sign, one or more digits
+
+	regular expression literals enclosed in slashes
+	/regexpchoice/g or i or m
+		global match multiple times, i = case insensitive, m = multiline (^ and $ can match line-ending characters)
+		i.e. var match_string = /"(?:\\.|[^\\\"])*"/g;
+		var my_regexp = new RegExp(...)
+		RegExp objects made by regular expression literals share a single instance
+		unescaped . matches any character except a line-ending character, ^ matches the beginning of the text when the lastIndex property is zero, $ matches the end of the text 
+
+	capturing group: regexp choice wrapped in parentheses, group 1... characters will be captured (...)
+	noncapturing group: (?: prefix, simply matches
+	positive/negative look ahead
+
+	regexp class [aeiou] vs. (?:a|e|i|o|u)
+	complementing class [^!-\/:-@\[-`{-~], matches any character that is not one of the ASCII special characters
+		-/[\]^ should be escaped
+
+	regexp quantifier: number wrapped in curly braces means that the factor should match that many times
+		/www/ === /w{3}/ or /w{3,}/ match 3 or more times
+		? === {0,1}, * === {0,}, + === {1,}
+
+Chapter 8 Methods
+	Array methods:
+		array.push(item..) = appends items to end of array, modifies array, appends array items whole, returns new length
+		array.pop() = removes and returns last element in array, returns undefined if empty
+		array.concat(item...) = new array containing shallow copy of this array with the items appended to it
+		array.join(separator) = makes a string from array, concatenates with a separator between each element
+		array.reverse() = modifies and returns array
+		array.shift() = removes first element from array and returns it
+		array.slice(start, end) = makes shallow copy of portion of an array
+		array.sort(comparefn) = sorts the contents of an array in place, default comparefn assumes elements to be sorted are strings
+			comparefn takes two parameters and return 0 if two parameters are equal, negative if first parameter should come first, and positive if second first
+			n.sort(function (a, b) {
+				return a - b;
+			});
+		array.splice(start, deleteCount, item...) = removes elements from an array, replacing them with new items, returns array contained deleted items
+		array.unshift(item...) = push method except it shoves the items onto the front of this array instead of at the end, returns array's new length
+	Function methods:
+		function.apply(thisArg, argArray)
+			invokes a function, passing in object that will be bound to this, optional array of arguments
+	Number methods:
+		number.toExponential(fractionDigits) = converts number to a string in exponential form
+		number.toFixed(fractionDigits) = string in decimal form
+		number.toPrecision(precision) = string in decimal form
+		number.toString(radix) = number to string
+	Object methods:
+		object.hasOwnProperty(name) = returns true if object contains a property having the name, chain is not examined
+	RegExp
+		regexp.exec(string) = most powerful and slowest as it returns an array, 0 element of array will contain the substring that matched the regexp, 1-n = capturing groups
+		regexp.test(string) = returns true if regexp matches the string, fastest
+	String
+		string.charAt(pos) = returns string character at position pos in string, returns empty if out of bounds
+		string.charCodeAt(pos) = returns integer representation of code point value of character at position pos in that string
+		string.concat(string...) -> + is more convenient
+		string.indexOf(searchString, position) = returns position of first matched character
+		string.lastIndexOf(searchString, position) = searches from end of string 
+		string.localeCompare(that) -> compares two strings
+		string.match(regexp) = matches a string and regular expression
+		string.replace(searchValue, replaceValue)
+		string.search(regexp)
+		string.slice(start,end) = makes a new string by copying a portion of another string.split(separator, limit) = creates an array of strings by splitting this string into pieces
+		string.substring(start,end) doesn't handle negative parameters
+		string.toLocaleLowerCase()/toLocaleUpperCase/toLowerCase/toUpperCase
+		String.fromCharCode(char...) produces string from a series of numbers
+
+Chapter 9 Style:
+	if (a) {
+		b();
+	}
+	clarity, careful comments, consistent spacing and braces, single global variable to contain an app or library, closure modules, neatness counts
+
+Chapter 10 Beautiful Features:
+	functions as first class objects = lambdas with lexical scoping
+	dynamic objects with prototypal inheritance
+		objects are class-free, add new member to any object by ordinary assignment, can inherit members from another object
+	object literals and array literals
+		inspiration for JSON data interchange format
+
+	features have a spec/design/dev/testing/reliability/storage (in mobile)/documentation/training costs -> stick to simple, good parts
+
+
+EVENTS AND TIMING:
+	Most browsers use single thread for UI and JavaScript, which is blocked by synchronous calls  (vs. asynchronous such as setTimeout)
+	execution blocks the rendering
+	events are processed asynchronously with the exception of DOM events
+		event-driven (message queue and event loop) to build system around a collection of asynchronously-fired callbacks, freeing the runtime to handle concurrent operations while waiting on external events to happen
+
+	Almost all I/O is non-blocking; single thread asks runtime to perform an operation, providing a callback function and then moves on to do something else -> enqueued with callback function and dequeued with callback fired
+		varies from synchronous, request-response model in server-side applications
+
+	Event Loop (provided by web browsers)
+		runtimes contain a message queue which stores a list of messages to be processed and their associated callback functions
+		queue is polled for next message -> callback is executed when a message is encountered
+		upon function call on call stack such as onclick, enqueue message with callback function, dequeue the first message, call its callback, and poll for next message when stack is empty
+
+	Web Workers
+		offload to a separate thread of execution, freeing up the main thread to do other things (separate message queue, event loop, and memory space)
+
+	Closures
+		allow you to register callbacks that, when executed, maintain access to the environment in which they were created even though the execution of the callback creates a new call stack entirely
+
+
+
+
+
+
+	
+
+
+
+

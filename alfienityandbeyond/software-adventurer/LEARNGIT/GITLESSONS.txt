@@ -1,0 +1,47 @@
+LEARN GIT:
+
+git status (check if any changes)
+git log (check all commit list)
+		--author="name" (shows commits only from this author)
+
+Start a repository/project:
+	- git init  (creates repository)
+	- git add . (add all changes made to our project)
+			  filename.txt (add to stage area/purgatory) // working copy > staging area > repository
+	- git reset HEAD filename.txt (removes from staging area)
+	- git commit -m "first commit" (takes snapshot in point in time so we can go back to it)
+				 -am "message" (adds and commits all edited files in working copy to repository already)
+	- git rm filename.txt (removed from repository and working copy, then commit changes after)
+	- git mv oldname.txt newname.txt (rename), oldname.txt filedest
+	- git checkout -- filename.txt (take from repository and make it the working copy)
+				   commit# -- filename.txt (or nothing for all the changes) -> git checkout -b branchname (retain old changes in branch)
+				   
+Viewing the changes that we made:
+	-git diff (hit q to exit, shows difference between working copy and repository)
+			  --staged (compare staged/added but no commit to repository)
+
+Branches: 
+	git branch (check which branch you're on)
+	git checkout -b branchname (create a branch)
+				 -d branchname (delete a local branch)
+				 branch (move to another branch)
+				 
+GITHUB:
+1. Creating a new repository on the command line
+	echo # gitnewbie >> README.md
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git remote add origin https://github.com/alfredlucero/gitnewbie.git
+	git push -u origin master
+2. Pushing an existing repository from the command line (pushing to servers)
+	// git remote (gives name of remote repo)
+	git remote add origin https://github.com/alfredlucero/gitnewbie.git
+	git push -u origin master
+	-> pushing changes to remote repository
+	git commit -m "message"
+	git tag v1.0 (creates tag)
+	git push origin master (pushes files onto repo)
+	git push origin v1.0 (pushes tag)
+
+fetching (retrieve from server)

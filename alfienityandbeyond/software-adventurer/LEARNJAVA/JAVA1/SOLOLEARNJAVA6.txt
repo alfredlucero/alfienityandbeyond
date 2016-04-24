@@ -1,0 +1,116 @@
+EXCEPTIONS, LISTS, THREADS & FILES:
+
+	Exception handling:
+		handling errors
+		try {
+			...
+		}
+		catch(Exception e) {
+			...
+		}
+		
+		// method can throw an exception if something goes wrong in code
+		public void run() throws IOException, ParseException {
+			// throw new IOException();
+			// throw new ParseException(...);
+		}
+		||
+		try { // in method where run() is called
+			test.run();
+		} catch (IOException e) {
+			// TODO: Auto-generated catch block
+			e.printStackTrace();
+		} catch(ParseException e) {
+			// TODO: Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Runtime vs. Checked Exceptions
+		Checked exceptions are the ones you are forced to handle such as Thread.sleep()-> must put try/catch block or else program won't compile
+		Runtime/unchecked exceptions are ones you are not forced to handle but exception will be thrown i.e. value/0 for arithmetic exception
+			null pointer exception such as String text = null; -> text.length();
+		
+	Threads:
+		Way 1:
+			separate running process that can be running concurrently with other threads
+			class extends thread
+			override public void run() method
+			create object of class that extended thread and call object.start() to use the run() method in new thread
+		Way 2:
+			have class implements Runnable
+			override public void run() method with what you want to do
+			Thread t1 = new Thread(Athlete());
+			t1.start();
+			
+	ArrayList:
+		fast enumerations(get/set), faster random access
+		resizable array and size increases dynamically, use get/set
+		generic class i.e. ArrayList<String> dict = new ArrayList<String>(5);
+		will expand automatically (parallels vectors in C++) in comparison to fixed-size arrays String[] dict = new String[2];
+		list.add(); list.get(1); list.remove(1);
+	LinkedList:
+		fast inserts and deletes, better when not a large number of random access of elements
+		doubly linked list
+		both follow List interface so same methods
+		
+	HashMap:
+		key-value pairs
+		HashMap<keytype, valuetype> map = new Hashmap<keytype, valuetype>()
+		map.put(key, value); // can't have duplicate keys, overrides value corresponding to it
+		map.get(key); // returns null or value corresponding to key
+		
+	Set:
+		HashSet<String> set1 = new HashSet<String>();
+		set1.add(...);
+		set1.size();
+		adding duplicate items does nothing
+		HashSet does not contain order
+		LinkedHashSet remembers the order you added items in (doubly linked list)
+	
+	Sorting Lists:
+		Collections.sort(list);
+		for(String animal : animals)
+			System.out.println(animal);
+		for(Integer number: numbers)
+			System.out.println(number);
+	
+	Iterators:
+		Modern iteration:
+			for (Integer num: nums)
+			System.out.println(num);
+		Old way:
+			Iterator<Integer> it = nums.iterator();		
+			int count;
+			while(it.hasNext()){
+				count = it.next();
+				System.out.println(count);
+			}
+			System.out.println();
+			
+	Java File Object
+		import Java.io.File;
+		File x = new File("C:\\test\\greg.txt"); // check info. about files
+		if (x.exists()), x.getName() // check file exists
+		reading a file
+			private Scanner x;
+			try {
+				x = new Scanner(new File("filename.txt"));
+			} catch(Exception e) {
+				System.out.println("Could not find/open file");
+			}
+			while(x.hasNext()){ // 20 john doe
+				String a = x.next();
+				String b = x.next();
+				String c = x.next();
+				System.out.printf("%s %s %s\n", a, b, c);
+			}
+			x.close();
+		creating and writing text files
+			write content:Formatter -> Formatter x = new Formatter("filename.txt");
+				x.format("%s%s%s", "20 ", "Alfred Lucero ", "UCLA");
+				x.close();
+			
+				
+		
+		
+		

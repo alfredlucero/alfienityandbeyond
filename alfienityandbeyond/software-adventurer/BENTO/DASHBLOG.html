@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+  <link href="/normalize.css" rel="stylesheet">
+  <style>
+	body {
+	  font-family: Helvetica;
+	  background-color: SlateGray;
+	}
+    header {
+      text-align: center;
+      background: url('http://i.imgur.com/P1U46.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    a {
+      color: white;
+    }
+    h1 {
+      font-size: 70px;
+    }
+    img {
+      margin: 40px 0px 0px 0px;
+      border: 7px solid white;
+      border-radius: 20px;
+    }
+    ul {
+      padding: 10px;
+      background: rgba(0,0,0,0.5);
+    }
+    li {
+      display: inline;
+      padding: 0px 10px 0px 10px;
+	  font-size: 20px;
+    }
+    article {
+      max-width: 500px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+	h2 {
+	  color: LightCyan;
+	}
+	p {
+	  color: white;
+	}
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 36px;
+        padding: 5px;
+      }
+      li {
+        padding: 5px;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://scontent-lax3-1.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/12240118_926633554057388_3409582939284497025_n.jpg?oh=0289954d4175582cdbb0ca0b49ca66c0&oe=56E0AB9E" height="300" width="400">
+    <h1>Alfred Lucero</h1>
+    <ul>
+      <li><a href="http://github.com/alfredlucero">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/alfredlucero">LinkedIn</a></li>
+      <li><a href="http://www.facebook.com/alfred.liwanaglucero">Facebook</a></li>
+      <li><a href="https://soundcloud.com/alfred-liwanag-lucero">SoundCloud</a></li>
+    </ul>
+  </header>
+  <article>
+    <h2>About Me</h2>
+    <p>Bachelor of Science, Computer Science; 2013 - 2017(Expected)<br>
+	University of California, Los Angeles - Los Angeles, California<br>
+	GPA: 3.56, Dean's Honor List<br>
+	Upsilon Pi Epsilon - International Honor Society, October 2015 - Present<br>
+	Alpha Lambda Delta - National Honor Society, March 2014 - Present
+	</p>
+    <button>Like</button>
+  </article>
+  <article>
+    <h2>Competencies</h2>
+    <p>Proficient with: C++, C; Familiar with: PHP, MySQL, JavaScript, HTML5, CSS3, Java, UNIX shell<br>
+	IDE: Visual Studio, Eclipse, Android Studio; Tools: GitHub, VirtualBox
+	</p>
+    <button>Like</button>
+  </article>
+  <article>
+    <h2>Projects</h2>
+    <p>Portfelo: IMDB of Photography Website (Self-Learning to enhance HTML5, CSS3, JavaScript, and SQL knowledge)<br>
+	Movie Database Website in CS143: Database Systems (Used PHP, HTML, MySQL)<br>
+	Profiling Shell in CS111: Operating Systems Principles (Used C, UNIX shell, Linux servers, Emacs/Vim)<br>
+	WebGL Bowling Game in CS174A: Introduction to Computer Graphics (used JavaScript API WebGL, JavaScript, HTML)<br>
+	BugBlast Pixel Arcade Game in CS32: Introduction to Computer Science (used C++)</p>
+    <button>Like</button>
+  </article>
+  <script>
+    $("button").on("click", function() {
+      alert("Clicked!");
+    });
+  </script>
+</body>

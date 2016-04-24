@@ -1,0 +1,6 @@
+
+public class porsche extends car {
+	public void drive() {
+		System.out.println("I drove 25 miles per hour");
+	}
+}

@@ -1,0 +1,113 @@
+LEARN PYTHON 2.7
+
+Set project interpreter to anaconda
+conda updata anaconda
+
+if __name__ == "__main__" // import behaviors? coding styles?
+	print 'Hello World'
+
+Variables and arithmetic operations:
+	+-/*,** (exponentiation)
+	a = 'Rosalind'
+	b = 'Franklin'
+	c = '!'
+	print a + ' ' + b + c*3
+
+Strings and Lists
+	string = list of characters
+	list_name = [item_1, item_2, ..., item_n] // integer, float, string
+	i.e.
+		tea_party = ['March Hare', 'Hatter', 'Dormouse', 'Alice']
+		print tea_party[2]
+		tea_party.append('Jabberwocky')
+		print tea_party // March Hare, Cheshire Cat, Dormouse, Alice, Jabberwocky
+	
+	list_name[a:b] // slice from index a up to but not including index b
+	i.e.
+		tea_party[:2] from 0 <= i < 2
+		tea_party[-2:]
+
+Conditions and Loops:
+	if condition:
+		...
+	elif condition:
+		...
+	else:
+		...
+
+	while condition:
+		...
+	
+	n = 10
+	for i in range(n): // range is a function that creates a list of integers between 0 and name
+		print i
+	i.e. print range(5,12)
+
+	i.e. iterate over wors in a string you can split by space
+		for word in str.split(' '):
+			print word
+
+Reading and Writing from Files
+	i.e. f = open('input.txt', 'r') // read, write, append mode
+	f.read(n) // read n bytes of data as a string
+	f.readline()
+	f.readlines() // returns a list containing every line in the file
+	i.e. f.readlines()[2] returns third line of the file object f
+	i.e. read lines by looping over the file object
+	for line in f:
+		print line
+
+	line.split() // uses whitespace in addition to \n as delimeters by default, or specify one 
+	.splitlines() // returns a lsit of the lines in the stirng, breaking at line boundaries
+	f.write(string) // writes contents of string to file f
+
+	convert to string using str()
+	i.e.
+	inscription = ['Rosalind', 1920, 1958]
+	for i in inscription:
+		f.write(str(i) + '\n')
+
+	i.e.
+	input_file = open('rosalind_ini5.txt', 'r')
+	output_file = open('output.txt', 'w')
+	result = input_file.readlines()
+	i = 0
+	while i < len(result):
+	    if (i % 2 == 1):
+	        output_file.write(result[i])
+	    i = i + 1
+
+	input_file.close()
+	output_file.close()
+
+Dictionaries
+	key-value pairs, no ordering
+	keys: strings, numbers, floats, immutable types
+	d = {} // empty dictionary
+	i.e.
+		phones = {'Zoe':'232-43-58', 'Alice':'165-88-56'}
+		print phones['Zoe'] // 232-43-58
+	check if key in dictionary:
+	i.e.
+		if 'Peter' in phones:
+			...
+	delete a value from a dictionary:
+	i.e.
+		del phones['Zoe']
+
+	outputting dictionaries:
+	i.e.
+		for key, value in dict.items():
+			print key
+			print value
+
+	i.e. count number of times a word occurred in the string and output them
+	dict = {}
+	for word in input.split(' '):
+	    if word in dict:
+	        dict[word] += 1
+	    else:
+	        dict[word] = 1
+
+	for key, value in dict.items():
+	    print key + ' ' + str(value)

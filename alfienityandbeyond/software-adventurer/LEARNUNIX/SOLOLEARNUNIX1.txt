@@ -1,0 +1,38 @@
+SOLOLEARNUNIX 1
+
+Listing Files and Directories:
+	- ls (list), ls -a (show all files in home directory including whose names begin with dot type
+	- mkdir (make directory)
+	- cd (change directory)
+		. (stay where you are)
+		.. (go to parent of current directory)
+		~ (refer to home directory, i.e. ls ~/unixstuff)
+	- pwd (print working directory)
+	
+Copying/Removing files:
+	- cp (copy) file1 file2
+	- mv (move) file1 file2 // renames file1 to file2
+	- rm (remove), rmdir (remove directory)
+Displaying the contents of a file on the screen:
+	- clear (clear screen)
+	- cat (concatenate) filename
+	- less filename (writes the contents of a file onto the screen a page at a time)
+		[space-bar] to see another page and [q] to quit reading
+		[/] followed by word to search
+	- head (writes first ten lines of a file to the screen)
+	- tail (writes last ten lines of a file to the screen)
+Searching through files:
+	- grep -i copycat filename (searches for word copycat in file, -i removes case sensitivity)
+		-v displays those lines that don't match, -n precede each matching line with a line number, -c print total count of matched lines
+	- wc (word count) -w counts how many words, -l counts how many lines
+	
+Redirecting Output/Input:
+	- cat > list1
+		type words, ^D to redirect the output which normally goes to screen to list1 file
+	cat >> list1 appends standard output to a file
+	cat list1 list2 > biglist (concatenates list1 and list2 into a file)
+	- sort < biglist (sort the input to come from a file rather than keyboard
+		i.e. sort < biglist > slist
+	- who | sort (pipes output of who command to sort command
+		who | wc -l to find out how many users are logged on
+	

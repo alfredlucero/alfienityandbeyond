@@ -1,0 +1,100 @@
+//! **************************************************************************
+// Written by: Map P.68d on Wed Feb 10 13:12:28 2016
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "clk" LOCATE = SITE "V10" LEVEL 1;
+COMP "btnR" LOCATE = SITE "D9" LEVEL 1;
+COMP "btnS" LOCATE = SITE "B8" LEVEL 1;
+COMP "an<0>" LOCATE = SITE "N16" LEVEL 1;
+COMP "an<1>" LOCATE = SITE "N15" LEVEL 1;
+COMP "an<2>" LOCATE = SITE "P18" LEVEL 1;
+COMP "an<3>" LOCATE = SITE "P17" LEVEL 1;
+COMP "sw<0>" LOCATE = SITE "T10" LEVEL 1;
+COMP "sw<1>" LOCATE = SITE "T9" LEVEL 1;
+COMP "sw<2>" LOCATE = SITE "V9" LEVEL 1;
+COMP "sw<3>" LOCATE = SITE "M8" LEVEL 1;
+COMP "sw<4>" LOCATE = SITE "N8" LEVEL 1;
+COMP "sw<5>" LOCATE = SITE "U8" LEVEL 1;
+COMP "sw<6>" LOCATE = SITE "V8" LEVEL 1;
+COMP "sw<7>" LOCATE = SITE "T5" LEVEL 1;
+COMP "seg<0>" LOCATE = SITE "T17" LEVEL 1;
+COMP "seg<1>" LOCATE = SITE "T18" LEVEL 1;
+COMP "seg<2>" LOCATE = SITE "U17" LEVEL 1;
+COMP "seg<3>" LOCATE = SITE "U18" LEVEL 1;
+COMP "seg<4>" LOCATE = SITE "M14" LEVEL 1;
+COMP "seg<5>" LOCATE = SITE "N14" LEVEL 1;
+COMP "seg<6>" LOCATE = SITE "L14" LEVEL 1;
+COMP "seg<7>" LOCATE = SITE "M13" LEVEL 1;
+TIMEGRP sys_clk_pin = BEL "an_index_0" BEL "an_index_1" BEL "an_index_2" BEL
+        "ones_seconds_0" BEL "ones_seconds_1" BEL "ones_seconds_2" BEL
+        "ones_seconds_3" BEL "tens_seconds_0" BEL "tens_seconds_1" BEL
+        "tens_seconds_2" BEL "ones_minutes_1" BEL "ones_minutes_2" BEL
+        "ones_minutes_3" BEL "tens_minutes_1" BEL "tens_minutes_2" BEL
+        "an_number_0" BEL "an_number_1" BEL "seg_number_0" BEL "seg_number_1"
+        BEL "seg_number_2" BEL "seg_number_3" BEL "clock_2/clk_2hz" BEL
+        "clock_1/clk_1hz" BEL "clock_50/clk_50hz" BEL "clock_500/clk_500hz"
+        BEL "clock_750/clk_750hz" BEL "an_toggle_0" BEL "an_toggle_1" BEL
+        "an_toggle_2" BEL "an_toggle_3" BEL "an_toggle_4" BEL "an_toggle_5"
+        BEL "an_toggle_6" BEL "an_toggle_7" BEL "an_toggle_8" BEL
+        "an_toggle_9" BEL "an_toggle_10" BEL "an_toggle_11" BEL "an_toggle_12"
+        BEL "an_toggle_13" BEL "an_toggle_14" BEL "an_toggle_15" BEL
+        "an_toggle_16" BEL "an_toggle_17" BEL "an_toggle_18" BEL
+        "an_toggle_19" BEL "an_toggle_20" BEL "an_toggle_21" BEL
+        "an_toggle_22" BEL "an_toggle_23" BEL "an_toggle_24" BEL
+        "an_toggle_25" BEL "an_toggle_26" BEL "an_toggle_27" BEL
+        "an_toggle_28" BEL "an_toggle_29" BEL "an_toggle_30" BEL
+        "an_toggle_31" BEL "pauseOn_0" BEL "tens_minutes_0" BEL
+        "ones_minutes_0" BEL "clock_1/counter_0" BEL "clock_1/counter_1" BEL
+        "clock_1/counter_2" BEL "clock_1/counter_3" BEL "clock_1/counter_4"
+        BEL "clock_1/counter_5" BEL "clock_1/counter_6" BEL
+        "clock_1/counter_7" BEL "clock_1/counter_8" BEL "clock_1/counter_9"
+        BEL "clock_1/counter_10" BEL "clock_1/counter_11" BEL
+        "clock_1/counter_12" BEL "clock_1/counter_13" BEL "clock_1/counter_14"
+        BEL "clock_1/counter_15" BEL "clock_1/counter_16" BEL
+        "clock_1/counter_17" BEL "clock_1/counter_18" BEL "clock_1/counter_19"
+        BEL "clock_1/counter_20" BEL "clock_1/counter_21" BEL
+        "clock_1/counter_22" BEL "clock_1/counter_23" BEL "clock_1/counter_24"
+        BEL "clock_1/counter_25" BEL "clock_1/counter_26" BEL
+        "clock_2/counter_0" BEL "clock_2/counter_1" BEL "clock_2/counter_2"
+        BEL "clock_2/counter_3" BEL "clock_2/counter_4" BEL
+        "clock_2/counter_5" BEL "clock_2/counter_6" BEL "clock_2/counter_7"
+        BEL "clock_2/counter_8" BEL "clock_2/counter_9" BEL
+        "clock_2/counter_10" BEL "clock_2/counter_11" BEL "clock_2/counter_12"
+        BEL "clock_2/counter_13" BEL "clock_2/counter_14" BEL
+        "clock_2/counter_15" BEL "clock_2/counter_16" BEL "clock_2/counter_17"
+        BEL "clock_2/counter_18" BEL "clock_2/counter_19" BEL
+        "clock_2/counter_20" BEL "clock_2/counter_21" BEL "clock_2/counter_22"
+        BEL "clock_2/counter_23" BEL "clock_2/counter_24" BEL
+        "clock_2/counter_25" BEL "clock_50/counter_0" BEL "clock_50/counter_1"
+        BEL "clock_50/counter_2" BEL "clock_50/counter_3" BEL
+        "clock_50/counter_4" BEL "clock_50/counter_5" BEL "clock_50/counter_6"
+        BEL "clock_50/counter_7" BEL "clock_50/counter_8" BEL
+        "clock_50/counter_9" BEL "clock_50/counter_10" BEL
+        "clock_50/counter_11" BEL "clock_50/counter_12" BEL
+        "clock_50/counter_13" BEL "clock_50/counter_14" BEL
+        "clock_50/counter_15" BEL "clock_50/counter_16" BEL
+        "clock_50/counter_17" BEL "clock_50/counter_18" BEL
+        "clock_50/counter_19" BEL "clock_50/counter_20" BEL
+        "clock_500/counter_0" BEL "clock_500/counter_1" BEL
+        "clock_500/counter_2" BEL "clock_500/counter_3" BEL
+        "clock_500/counter_4" BEL "clock_500/counter_5" BEL
+        "clock_500/counter_6" BEL "clock_500/counter_7" BEL
+        "clock_500/counter_8" BEL "clock_500/counter_9" BEL
+        "clock_500/counter_10" BEL "clock_500/counter_11" BEL
+        "clock_500/counter_12" BEL "clock_500/counter_13" BEL
+        "clock_500/counter_14" BEL "clock_500/counter_15" BEL
+        "clock_500/counter_16" BEL "clock_500/counter_17" BEL
+        "clock_750/counter_0" BEL "clock_750/counter_1" BEL
+        "clock_750/counter_2" BEL "clock_750/counter_3" BEL
+        "clock_750/counter_4" BEL "clock_750/counter_5" BEL
+        "clock_750/counter_6" BEL "clock_750/counter_7" BEL
+        "clock_750/counter_8" BEL "clock_750/counter_9" BEL
+        "clock_750/counter_10" BEL "clock_750/counter_11" BEL
+        "clock_750/counter_12" BEL "clock_750/counter_13" BEL
+        "clock_750/counter_14" BEL "clock_750/counter_15" BEL
+        "clock_750/counter_16" BEL "clock_750/counter_17" BEL
+        "clk_BUFGP/BUFG";
+TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
+SCHEMATIC END;
+

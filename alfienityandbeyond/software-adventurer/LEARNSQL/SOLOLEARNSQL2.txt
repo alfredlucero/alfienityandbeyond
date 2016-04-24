@@ -1,0 +1,48 @@
+Filtering, Functions, Subqueries:
+
+	WHERE: extract only those records that fulfill a specified criterion
+		i.e. SELECT column_list
+			 FROM table_name
+			 WHERE condition;
+			use comparison and logical operators to filter data such as BETWEEN, !=, =, >=, <=
+			BETWEEN selects values within a range inclusive; lower bound then upper bound
+			when working with text columns, surround text with single quotation marks
+				i.e. WHERE City = 'New York';
+	
+	Logical Operators
+		AND, OR, NOT // can nest as many conditions with parentheses
+			i.e. WHERE Age >= 30 AND Age <= 40;
+		IN -> TRUE if the operand is equal to one of a list of expressions
+			compare a column with more than one value, use this rather than multiple OR expressions
+			i.e. Where City IN('New York', 'Los Angeles', 'Chicago'); // can also do NOT IN
+	
+	CONCAT:
+		concatenate two or more text values and returns the concatenating string
+		SELECT CONCAT(FirstName, ',', City) FROM customers; // results in a new column
+			use AS new_column to rename the column to a name other than the default CONCAT one
+	
+	Arithmetic Operators:
+		+=*/
+		i.e. SELECT ID, FirstName, LastName, Salary+500 AS Salary FROM employees; // adds 500 to each salary
+	
+	Functions:
+		UPPER/LOWER for string letter case changes
+			i.e. SELECT FirstName, UPPER(LastName) AS LastName FROM employees;
+		SQRT, AVG
+			i.e. SELECT AVG(Salary) FROM employees;
+		SUM
+		MIN
+	
+	Subqueries:
+		query within another query
+		i.e. SELECT FirstName, Salary FROM employees
+			 WHERE Salary > (SELECT AVG(Salary) FROM employees)
+			 ORDER BY Salary DESC;
+		LIKE operator is useful when specifying a search condition within your WHERE clause
+			i.e. SELECT column_name(s)
+				 FROM table_name
+				 WHERE column_name LIKE pattern;
+				pattern matching enables you to use "_" to match any single character and "%" to match an arbitrary number of characters(including 0 characters)
+			i.e. match FirstNames that begin with letter A
+				 SELECT * FROM employees WHERE FirstName LIKE 'A%';
+															  '%s'; // end with letter s

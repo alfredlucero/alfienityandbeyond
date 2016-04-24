@@ -1,0 +1,209 @@
+CODECADEMYJS:
+	Strings:
+		"string".length;
+		"wonderful day".substring(3, 7); // derf
+	Pop-ups:
+		confirm("Confirmation"); // pop up messages
+		prompt("Question?"); // ask question for input
+			var age = prompt("What's your age?");
+	Stdout:
+		console.log("stdout");
+	
+	If/Else:
+	&& || !
+	if ("Pikachu".length > 2) {
+		console.log("Pika");
+	}
+	var myVar = 10;
+
+	Switch:
+		switch(...) {
+			case '...':
+				...
+				break;
+			default:
+				...
+		}
+
+	Functions:
+		can return different types based on control flow
+		var divideByThree = function(number) {
+			var val = number / 3;
+			console.log(val);
+		};
+		divideByThree(12);
+
+		var timesTwo = function(number) {
+			return number * 2;
+		};
+		var newNumber = timesTwo(17); console.log(newNumber);
+
+		Math.random(); // number between 0 and 1
+		Math.floor();
+
+		isNaN(...); // checks if not a number
+
+	For Loops:
+		for (var counter = 1; counter < 6; counter++) {
+			console.log(counter);
+		}
+		print out all elements in an object use for-in loop:
+		for (var property in obj) {
+			console.log(property); // prints all propertyNames
+			console.log(obj[property]); // prints propertyValues
+		}
+
+		i.e. for (var prop in languages) {
+			if (typeof languages[prop] === "string")
+				console.log(languages[prop]);
+		}
+	While Loops:
+		while (condition) { ... }
+		do { ... } while (condition);
+	Arrays:
+		can be heterogeneous, multi-dimensional, jagged
+		var array = []; // empty array
+			array.push('');
+		var arrayName = [data, data, data];
+		for (var i = 0; i < arrayName.length; i++)
+			console.log(arrayName[i]);
+
+		var family = new Array();
+		family[0] = new Person("Alfred", 20);
+
+	Objects:
+		var emptyObj = {};
+		var myObject = { // object literal notation
+			key: value,
+			key: value,
+			key: value,
+			functionName: function (some, values) {
+				...
+			}
+		};
+		var myObj = new Object(); // constructor
+		myObj["name"] = "Charlie";
+		myObj.name = "Charlie";
+
+		var obj = {
+			name: "Bob",
+			married: true,
+			"mother's name": "Alice",
+			"year of birth": 1987,
+			getAge: function() { // method
+				return 2012 - obj["year of birth"];
+			};
+			1: 'one'
+		};
+		Property access: name1[string], name2.identifier (i.e. obj['name']; or obj.name;)
+
+		custom constructors:
+		function Person(name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		var Alfred = new Person("Alfred Lucero", 20);
+		function Rectangle(height, width) {
+			this.height = height;
+			this.width = width;
+			this.calcArea = function() {
+				return this.height * this.width;
+			};
+		}
+
+
+		methods: using "this" keyword
+			var setAge = function (newAge) {
+				this.age = newAge;
+			};
+			var bob = new Object();
+			bob.age = 30;
+			bob.setAge = setAge;
+			bob.setAge(50);
+
+		typeof someObject // returns object type (number, function, string, object)
+		someObject.hasOwnProperty('propertyName'); // returns T/F if it has property
+	Classes:
+		function Circle (radius) {
+			this.radius = radius;
+		}
+		var circle = new Circle(5);
+		circle.area = function () {
+			return 2 * Math.PI * this.radius;
+		};
+		
+		if you want to add a method to a class such that all members of a class can use it -> prototype
+			className.prototype.newMethod = function() {
+				statements;
+			};
+
+		inheritance allows one class to see and use the methods and properties of another class
+			top of prototype chain = Object.prototype
+			Don't repeat yourself, X is-a Y relationship
+			SubClass.prototype = new SuperClass();
+			Penguin.prototype = new Animal(); // inherits properties and methods from Animal
+
+		all properties of an object are automatically public (accessed outside the class, shared)
+		private - pieces of information only directly accessed from within the class
+		must use object's public method to access private variable
+			function Person(first, last, age) {
+				this.firstName = first;
+				this.lastName = last;
+				this.age = age;
+				var bankBalance = 7500; // private variable
+				var returnBalance = function() {
+					return bankBalance;
+				};
+				this.askTeller = function() {
+					return returnBalance; // returns private method
+				};
+			}
+			var john = new Person("John", "Smith", 30);
+			var myBalanceMethod = john.askTeller();
+			var myBalance = myBalanceMethod();
+			console.log(myBalance);
+
+			function StudentReport() {
+				var grade1 = 4;
+				var grade2 = 2;
+				var grade3 = 1;
+				this.getGPA = function() {
+					return (grade1 + grade2 + grade3) / 3;
+				};
+			}
+
+JavaScript Debugging
+	browser-based JavaScript debugging
+	use alerts to display strings i.e. alert($('h2'));
+	Chrome developer tools -> ctrl + shift + I, inspect element
+	console = terminal for debugging and logging -> shows JS errors
+		has interactive command line to do basic math, string manipulation and alerts
+		press shift + enter for multiple lines
+		https://developer.chrome.com/devtools/docs/commandline-api -> command line api reference
+			$$('h2'); shows all h2 css selectors
+			$('body').css('background-color', 'red'); access jQuery library
+			this; shows current context
+			exampleVariable.join(' '); access variable in context
+			console.log(varName);
+				console.log($('h2')); output dom elements
+			https://developer.chrome.com/devtools/docs/console-api -> console api reference
+	debugger;
+		i.e. function testDebugging() {
+			debugger;
+			makeItColor('red');
+			makeItColor('green');
+			makeItColor('');
+		};
+		function makeItColor(color) {
+			$('body').css('background-color', color);
+		};
+		<p><input type="button" onclick="testDebugging();" value="Click to try out debugging"></p>
+		click on line numbers for breakpoints, step into functions and out, hover over for values, step over next function call
+		https://developer.chrome.com/devtools/docs/javascript-debugging -> more on debugging
+	<!-- For production -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+	<!-- For development -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js" type="text/javascript"></script>
+
+	ajax requests go to network tab-> filter, xhr filter option-> check headers tab 
+	check performance and mobile debugging at bottom of http://juliepagano.com/blog/2014/05/18/javascript-debugging-for-beginners/

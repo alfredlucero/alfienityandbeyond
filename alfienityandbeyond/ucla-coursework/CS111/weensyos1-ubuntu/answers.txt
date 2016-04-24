@@ -1,0 +1,58 @@
+Name: Alfred Lucero
+UCLA ID: 604251044
+
+Collaborators:
+
+-------------------------------------------------------------------------------
+
+Response to Exercise 1: No, if one replaces run(current) in the INT_SYS_GETPID clause with schedule(), the the sys_getpid() call is not guaranteed to have returned the correct value because schedule() "picks a runnable process"(may not be the current one) and context-switches to it, possibly overwriting the %eax register for return system calls with a different pid. 
+
+Exercise 2:
+do_fork() on lines 242-256
+copy_stack() on lines 313-332
+
+Exercise 3:
+
+First, I changed within mpos-app.c the sys_wait() loop by adding app_printf("W") in order to replicate the polling implementation. Then to counteract the polling and turn it into a blocking implementation, I altered the INT_SYS_WAIT in interrupt to no longer return WAIT_TRYAGAIN but rather use the P_BLOCKED status and also keep track of the current PID that will be placed in a waiting queue so that the caller would be put to sleep, then wake up once the other process had exited with a real exit status. I added a new process descriptor, p_queue, to handle this and in INT_SYS_EXIT, it will check the p_queue if there is any process waiting, turn it into runnable, and continue on with proper return values in eax.
+
+Exercise 4:
+In the INT_SYS_EXIT on line 173, I changed the current->p_state to P_EMPTY in order to end the the current process successfully and free it for reuse.
+
+Anything else you'd like us to know:
+
+Extra credit exercises:
+
+Exercise 5:
+void start(void) {
+     int x = 0;
+     
+     // pointer to volatile int, compiler assumes that the variable a is 
+     // pointing at may have changed     
+     volatile int *a = &x;
+     
+     // pointer itself is volatile, compiler shouldn't try to optimize
+     // pointer value, may be reassigned by something else
+     int * volatile b = &x;
+     
+     pid_t p = sys_fork();
+     if (p == 0)
+     {
+	// not sure what do here with the child process
+	// vs. the parent process
+     }
+     else if (p > 0)
+     	  sys_wait(p); // assume blocking implementation
+app_printf("%d", x);
+sys_exit(0);
+}
+
+Exercise 6:
+
+pid_t sys_newthread(void (*start_function)(void));
+// new thread should start by executing start_function with empty stack
+
+Exercise 7:
+
+sys_kill(pid) that makes another process exit and use this to alter
+mpos-app2.c's run_child() so that even-numbered processes kill off all 
+odd-numbered processes (except for thread 1). Running should print out "Process N lives" for even values of N

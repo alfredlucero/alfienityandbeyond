@@ -1,0 +1,94 @@
+MORE ON CLASSES:
+
+	Encapsulation: communicate via messages to provide safe transfer of information amongst class objects, boundaries
+	Inheritance: use keyterm extends to inherit methods/variables
+		can override methods, private methods inherited won't be able to be used by children
+		overridden methods should have same return type and arguments
+	Polymorphism:
+		one function, different implementations
+		creating instances of subclasses that inherit from a super class by using the super class as a general way of declaring it
+		ex/ car boxster = new porsche(); car garage[] = new car[2];
+		
+	Abstract Class:
+		class that represents a generalization and provides functionality but is only intended to be extended and not instantiated
+		may contain instance/static variables or methods
+		may contain a constructor but it cannot be called directly since abstract classes cannot be instantiated
+		any class that contains an abstract method is itself an abstract class regardless of how it is defined
+			abstract method (has no implementation)
+		i.e.
+		abstract class Animal {
+			public int age;
+			public abstract int printAge();
+		}
+		class Dog extends Animal {
+			public int printAge() {
+				return age;
+			}
+		}
+	
+	Interfaces:
+		a completely abstract class that defines a protocol for object interactions
+		may contain only static final variables, abstract methods
+		cannot contain a constructor as interfaces cannot be instantiated
+		interfaces can extend other interfaces
+		class can implement any number of interfaces
+			class that implements an interface has an is-a relationship with that data type
+		i.e. 
+		interface Animal {
+			public void eat();
+		}
+		class Cat implements Animal {
+			public void eat() {
+				System.out.println("Cat eats");
+			}
+		}
+	
+	Casting:
+		int a = (int) 3.680;
+	
+	Anonymous Class:
+		i.e. child class of machine that doesn't have a name (one shot thing)
+		Machine machine1 = new Machine() {
+			@Override public void start() {
+				System.out.println("Camera snapping");
+			}
+		};
+		
+	Inner Class:
+		used more for grouping but can access non-static variables of outer class
+		i.e.
+		public class Robot {
+			private int id;
+			private class Brain {
+				public void think() {
+					System.out.println("Robot " + id + " is thinking.");
+				}
+			}
+			
+			public Robot(int id) {
+				this.id = id;
+			}
+			
+			public void start() {
+				System.out.println("Starting robot " + id);
+				
+				Brain brain = new Brain();
+				brain.think();
+		}
+		
+	equals() method: 
+		== -> true if both point to same address/object
+		person1.equals(person2); -> right click-> source -> generate hashcode and equals -> highlight data variables you want to compare
+		
+	Enums:
+		represent members of a fixed set
+		i.e. public enum Animal { CAT, DOG, FOX }
+			Animal animal = Animal.CAT;
+			switch(animal){ ... }
+			
+	API:
+		collection of classes and interfaces that have been written for you to use
+		docs.oracle.com/javase/6/docs/api
+		importing a package: Source -> Fix imports or CTRL+Shift+I
+			import packagename; such as import java.util.Calendar;
+			import java.awt.*; import everything in this folder, but NOT in the ones below

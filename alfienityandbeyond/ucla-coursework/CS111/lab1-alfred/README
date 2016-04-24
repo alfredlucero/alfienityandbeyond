@@ -1,0 +1,103 @@
+/*	ALFRED LUCERO ID:604251044
+/*	NICANDRO VERGARA ID: 804346386
+/*
+/*	LAB1 README
+/*	CS 111 PROFESSOR EGGERT
+
+LAB1A:
+
+For LAB1A, we decided on implementing the read_command_stream and make_command_stream by
+using a list of token_streams that each pointed to its own doubly-linked list of tokens
+that would hold necessary information of type, script, and other identifiers for a "full"
+command after analyzing the words. After reading in the file script into a buffer array,
+we would scan the array and typify normal words, command words (if, fi, etc.), special
+tokens, and newlines in order to create a token_stream with tokens; each token_stream was
+split up by a "full" command, typically separated by two new lines. Then, we created
+command_streams in a similar fashion in the form of a linked list that would hold a
+command with embedded commands in the way the print_tree would read and display the
+information.
+
+In order to properly "sort" and embed the commands, we organized a recursive function
+which especially helped with compound commands within other compound commands.
+Some limitations right now that we have are not implementing a destructor to free the
+command stream, commands, and other malloced data. We do have a destructor for tokens and
+token streams,so later we can implement one. Also, we were only able to get test-t-ok.sh
+and test-t-bad.sh to work rather than extensively carrying out our own test cases due to
+time constraints and overall uncertainty of certain grammar cases. Also, when
+encountering bad grammar, we simply exit without a message.
+
+LAB1B:
+
+Limitations: unable to distinguish "if" and "done" in "cat if done" as words instead of
+tokens. Doesn't recognize "exec" as a command. Redirections may not work after certain
+commands.
+Improvements: Fixed issues with sequence commands and new lines (cases where new lines
+acted as semicolons). Fixed more grammar cases (like handling ampersands (&)). 
+
+For LAB1B, the commands in the command stream created from LAB1A are executed through
+calls to execvp. For simple commands, we would fork() and create a child process to
+handle the command, while the parent waits for the process to finish and sets the proper
+exit status accordingly. We also made sure to carefully use dup2() when copying file
+descriptors to stdin and stdout with proper closing protocols involved. Our piping
+command also made use of forking in which the child process would execute the first
+command, while the parent would handle the second command. The child would write into the
+second command, while the second command would read and execute its own command, setting
+the final exit status accordingly. We had to be careful with setting the exit statuses
+on all types of commands, but we were never able to test it ourselves. We rather made
+two test case files, test1.sh -- an executable that runs similarly to test-t-ok.sh-- 
+and test2.sh -- a file meant to be run with ./profsh. These two files contain cases
+ranging from basic to complex as advised by Taqi and Diyu.  Our execute_command function
+is recursive in nature.
+
+LAB1C:
+
+Improvements from last time: Fixed issues with subshell IO/redirection, can run exec
+commands though it will time it in our implementation and keep going
+
+For LAB1C, we tackled the profiling task by first applying functions such as snprintf to
+properly format log lines with proper time stamps and command names. Also, we made
+extensive use of getrusage and clock_gettime with CLOCK_REALTIME for the first column,
+CLOCK_MONOTONIC for the second column (difference between start and end point of command),
+and RUSAGE_SELF/RUSAGE_CHILDREN in conjunction with getrusage to receive times for user
+and system CPU. We had to be careful of converting between nanoseconds and microseconds,
+type casting to double, and placing the start and end time points to calculate the proper
+times that made sense. Another important note is that we did not fork for subshells,
+but rather we executed the command within the subshell and our simple command
+implementation forks once to handle the process. Our pipe command forks to handle the read
+and write parts of the pipe, and we have the parent print the PID of its process in the
+format described by the spec. Also, we add another log to take part of the overall shell
+for a total elapsed time with PID, in which we modified main.c to keep track of times
+and add the profile at the end once all commands have been run. We also add two basic test
+case .sh files-- test3.sh and test4.sh -- in which one has to run ./profsh -p file.txt
+testfile.sh and then observe the file.txt to see if the times and overall format makes
+sense. test3.sh and test4.sh include calls to basic simple commands with IO,
+compound/nested commands, pipe/sequence/subshell commands, and exec command.
+
+Questions:
+1. The first column of the log output may or may not be in nondecreasing order because
+a user with privileges may be able to set the clock time of the system or alter it in some
+manner during the process to tick backwards through a program, but the time should be
+otherwise since it is meant to be from the Epoch as part of CLOCK_REALTIME.
+
+2. The second column cannot be less than the sum of the third and fourth columns, other
+than due to rounding errors because there are not multiple threads running in a
+parallelized manner with synchronization issues to generate large enough user/system CPU
+times. The time spent in user space and kernel space will be less than actual execution
+time.
+
+3. No, the second, third, or fourth column can never be negative. The second column is
+based on a strict CLOCK_MONOTONIC time already set since some unspecified starting point
+that involves subtracting end point from starting point (timer does not tick backwards).
+The third and fourth column use getrusage and returns the statistics of self/children
+processes (calculates how much time for system/user CPU and can range from 0 to larger
+values).
+
+4. If our implementation had parallelization in which multiple threads were running at
+the same time, this would lead to possible synchronization issues in which, in the case
+for pipe commands, the read and write actions may overlap/occur simultaneously. In an
+analogous situation to writing to the file, threads running in parallel may attempt to
+write to the file at the same time, leading to interleaved log lines. However, in our
+implementation there is no parallelization and thus, sequential processes being carried
+out. In a pipe command or sequence command, both sides may happen almost at the same time,
+but writing to the file with proper scheduling should not be an issue in our
+implementation.

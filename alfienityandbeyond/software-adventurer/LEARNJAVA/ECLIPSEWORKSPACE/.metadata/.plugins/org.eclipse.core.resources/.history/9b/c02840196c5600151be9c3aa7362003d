@@ -1,0 +1,50 @@
+package learnjava2;
+
+import java.util.Scanner;
+
+public class conLoops {
+	/**
+	 * Check userInput for perfect 10 using ifs
+	 * Check ageInput using switch statement
+	 * Use while loop to count up to ten
+	 * Use for loop to count down from ten
+	 * @param args
+	 */
+	public static void main(String args[]){
+		System.out.println("Guess the magic number: ");
+		Scanner userInput = new Scanner(System.in);
+		if (userInput.nextInt() == 10)
+			System.out.println("10 is the correct number!");
+		else
+			System.out.println("You failed to be a dime!");
+		
+		System.out.println("Guess my age from 18 to 20 inclusive: ");
+		Scanner ageInput = new Scanner(System.in);
+		switch (ageInput.nextInt()){
+		case 18:
+			System.out.println("I'm older than that");
+			break;
+		case 19:
+			System.out.println("Still older than that");
+			break;
+		case 20:
+			System.out.println("Finally you got my age");
+			break;
+		default:
+			System.out.println("That age is not in the proper range");
+			break;
+		}
+		
+		int counter = 1;
+		System.out.println("Now I will count to ten");
+		while (counter <= 10){
+			System.out.println(counter);
+			counter++;
+		}
+		
+		for (; counter >= 1; counter--)
+			System.out.println(counter);
+		
+	
+	}
+}

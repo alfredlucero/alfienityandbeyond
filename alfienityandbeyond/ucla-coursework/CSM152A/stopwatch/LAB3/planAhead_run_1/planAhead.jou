@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.6 (64-bit)
+# Build 269223 by xbuild on Wed Jun  5 11:14:03 MDT 2013
+# Start of session at: Wed Feb 10 12:53:49 2016
+# Process ID: 3496
+# Log file: C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB3/planAhead_run_1/planAhead.log
+# Journal file: C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB3/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source C:/Users/152/Desktop/Alfred_Maya_Lab3/LAB3/pa.fromNetlist.tcl

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<style>
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  max-width: 700px;
+  background: #232323;
+}
+div {
+  height: 200px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Roboto', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #aaaaaa;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: #bbbbbb;
+  margin: 0px 0 70px 0;
+}
+p {
+  color: rgba(255,255,255,1);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+
+.show-description p {
+  height: 150px;
+}
+
+.show-description small {
+  opacity: 1;
+}
+
+.obey {
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/9f/ce/60/9fce602b7716b823cfd40ef005cf6c0d.jpg");
+  background-position: center;
+}
+.stussy {
+  background-image: url("https://40.media.tumblr.com/tumblr_m7mqd5bHAT1rn79eio1_500.jpg");
+  background-position: center;
+}
+.urban {
+  background-image: url("http://41.media.tumblr.com/e134895f63da8d83d6e15ecd0619837c/tumblr_nhcxn5uzC71tt5avdo1_500.jpg");
+  background-position: center;
+}
+.price {
+  float: right;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<h1>Variant Clothing Co.</h1>
+<h2>Long Beach x Carson Incorporated</h2>
+<div class="obey">
+  <p>Obey Sweaters<span class="price">$40</span><br />
+  <small>Heather gray and black sweaters with our usual headstrong
+  Obey logos. Other merchandise includes beanies and necklaces.</small></p>
+</div>
+
+<div class="stussy">
+  <p>Stussy Shirts<span class="price">$25</span><br />
+  <small>From LA to Tokyo to NY, Stussy shirts are widely celebrated and worn
+  for their urban aesthetics. Look fresh this winter with these shirts.</small></p>
+</div>
+  
+<div class="urban">
+  <p>Urban Decor<span class="price">$100</span><br />
+  <small>Living in LA or NY? Uptown apartment or small condo? Everyone needs that new industrial look to keep up with the urban scenery. Check out our urban decor to accentuate your surroundings.</small></p>
+</div>
+
+<script>
+  $('div').on('click', function() {
+      $(this).toggleClass('show-description');
+  });
+</script>
+</body>

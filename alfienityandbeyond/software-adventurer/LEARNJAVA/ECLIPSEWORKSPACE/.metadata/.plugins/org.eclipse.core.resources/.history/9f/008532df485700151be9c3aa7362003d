@@ -1,0 +1,30 @@
+package learnjava4;
+
+import java.util.Scanner;
+
+public class Methods {
+	/**
+	 * Practice with methods, classes/objects
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		sayHelloWorld();
+		
+		String name;
+		System.out.println("To whom shall I say to?");
+		Scanner nameInput = new Scanner(System.in);
+		name = nameInput.nextLine();
+		
+		sayHelloTo(name);
+		
+		
+	}
+	
+	static void sayHelloTo(String name) {
+		System.out.println("Hello " + name);
+	}
+	
+	static void sayHelloWorld() {
+		System.out.println("Hello World!");
+	}
+}

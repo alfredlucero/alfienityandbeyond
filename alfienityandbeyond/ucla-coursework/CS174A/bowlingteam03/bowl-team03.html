@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>They See Me Rolling</title>
+
+<style type="text/css">
+.container {
+    position: relative;
+}
+#overlay {
+    position: absolute;
+    left: 800px;
+    top: 200px;
+	font-size: 200%;
+    color: white;
+    font-family: ‘Courier New’, Courier, monospace;
+}
+
+#welcome {
+position: absolute;
+width: 1920px;
+height: 1080px;
+top:0px;
+background-image: url(welcome.jpg);
+color: silver; 
+overflow: hidden;
+font-size: xx-large;
+repeat-y;
+-webkit-animation: backgroundScroll 20s linear infinite;
+animation: backgroundScroll 20s linear infinite;
+}
+
+p {
+	position: relative;
+	vertical-align: center;
+	left:600px;
+	top:500px;
+	font-family: ‘Courier New’, Courier, monospace;
+}
+ 
+@-webkit-keyframes backgroundScroll {
+from {background-position: 0 0;}
+to {background-position: -400px 0;}
+}
+ 
+@keyframes backgroundScroll {
+from {background-position: 0 0;}
+to {background-position: -400px 0;}
+}
+
+</style>
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+attribute vec3 vNormal;
+attribute vec2 vTexCoord;
+
+uniform mat3 normalMatrix;
+uniform mat4 modelViewMatrix, cameraViewMatrix, projectionMatrix;
+uniform float drawIndex;
+uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+uniform vec4 lightPosition;
+uniform float shininess;
+
+varying vec4 fColor;
+varying vec2 fTexCoord;
+varying float geoSwitch;
+
+void
+main()
+{
+	if (drawIndex == 1.0) {
+		vec3 pos = (cameraViewMatrix * modelViewMatrix * vPosition).xyz;
+		vec3 light = lightPosition.xyz;
+		vec3 L;
+    
+		// Check for directional light
+		if(lightPosition.w == 0.0) L = normalize(lightPosition.xyz);
+		else L = normalize( lightPosition.xyz - pos );
+
+		vec3 E = -normalize( pos );
+		vec3 H = normalize( L + E );
+
+		// Transform vertex normal into eye coordinates
+		vec3 N = normalize( normalMatrix*vNormal.xyz);
+
+		// Compute terms in the illumination equation
+		vec4 ambient = ambientProduct;
+
+		float Kd = max( dot(L, N), 0.0 );
+		vec4  diffuse = Kd*diffuseProduct;
+
+		float Ks = pow( max(dot(N, H), 0.0), shininess );
+		vec4  specular = Ks * specularProduct;
+		
+		if( dot(L, N) < 0.0 ) {
+		specular = vec4(0.0, 0.0, 0.0, 1.0);
+		}
+		
+		geoSwitch = 1.0;
+		fColor = ambient + diffuse + specular;
+	} else {
+		geoSwitch = 0.0;
+		fTexCoord = vTexCoord;
+	}
+	gl_Position = projectionMatrix * cameraViewMatrix * modelViewMatrix * vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 fColor;
+varying vec2 fTexCoord;
+varying float geoSwitch;
+
+uniform float uAlpha;
+
+uniform sampler2D texture;
+
+void
+main()
+{
+	if (geoSwitch == 1.0) {
+		gl_FragColor = fColor;
+	} else {
+		vec4 textureColor = texture2D(texture, fTexCoord);
+		gl_FragColor = vec4(textureColor.rgb, textureColor.a * uAlpha);
+	}
+}
+</script>
+
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+<script type="text/javascript" src="MV.js"></script>
+<script type="text/javascript" src="bowl-team03.js"></script>
+</head>
+
+<body>
+<div class="container">
+<canvas id="gl-canvas" width="1920" height="1080">
+Oops ... your browser doesn't support the HTML5 canvas element
+
+</canvas>
+	<audio source src="seeyou.mp3" controls>
+Your browser does not support the audio element.
+</audio>
+	
+  <div id="overlay">
+  	<div>Game Mode: <span id="gameMode"></span></div>
+    <div>Score: <span id="score"></span></div>
+    <div><span id="lives"></span></div>
+  </div>
+  <div id="welcome">
+  	<div><p>Welcome!<br>Press Enter to Begin!<br>Send the capsules back!<p></div>
+  </div>
+</div>
+<img id = "pinsImage" src = "bowlingpins.jpg" hidden></img>
+<img id = "ceilingImage" src = "ceiling.jpg" hidden></img>
+<img id = "darkwallImage" src = "darkwall.jpg" hidden></img>
+<img id = "bluewallImage" src = "bluewall.png" hidden></img>
+<img id = "guttersImage" src = "gutters.jpg" hidden></img>
+<img id = "bowlinglaneImage" src = "bowlinglane.jpg" hidden></img>
+<img id = "neonbowlbgImage" src = "neonbowlbg.png" hidden></img>
+<img id = "orangebgImage" src = "orangebg.jpg" hidden></img>
+<img id = "greenbgImage" src = "greenbg.jpg" hidden></img>
+<img id = "bowlingleaguesbgImage" src = "bowlingleaguesbg.jpg" hidden></img>
+<img id = "neonpinsImage" src = "neonpins.jpg" hidden></img>
+<img id = "welcome" src = "welcome.jpg" hidden></img>
+</body>
+
+</html>

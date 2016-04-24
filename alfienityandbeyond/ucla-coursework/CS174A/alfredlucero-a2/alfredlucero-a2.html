@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute vec4 vPosition;
+attribute vec4 vNormal;
+
+varying vec4 fColor;
+varying float phongON;
+uniform float drawIndex;
+varying vec4 ambientPProduct, diffusePProduct, specularPProduct;
+varying float shininessP;
+
+uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 cameraViewMatrix;
+uniform vec4 lightPosition;
+uniform float shininess;
+uniform mat3 normalMatrix;
+
+varying vec3 NP, LP, EP;
+
+
+void
+main()
+{
+	if (drawIndex == 0.0 || drawIndex == 1.0 || drawIndex == 2.0 ){
+		vec3 pos = (cameraViewMatrix * modelViewMatrix * vPosition).xyz;
+		vec3 light = lightPosition.xyz;
+		vec3 L;
+    
+		// check for directional light
+    
+		if(lightPosition.w == 0.0) L = normalize(lightPosition.xyz);
+		else L = normalize( lightPosition.xyz - pos );
+
+
+	
+		vec3 E = -normalize( pos );
+		vec3 H = normalize( L + E );
+
+		// Transform vertex normal into eye coordinates
+    
+       
+		vec3 N = normalize( normalMatrix*vNormal.xyz);
+
+		// Compute terms in the illumination equation
+		vec4 ambient = ambientProduct;
+
+		float Kd = max( dot(L, N), 0.0 );
+		vec4  diffuse = Kd*diffuseProduct;
+
+		float Ks = pow( max(dot(N, H), 0.0), shininess );
+		vec4  specular = Ks * specularProduct;
+    
+		if( dot(L, N) < 0.0 ) {
+		specular = vec4(0.0, 0.0, 0.0, 1.0);
+		} 
+
+		gl_Position = projectionMatrix * cameraViewMatrix * modelViewMatrix * vPosition;
+    
+		if (drawIndex == 0.0) {
+			fColor = ambientProduct + diffuseProduct; // ambient + diffuse; 
+		}
+		else if (drawIndex == 2.5){
+			fColor = ambient + diffuse;
+		} else {
+			fColor = ambient + diffuse + specular;
+		}
+		fColor.a = 1.0;
+		phongON = 0.0;
+		
+	} else {
+		 vec3 pos = (cameraViewMatrix * modelViewMatrix * vPosition).xyz;
+    
+		// check for directional light
+    
+		if(lightPosition.w == 0.0) LP = normalize(lightPosition.xyz);
+		else LP = normalize( lightPosition.xyz - pos );
+    
+		EP =  -normalize(pos);
+		NP = normalize( normalMatrix*vNormal.xyz);
+
+		gl_Position = projectionMatrix * cameraViewMatrix * modelViewMatrix * vPosition;
+		phongON = 1.0;
+		
+		ambientPProduct = ambientProduct;
+		diffusePProduct = diffuseProduct;
+		specularPProduct = specularProduct;
+		shininessP = shininess;
+	}
+	
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+varying float phongON;
+varying vec4 ambientPProduct;
+varying vec4 diffusePProduct;
+varying vec4 specularPProduct;
+varying float shininessP;
+varying vec3 NP, LP, EP;
+
+void
+main()
+{
+	if (phongON == 1.0) {
+		vec4 fpColor;
+    
+		vec3 H = normalize( LP + EP );
+		vec4 ambient = ambientPProduct;
+
+		float Kd = max( dot(LP, NP), 0.0 );
+		vec4  diffuse = Kd*diffusePProduct;
+
+		float Ks = pow( max(dot(NP, H), 0.0), shininessP );
+		vec4  specular = Ks * specularPProduct;
+    
+		if( dot(LP, NP) < 0.0 ) specular = vec4(0.0, 0.0, 0.0, 1.0);
+
+		fpColor = ambient + diffuse +specular;
+		fpColor.a = 1.0;
+		
+		gl_FragColor = fpColor;
+	} else {
+		gl_FragColor = fColor;
+	}
+}
+</script>
+
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+
+<script type="text/javascript" src="MV.js"></script>
+<script type="text/javascript" src="alfredlucero-a2.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="960" height="540">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

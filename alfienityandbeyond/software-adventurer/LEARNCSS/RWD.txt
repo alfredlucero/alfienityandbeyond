@@ -1,0 +1,57 @@
+Responsive Web Design
+	enables web page to adjust to varying devices, only HTML and CSS
+	viewport: user's visible area of webpage
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta> gives browser instructions on how to control the page's dimensions and scaling
+		avoid large fixed width elements to avoid horizontal scrolling
+		don't let the content rely on a particular viewport width to render well
+		use CSS media queries to apply different styling for small and large screens
+			use relative width values (100%) and be wary of large absolute positioning values
+	grid-view: many web pages are divided into columns
+		often has 12 columns, total width of 100%, shrinks and expands as you resize the window
+		* { box-sizing: border-box; } // makes sure padding and border are included in the total width and height of the elements
+		[class*="col-"] { float: left; padding: 15px; border: 1px solid red; }
+		each row wrapped in a <div> : number of columns in a row add up to 12
+			.row:after { content: ""; clear: both; display: block; }
+	Media Queries: @media includes a block of CSS properties only if a certain condition is true
+		i.e. @media only screen and (max-width: 500px) { body { background-color: lightblue; } }
+		@media only screen and (max-width: 768 px) { /* For Mobile Phones: */ [class *="col-"] { width: 100%; } }
+		design for mobile first to run faster
+			i.e. @media only screen and (min-width: 768 px) { ... }
+			<div class="row"> <div class="col-3 col-m-3">...</div>
+	Images:
+		width:100%; // responsive and scales up and down
+		max-width:100%; // image will scale down if it has to, but never scale up to be larger than original
+		background-size: contain // scales and attempts to fit content area but maintain aspect ratio
+			100% 100% // stretch to cover entire content area
+			cover // scale to cover entire content area, maintain aspect ratio, clipped
+		min-device-width: 400px
+		<picture> defines more than one image
+			<picture>
+				<source srcset="..." media="(max-width:400px)">
+				<source srcset="...">
+				<img src="..." alt="altname">
+			</picture>
+	Videos:
+		width: 100% to scale up and down, max-width
+	Frameworks: many offer responsive design such as W3.CSS
+		Bootstrap/Foundation uses HTML, CSS, and jQuery to make responsive web pages
+		Skeleton uses CSS only
+		
+BUTTONS:
+	.button {
+		background-color: #4CAF50; // change color of button
+		border: none;	// 2px solid #4CAF50, border color
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;	// change size of button
+		transition-duration: 0.4s;
+	}
+	.button:hover {
+		background-color: #4CAF50;
+		color: white;
+	}
+	disabled buttons -> opacity: 0.6, cursor: not-allowed

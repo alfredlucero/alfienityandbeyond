@@ -1,0 +1,469 @@
+JAVASCRIPT:
+
+	Unicode, variables (loosely typed), concatenating strings
+		typeof, ===/!==
+	data types: String, Number, Boolean, Array, Object (can have null) // undefined
+		var length = 16;
+		var lastName = "Johnson";
+		var cars = ["Saab", "Volvo"];
+		var x = {firstName:"John", lastName:"Doe"};
+		if you assign value to a variable that hasn't been declared, it will automatically become global variable
+
+	Can change HTML content
+		document.getElementById("demo").innerHTML = "Hello JavaScript";
+
+		<p id="demo">JavaScript HTML Changes</p>
+		function myFunction() {
+			var x = document.getElementById("demo");
+			x.style.fontSize = "25px";
+			x.style.color = "red";
+		}
+
+		<button type="button" onclick="myFunction()">Click me!</button>
+
+		<script src="myScript.js"></script> placed at bottom of <body> element
+
+		events: <some-HTML-element some-event="some JavaScript>" (onchange, onclick, onmouseover, onmouseout, onkeydown, onload)
+
+	Display possibilities:
+		window.alert();
+		document.write(); -> innerHTML
+		console.log(); // to browser console
+
+	Functions:
+		function multiply(p1, p2) {
+			return p1 * p2;
+		}
+		i.e. document.getElementById("demo").innerHTML = toCelsius(88);
+
+		function expressions 
+			var x = function (a,b) { return a * b }; // anonymous
+			var z = x(4, 3);
+
+		self-invoking functions (started automatically without being called)
+		function expressions will execute automatically if the expression is followed by ()
+			(function () {
+				var x = "Hello!";
+			})();
+
+		arguments:
+		arguments.length // returns number of arguments received when the function was invoked
+			var text = myFunction.toString();
+		no type checking on any paramater values (arguments), don't check number of args received
+			if with missing arguments, set to undefined
+			arguments object that contains an array of the arguments used when the function was called
+		arguments passed by value
+			changes to object properties are visible outside the function
+
+		function invocation:
+			function myFunction(a, b) {
+				return a * b;
+			}
+			window.myFunction(10, 2);
+
+			this becomes global object when function called without an owner object
+			function myFunction() {
+				return this;
+			} myFunction(); // returns window object
+
+			method: object.fullName();
+			function constructor: var x = new myFunction("Alfred", "Lucero");
+
+		closures (belong to local/global scope)
+			allows for private variables
+			variables created without the keyword var are always global
+
+			var add = (function () {
+				var counter = 0;
+				return function() { return counter += 1; }
+			})();
+			add();
+			add(); // counter is 2, protected by scope of the anonymous function
+
+			function having access to the parent scope, even after the parent function has closed
+
+
+
+	Objects:
+		named indexes, name:value pairs, properties
+		objects are mutable and addressed by reference
+			var x = y; // doesn't create a copy of y, points to same object y
+		inherit properties of their prototype (Object.prototype on top of prototype chain)
+			deleted properties from this will affect all object inherited from the prototype
+			add new property to an existing prototype
+				person.prototype.nationality = "English";
+				person.prototype.name = function() {
+					return this.firstName + " " + this.lastName;
+				};
+		create objects through:
+			object literals (list of name:value pairs in curly braces, create single object)
+				var person = {firstName: "Alfred", lastName: "Lucero"};
+			keyword new (extraneous)
+				var person = new Object();
+				person.firstName = "Alfred";
+				person.lastName = "Lucero";
+			define object constructor function and then create objects of the constructed type (can create new objects of same type, is an object prototype)
+				function person(first, last) {
+					this.firstName = first;
+					this.lastName = last;
+				}
+				var mySister = new person("Airelle", "Javelosa");
+				var myBrother = new person("Ferdinand", "Lucero");
+			Object.create()
+		this Keyword
+			when used in function, the object that "owns" the function
+			when used in an object, the object itself
+			becomes the new object when the constructor is used to create an object
+		accessing properties
+			objectName.propertyName
+			objectName["propertyName"]
+			objectName[expression]
+		adding new properties
+			person.newProperty = "newPropertyValue";
+		delete properites
+			delete person.age; // delete both value and property itself
+		methodName: function() { ... }
+			objectName.methodName();
+			objectName.methodName // returns function definition
+		i.e. Date(); d.toUTCString();d.toDateString();
+	Strings:
+		str.length;
+		str.search()/lastIndexOf()/indexOf()
+		slice/substring/substr/replace
+		toUpperCase,toLowerCase
+		+/concat
+		charAt/charCodeAt
+		split // converts string into an array
+	Numbers:
+		64-bit floating point
+		Infinity, NaN/isNaN(x)
+		x.MAX_VALUE/MIN_VALUE
+		methods such as parseInt/Float/valueOf/etc.
+		Math.random()/min/max/etc.
+	Arrays:
+		numbered indexes
+		var newArray = [];
+		var array-name = [item1, item2, ...];
+		objects/Array.isArray(arrayName) or arrayName instanceof Array, heterogeneous
+		array.length/sort
+		array.push/array[array.length] = ...
+		beware of undefined holes in the array
+		.toString() and join("...")
+		.push (at the end and return new array length) and pop (remove and return value)
+		shift/unshift
+		delete array[0]; // removes but its now undefined
+		splice/sort (for strings) or sort(function(a,b){return a>b})/reverse/concat/slice
+	Booleans: true/false
+
+	Constructor property:
+		function isArray(myArray) {
+			return myArray.constructor.toString().indexOf("Array") > -1;
+		}
+
+	Unary + operator
+		converts a variable to a number: var x = + y;
+	Conditional (Ternary) Operator
+		variablename = (condition) ? value1:value2
+	if (condition) {
+		...
+	} else {
+		...
+	}
+	switch(expression) {
+		case n:
+			code block
+			break;
+		default:
+			...
+	}
+	for;for/in (loops through properties of an object);while;do/while;
+	for (x in person) {
+		text += person[x];
+	}
+	break/continue labelname;
+		label: statements;
+	}
+
+	Regular Expressions:
+	/pattern/modifiers 
+	i.e. var n = str.search(/w3schools/i); // returns position of match
+	str.replace(/microsoft/i, "W3Schools");
+	Modifiers (i=case-insensitive, g=globalmatchfindall,m=multilinematch)
+	Patterns
+		[abc],[0-9],(x|y)
+	Metacharacters
+		\d, \s, \b, \uxxxx
+	Quantifiers
+		n+(at least one n), n*(zero or more), n? (zero or one)
+	test() // searches string for a pattern, returns T/F
+	var pattern = /e/; patt.test("Hello"); // T
+	exec() // searches a string for a specified pattern and returns found text or null if no match
+
+	Errors - Throw and Try to Catch
+		try {
+			block of code to try
+		}
+		catch (err) {
+			block of code to handle errors
+		}
+		finally {
+			block of code to be executed regardless of the try / catch result
+		}
+		i.e.
+		try {
+			adddlert("Hello!");
+		} 
+		catch (err) {
+			document.getElementById("demo").innerHTML = err.message; // adddlert is not defined
+		}
+		i.e. 2
+		try { 
+	        if(x == "") throw "empty";
+	        if(isNaN(x)) throw "not a number";
+	        x = Number(x);
+	        if(x < 5) throw "too low";
+	        if(x > 10) throw "too high";
+	    }
+	    catch(err) {
+	        message.innerHTML = "Input is " + err;
+	    } // can also investigate HTML form validation
+
+	Debugging:
+		console.log() in dev tools, breakpoints
+		debugger keywords stops the execution of js and calls the debugging function (like breakpoint)
+	Hoisting:
+		default behavior of moving declarations to the top
+		strict mode doesn't allow variables to be used if they are not declared
+	"use strict";:
+		changes previously accepted "bad syntax" into real errors when inadvertently creating new global variables/assignments to non-writable property (more secure)
+
+	Coding Conventions:
+		camelCase variables beginning with letter, 4 space indentation, space between operators, line length < 80
+			var person = {
+				firstName: "John",
+				lastName: "Doe",
+				age: 50,
+				eyeColor: "blue"
+			};
+	Best Practices:
+		minimize use of global variables -> can be overwritten by other scripts, check closures
+		declare local variables at the top and initiate at beginning
+			var firstName = "",
+				lastName = "",
+				price = 0,
+				discount = 0,
+				fullPrice = 0,
+				myArray = [],
+				myObject = {};
+		use === (forces comparison of values and type) as == converts to matching types before comparison
+		use parameter defaults in case missing arguments are undefined
+		troubles with floats -> var z = (x * 10 + y * 10) / 10; // rather than 0.1 + 0.2 = 0.3
+		backslash to break statement in a string
+		arrays use numbered indexes, objects use named indexes
+		null is for objects, undefined is for variables, properties, and methods
+			test if object exists with if (typeof myObj !== "undefined" && myObj !== null)
+		doesn't create a new scope for each code block
+	Performance:
+		l = arr.length;
+		for (i = 0; i < l; i++) { ... }
+		reduce DOM access and keep number of elements in DOM small
+			obj = document.getElementById("demo"); obj.innerHTML = "Hello";
+		put scripts at bottom of page body
+	Standards: ECMAScript 5/6 (2015)
+	JSON: JavaScript Object Notation
+		used when data is sent from server to a web page, lightweight data interchange format, "self-describing"
+		language independent * 
+		i.e. array of 3 employee records (objects)
+		"employees":[
+			{"firstName":"John", "lastName":"Doe"},
+			{"firstName":"John", "lastName":"Doe"},
+			{"firstName":"John", "lastName":"Doe"}
+		]
+		syntax: data in name/value pairs
+			objects are written in curly braces
+			i.e.
+			{"firstName":"John",, "lastName":"Doe"}
+		convert JSON text to JS object
+			var text = '{ "employees" : [' +
+				'{ "firstName":"John" , "lastName":"Doe" },' +
+				'{ "firstName":"Anna" , "lastName":"Smith" },' +
+				'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+			var obj = JSON.parse(text);
+			// use like obj.employees[1].firstName
+
+	Form Validation
+	<form action="demo_form.asp" method="post">
+		<input type="text" name="fname" required>
+		<input type="submit" value="Submit">
+	</form> // prevents empty form from being submitted
+	HTML5 constraint validation
+		input attributes (max,min, patten, required, type, disabled)
+		css pseudo selectors
+		DOM methods
+			checkValidity(): input element contains valid data
+				var inpObj = document.getElementById("id1");
+				if (inpObj.checkValidity() == false) {
+					document.getElementById("demo").innerHTML = inpObj.validationMessage;
+				}
+			setCustomValidity()
+			property checks for overflow/underflow/mismatched patterns
+
+	HTML DOM (Document Object Model): tree of objects
+		js changes elements/attributes/css styles and handles events
+		a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document
+		defines elements as objects, properties, methods, events
+
+		Methods
+			getElementById (use id of the element) -> change innerHTML property
+			getElementsByTagName(...)/ByClassName(...)
+			element.innerHTML/attribute/setAttribute/style.property
+
+			document.createElement(element)/.removeChild/appendChild/replaceChild
+
+			document.getElementById(id).onclick = function() {...}
+			check other document properties
+
+			finding HTML objects: document.querySelectorAll("p.intro"); // all <p> elements with class="intro"
+
+			change value of an HTML attribute:
+			i.e. document.getElementById(id).attribute = new value
+
+			changing HTML style:
+			i.e. document.getElementById(id).style.property = new style
+
+			event handling-> onclick="document.getElementById('id1').style.color = 'red'"
+			animation? use container position: relative, items inside that are position relative
+
+			document.getElementById("myBtn").onclick = displayDate;
+			onload/onunload/onchange/onmouseover/onmouseout/onmousedown/onmouseup
+
+		EventListener
+			attaches an event handler to the specified element without overwriting existing event handlers
+			i.e. documet.getElementById("myBtn").addEventListener("click",displayDate);
+			element.addEventListener(event, function, useCapture);
+			element.removeEventListener("mousemove", myFunction);
+			// attach or detachEvent(event, function) used instead
+
+			event bubbling vs. capturing
+				bubbling: the inner most element's event is handled first and then the outer
+				capturing: the outer most element's event is handled first and then the inner
+
+				useCapture = true; // false by default
+		DOM Navigation through node tree
+			hierarchical (parent, child, sibling)
+			i.e.
+			<html>
+			  <head>
+			      <title>DOM Tutorial</title>
+			  </head>
+			  <body>
+			      <h1>DOM Lesson one</h1>
+			      <p>Hello world!</p>
+			  </body>
+			</html>
+			<html> is the root node
+			<html> has no parents
+			<html> is the parent of <head> and <body>
+			<head> is the first child of <html>
+			<body> is the last child of <html>
+			and:
+			<head> has one child: <title>
+			<title> has one child (a text node): "DOM Tutorial"
+			<body> has two children: <h1> and <p>
+			<h1> has one child: "DOM Lesson one"
+			<p> has one child: "Hello world!"
+			<h1> and <p> are siblings
+
+			use child nodes and node values to get the content of an element
+				i.e. document.getElementById("...").childNodes[0].nodeValue // or firstChild
+
+			root nodes: document.body/documentElement
+			nodeName: read-only, tag/attribute/#text/#document
+			nodeValue: undefined for element nodes, text, attribute value
+			nodeType: element, attribute, text, comment, document
+
+			Adding and removing nodes:
+			i.e. adding
+			var para = document.createElement("p");
+			var node = document.createTextNode("Text");
+			para.appendChild(node);
+			var element = document.getElementById("div1");
+			element.appendChild(para); // appends the element as the last child of the parent
+			can use insertBefore(insertNode, beforeThisNode)
+			i.e. removing (must know the parent of the element)
+			parent.removeChild(child);
+			child.parentNode.removeChild(child);
+			i.e. replacing
+			parent.replaceChild(para, child);
+
+			Node List
+			var x = document.getElementsByTagName("p"); 
+			y = x[1]; // accessed by index number
+			var listLength = x.length;
+			// array-like only
+
+	Browser Object Model (BOM):
+		allows JavaScript to talk to the browser
+		window object supported by all browsers
+		global variables and functions become properties and methods of the window object
+			window.document.getElementById("..."); === doucment.getElementById("...");
+
+		window size: 
+		var w = window.innerWidth
+		|| document.documentElement.clientWidth
+		|| document.body.clientWidth;
+
+		var h = window.innerHeight
+		|| document.documentElement.clientHeight
+		|| document.body.clientHeight;
+
+		methods: open/close/moveTo/resizeTo
+		screen:
+			screen.width/height/availWidth/availHeight/colorDepth/pixelDepth
+		location:
+			window.location.href(url of current page)/hostname(domain name of web host)/pathname(path and filename of the current page)/protocol(web protocol)/assign(loads a new documents)
+		history: .back()/forward()
+		navigator: .appName, .appCodeName, .platform
+		popup boxes: alert, confirm, prompt
+		timing events:
+			setTimeout(function, ms) // executes a funciton after waiting a specified number of ms 0< clearTimeout(timeoutVariable)
+			setInterval(function, ms) // repeats the execution of function continuously -> clearInterval(timerVariable)
+		cookies: store user information in web pages, data in small text files on your computer (saved in name-value pairs)
+			i.e. document.cookie="username=Alfred Lucero; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+			var x = document.cookie; // returns all cookies in one string
+			delete a cookie by setting the expires parameter to a passed date
+
+			function to set a cookie:
+			function setCookie(cname, cvalue, exdays) {
+				var d = new Date();
+				d.setTime(d.getTime() + (exdays*24*60*60*1000));
+				var expires = "expires=" + d.toUTCString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			}
+
+			function to get a cookie:
+			function getCookie(cname) {
+				var name = cname + "=";
+				var ca = document.cookie.split(';');
+				for(var i=0; i < ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0) == ' ') c = c.substring(1);
+					if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+				}
+				return "";
+
+			function to check a cookie:
+			function checkCookie() {
+				var user = getCookie("username");
+				if (user != "") {
+					alert("Welcome again " + user);
+				} else {
+					user = prompt("Please enter your name:", "");
+					if (user != "" && user != null) {
+						setCookie("user")
+					}
+				}
+			}
+			}
+
+

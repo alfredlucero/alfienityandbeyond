@@ -1,0 +1,210 @@
+Android App Development for Beginners
+by thenewboston
+
+Overview:
+	- apps made up of activities/different screens
+		java files define the user interaction/brains
+		xml files define the aesthetics/interface/layout
+	- AndroidManifest.xml
+		handles hierarchy of activities for app/compatibilities
+		LAUNCHER is main activity that starts when you open app
+			i.e. AndroidManifest.xml -> MainActivity.java -> activity_main.xml
+	- Activity
+		every activity created inherits/extends from Activity class
+		life cycle:
+			onCreate: set the layout upon creation
+			onStart->onResume (activity is running)
+			hit home button: onPause->onSaveInstanceState->onStop
+			->onDestroy (activity is shut down) or onRestart(activity comes to foreground)
+			~can use Log and filter logcat for debugging purpose
+	- String resources -> click light bulb, name string resource and extract
+		TIP: hover over @string/SignInTitle, CTRL+CLICK -> goes straight to values.xml file
+	- layout with widgets added to set up the screen
+		addView like adding widgets to layout
+
+GRID LAYOUT:
+	gravity: centering/filling
+	handle rowspans/columnspans
+
+Popsicles
+EVENT HANDLING:
+	need to add an event listener to button/widget to register clicks (findViewById)
+	callback method happens in response to listening to event (setOnClickListener for the button, pass interface for onClick)
+	- Gestures: fling (flick up fast) and scrolls (side to side) MotionEvents
+		implements GestureDetector.OnDoubleTapListener, GestureDetector.OnGestureListener
+		TIP: ALT+INSERT, implement methods to automatically declared override functions
+
+frgmnt
+FRAGMENTS: chunk of reusable code part of activity that helps in building menus/layouts
+	create new class that extends Fragment
+	override onCreateView
+	alter main activity xml and go to custom <fragment>
+	take into account the design in xml file and java class part
+	- rule: fragments don't talk directly to one another (hits fragment, tell activity, tell another fragment)
+		communicating with main activity
+			create TopSectionListener interface with methods later to be implemented by main activity
+			override onAttach (attach activity to fragment) listen to actions and send inputs to main activity
+			have bottom fragment take in the inputs from main activity and change its components
+	
+Menuteflow
+MASTER/DETAIL FLOW: (on tablet along left side, on phone menu list and open on another screen)
+	edit DummyContent/DummyItems
+	edit fragment_webpage_detail, WebpageDetailFragment
+	edit uses-permission to use INTERNET/other features of the android phone in AndroidManifest
+
+Wolfrevo
+OVERFLOW MENU (three little vertical dots on side that drops down a menu)
+	change themes to say Holo.Light or Material.Light, goal is to change backgrounds after pressing menu items
+	alter menu_main.xml, alter main activity java file -> onOptionsItemsSelected
+
+	
+etamina
+ANIMATIONS AND TRANSITIONS: move button from top left to bottom right
+	have onTouchListener for etaminaLayout to handle taps on the button
+	change layoutParams of RelativeLayout for position and size rules -> button.setLayoutParams(rules)
+	for smooth animation/transition:
+		TransitionManager.beginDelayedTransition(etaminaLayout)
+	
+	useful colors: 
+	#009900 leaf
+	#72231F bacon maroon
+INTENTS: allows app to switch screens/move from one activity to another
+	create two activities:
+		set android:onClick="onClick" on button so we don't have to use a listener but make a method for it within java file
+		public void onClick(View view){ ... }
+		Intent intent = new Intent(this, MainActivity.class); // retrieve class of activity you want to retrieve
+        startActivity(intent);
+	pass info. from one activity to another: main to leaf
+		have main retrieve input from EditText and putExtra("etaminaMessage", userMessage) into intent within onClick method
+		use Bundle etaminaData = getIntent().getExtras(); to get info. from main activity in leaf activity
+		retrieve id for leafText and setText to etaminaMessage
+	broadcasts: SendBroadcast, ReceiveBroadcast
+		sender-create new Intent(), setAction to package name for the keyword for broadcast, sendBroadcast(intent)
+		receiver-no activity/other->broadcastreceiver, use Toast.makeText(context, "message", Toast.LENGTH_LONG).show();
+				set intent filter action to broadcast sender's package name, run don't launch activity
+	IntentService: (extends IntentService) useful for downloading images in background, always check for new notifications that you don't need to press buton for, etc.
+		process that runs in background of app/no interface, automatically creates thread for you
+			must be kicked off manually in onCreate function
+				Intent intent = new Intent(this, AlfredsIntentService.class);
+				startService(intent);
+		need constructor and implement onHandleIntent
+			<service android:name=".AlfredsIntentService" /> in AndroidManifest.xml
+	Service: (extends Service) process that runs in background, user doesn't interact with it
+		allows user to continue using phone while service runs in background
+		implement onStartCommand: need to create separate thread with runnable/thread and do action there within try/catch block
+		implement onDestroy
+		create intent in main activity where service is used in onCreate method and start service
+	Bound Services: refer to BoundService app that returns the time using a Service, create activity that binds to service
+		need to bind the client (MainActivity) to the service (MyService)
+			create a binder object: private final IBinder = new MyLocalBinder();
+			need to create class object MyLocalBinder to extend Binder class
+			implement onBind-> return alfredsBinder (instance of MyLocalBinder class, which returns reference to MyService to use its functionality)
+			import the packagename.superclass.binderclass in MainActivity
+		implement what you want to do when you bind to service and when you disconnect from the service in MainActivity
+			implement ServiceConnection:
+				onServiceConected
+					get reference to MyLocalBinder and use its getService function to get reference to MyService 
+				/onServiceDisconnected
+					set isBound to false/housekeeping
+			modify onCreate by establishing intent and use bindService
+		
+THREAD HANDLING:
+	AsyncTask? 
+		Runnable r = new Runnable(); override run()?
+		Thread thread = new Thread(r); -> thread.start();
+		can use Handler for better practice, handleMessage, handler.sendEmptyMessage(0);
+	never update interface/change views within the thread
+
+Docket
+LISTVIEW: great for social networking apps, scroll through items in list such as posts on newsfeed/images
+	add ListView with default list items, add items manually through Java code (plain text, images, images and text)
+	streamlined version extends Activity and implements onCreate method
+	need a ListAdapter such as ArrayAdapter that takes in array of something in a certain format such as simple_list_item_1
+		set ListView's adapter to one created before
+	implement ListView's setOnItemClickListener->AdapterView.OnItemClickListener->onItemClick
+	can create custom row design with text and image: add image -> add ImageView, change src to @drawable/photo
+		create CustomAdapter that extends ArrayAdapter<String> -> need constructor
+			 public CustomAdapter(Context context, String[] months) {
+				super(context, R.layout.custom_row, months);
+			}
+		override getView
+
+SQLiteSample
+SQLITE: save data on your phone, must know mySQL
+	each row in database file must be represented by object through java
+		i.e. products class with constructor, getters and setters of properties
+	need properties to represent the columns (i.e. id and name)
+	set up a DBHandler class for working with database/file saved on the user's device
+		extends SQLiteOpenHelper, set up database version/name, table name, column names
+		set up constructor, override onCreate and onUpgrade with SQL queries -> db.execSQL(query);
+		adding product/row
+			use ContentValues(); -> values.put(COLUMN_PRODUCTNAME, product.get_productname()); // passed into database
+			SQLiteDatabase db = getWritableDatabase(); // equals to db we're going to write to
+			db.insert(TABLE_PRODUCTS, null, values);
+			db.close(); 
+		deleting products
+			use DELETE FROM prompt
+		printing database as string
+			need cursor, retrieve query request of all database, loop through each row in database and add to string of all products
+
+VideoPlayer			
+VIDEOVIEW: display videos on phone, import VideoView and MediaController
+	setVideoView to mp4 path, start it, change manifest file to use internet in uses-permission
+	add MediaController, setAnchorView, setMediaController
+TakePhoto
+IMAGECAPTURE: API 18 or higher for less warnings
+	use imageview and button -> uses-feature camera2 to use android camera feature
+	check if android has camera : getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+	create intent to take a picture : Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	take photo and pass results to onActivityResult: startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+	override onActivityResult -> check request/resultCodes, get bundle/bitmap data-> set imageView's bitmap to the photo retrieved
+PhotoFilter
+	retrieve drawable jpg resource and convert to bitmap before setting imageview to altered bitmap
+	overlay: create Drawable array of layers, create LayerDrawable and set ImageView to that layer stack
+	use MediaStore to store the image to the user's device
+
+Notification
+NOTIFICATION
+	little icon on status bar and message = ticker -> slide it down to see the notification (icon + title/body, time)
+		NotificationCompat -> give id number to each notification that you build
+		notification.setAutoCancel(true); -> allows notification to disappear after being clicked
+	customize notification:
+		setSmallIcon(icon);
+		setTicker("string");
+		setWhen(System.currentTimeMills()); // time
+		notification.setContentTitle("Title");
+		establish pendingIntent -> give device access to the intent in our app, intent puts them on home screen
+			when notification clicked, it takes them back to a certain activity screen
+		Notification manager object that builds and sends out notifications
+			nm = getSystemService(NOTIFICATION_SERVICE);
+			nm.notify(uniqueID, notification.build())
+styles in Notification
+STYLES: use one style and apply to every single element/widget that you want
+	create new values resource file, create style name="name" with item names
+		add style="@style/BabyBlue" to widgets you want to modify
+		can inherit from another style you created by doing <style name ="BabyBlue.BigBlue"></style>
+			otherwise you can inherit from android styles by using parent="Theme.AppCompat.Light.DarkActionBar"
+	colors: #006699 awesome blue, #efefef light gray
+THEMES:
+	apply overall theme by modifying AndroidManifest -> android:theme="@style/arieTheme" whether in whole app or in specific activity/screen
+	change manifestThemes on rendering screen/design tool to special theme you made
+
+ShareBear
+SHAREDPREFERENCES: way to save data/settings for application
+	use SharedPreferences to make sp file and getSharedPreferences("userInfo", Context.MODE_PRIVATE); -> file is private, only this app can access it
+		SharedPreferences.Editor editor -> gives us object to write to this file = sharedPreferences.edit();
+			editor.putString("username",usernameInput.getText().toString()) -> editor.apply() // puts a variable in file/database
+		display saved info:
+			create sharedPreferences/getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+				String name = sharedPreferences.getString("username", ""); // returns nothing by default if key doesn't match with anything in file
+				
+CUSTOMLAUNCHERICONS: make sure 512x512 png file
+	go to android asset studio to make icon for app-> download and replace mipmap files
+GITHUB: 
+	enable version control integration (VCS)-> create local github repository for project -> files red cause local
+		share it on github website (vcs, import onto version control, share project onto github)
+		make changes (blue file = different from github repository):
+			hit commit button, commit message, -> commit and push
+APK FILE FOR DISTRIBUTION:
+	bottom left icon, build variants, debug->release
+	build at top -> generate signed apk, create key store path: file that has all my signatures/keys, encrypted, needs pw too (only need org/name in certificate, alias/pw for you)

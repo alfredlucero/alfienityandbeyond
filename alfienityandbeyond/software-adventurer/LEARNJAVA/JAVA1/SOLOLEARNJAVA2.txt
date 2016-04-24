@@ -1,0 +1,23 @@
+Conditionals and Loops
+	if (condition)  // && ||
+		true block
+	else 
+		false block
+		
+	switch (var){
+	case 1:
+		...
+		break;
+	default:
+		...
+		break;
+	
+	while (condition)
+		...
+		
+	do {
+		...
+	}while(condition)
+		
+	for (int counter; condition; change counter)
+		...

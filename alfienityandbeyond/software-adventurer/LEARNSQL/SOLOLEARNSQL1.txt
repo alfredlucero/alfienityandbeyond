@@ -1,0 +1,57 @@
+BASIC CONCEPTS:
+
+	database: collection of information that is organized in a manner that facilitates ease of access
+			as well as efficient management and updating
+			made up of tables that store relevant information
+				columns and rows format i.e. first,last, phone #
+				primary key is a filed in table that uniquely identifies the table records
+					(unique column) contain a unique value for each row, cannot contain NULL values
+					tables are limited to one primary key each (different key value per row)
+	
+	SQL: Structured Query Language
+		used to access and manipulate a database
+		MySQL is a program that understands SQL
+		can insert, update, or delete records in a database
+		can create new databases, tables, stored procedures, views
+		can retrieve data from a database
+	
+	Basic Commands: SQL is case insensitive but commands typically in upper-case
+		SHOW DATABASES: lists out databases
+		SHOW TABLES: display all tables in currently selected database
+		SHOW COLUMNS FROM table:
+			Field - column name
+			Type - column data type
+			Key - indicates whether column is indexed
+			Default - default value assigned to the column
+			Extra - may contain any additional information that is available about a given column
+		
+		SELECT: select data from a database, result is stored in a result table = result-set
+			query may retrieve information from selected columns or from all columns in the table
+			SELECT column_list FROM table_name
+				i.e. SELECT FirstName FROM customers;
+			can run multiple queries or commands at the same time
+			i.e.
+			SELECT FirstName, LastName, City
+			FROM customers;
+			retrieve all information contained in table by placing *
+				i.e. SELECT * FROM customers;
+			DISTINCT: return unique records rather than fetching duplicates
+				i.e. SELECT DISTINCT City FROM customers;
+			LIMIT: allows us to return a subset of records
+				i.e. SELECT column_list
+					 FROM table_name
+					 LIMIT [number of records];
+				SELECT ID, FirstName, LastName, City
+				FROM customers LIMIT 5; // retrieves first five records from customers table
+							   LIMIT 3,4; // starts from third position and retrieves 4 records
+			SELECT * FROM customers ORDER BY FirstName // arranges by ascending order
+				SELECT * FROM customers ORDER BY LastName, Age; // order by multiple columns
+			
+			
+	
+	Syntax:
+		single SQL statement can be placed on one or more text lines; multiple SQL statements can be combined on a single text line
+		white spaces and multiple lines are ignored in SQL
+		syntactic sugar:
+			SELECT City FROM customers;
+			SELECT customers.City FROM customers;

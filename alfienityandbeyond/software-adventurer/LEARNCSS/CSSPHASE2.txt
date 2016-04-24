@@ -1,0 +1,219 @@
+CSS:
+	rule set consists of a selector and a declaration block
+		i.e. p { 
+			   color: red;
+			   text-align: center;
+			 }
+	selector allows you to select and manipulate HTML element, find elements based on their id, class, type, attribute
+		id selector #para1 { ... } for a single, unique element
+		class selector .center
+	internal style sheet defined within <style> element within <head>
+		external style sheet <link rel="stylesheet" type="text/css" href="mystyle.css">
+		inline styles within tags, use sparingly
+		cascading order: inline style inside HTML element, external and internal style sheets in the head section, browser default
+	
+	box model: 
+		content (text and images)->padding (transparent area around content)
+		->border (around padding and content)->margin (area outside border transparent)
+		setting width and height affect content area
+		total width = width + left padding + right padding + left border + right border + left margin + right margin
+		
+	background:
+		background-color: navy
+		background-image: url("image.gif")
+		background-repeat: repeat-x/y or no-repeat
+		background-position: right top
+		background-attachment: fixed
+		background: (shorthand)
+		
+	text:
+		color:
+		text-align: left, right, center, justify (stretch lines so that each line has equal width)
+		text-decoration: none (remove underlines from links), overline, line-through, underline
+		text-transform: uppercase, lowercase, capitalize
+		text-indent: 40px
+		letter-spacing: space between characters in text
+		line-height: space between lines
+		direction: change text direction of an element
+		word-spacing
+	
+	fonts:
+		generic family (serif: times new roman, georgia; sans-serif: arial, verdana; monospace: courier new, lucida console)
+		font-family: "Times New Roman", Times, serif; (fallback ones: start with specific then end with generic family)
+		font-style: normal/italic/oblique
+		font-size: (relative size to allow a user to change text size in browsers) use em and percent
+		font-weight: normal/bold
+		font-variant: normal/small-caps
+		
+	links:
+		a:link -> a:visited -> a:hover -> a:active (follow this order)
+		text-decoration: none (remove underlines) 
+		background-color
+		
+	lists:
+		list-style-type: circle/square/upper-roman/lower-alpha
+		list-style-image: url('image.gif')
+		list-style-position: inside/outside
+		list-style: (shorthand)
+	
+	tables:
+		border: 1px solid black
+		border-collapse: collapse
+		width: 100%
+		height:
+		text-align/vertical-align
+		padding:
+		background-color
+		color
+		table-layout, empty-cells, caption-side
+		
+	borders:
+		border-syle (none of other properties will work unless this is set 1-4 values)
+		border-width, border-color, border-top/right/bottom/left-style
+		border(shorthand: width, style, color
+	outlines (line drawn around an element - outside the border to "stand out" and doesn't affect total width/height)
+		outline-color/offset/style/width	
+	margin (completely transparent and clears an area around an element outside the border)
+		margin-top/right/bottom/left
+	padding (area around content inside the border of an element affected by background color)
+		padding-top/right/bottom/left
+	dimensions
+		height and width (doesn't include padding/borders/margins but inside), max/min-height/width
+		(use max-width and margin set to auto so smaller browser windows can see it better)
+		
+	layout
+		display specifies if/how an element is displayed
+		every HTML element has default display value which is block or inline
+			block starts on a new line and takes up the full width available (stretches out to the left and right as far as it can)
+				ex/ div, h1-h6, p, form, header, footer, section
+			inline doesn't start on a new line and only takes up as much width as necessary
+				ex/ span, a, img
+		display: none commonly used by JavaScript to hide and show elements without deleting and recreating them
+		display only changes how the element is displayed so inline can't have block elements inside of it
+		visibility:hidden (element will still take up the same space as before but hidden)
+
+		position: 
+			static/relative/fixed/absolute and positioned using top, bottom, left, and right properties
+				static: not affected by top/bottom/left/right properties, positioned according to normal flow of page
+				relative: adjusted from its normal position, other content not adjusted to fit into any gap left by the element
+				fixed: relative to the viewport (same place even if page is scrolled)
+					bottom 0 right 0 sets element to bottom right of page no matter what
+				absolute: positioned relative to nearest positioned ancestor (uses document body and moves along with page scrolling)
+					z-index: -1 to be behind for overlapping
+			clip, cursor, overflow (overflows an element's box: auto, hidden, scroll, visible, inherit)
+		
+		float and clear:
+			float used to wrap text around images (left or right)
+			clear (left/right/both as elements after a floating element will flow around it and clears it)
+			overflow: auto (if element is taller than element containing it and it is floated it may overflow outside)
+		inline-block: (like inline elements but with a width and height and don't need clear after)
+		
+		horizontal align:
+			(center align | setting the width of a block-level element will prevent it from stretching out to the edges of the container)
+				use margin:auto to horizontally center an element within its container and takes specified width and remaining space split between two margins
+				center aligning has no effect if width property is not set or set to 100%
+			
+			position: absolute (removed from normal flow and can overlap elements)
+				always define margin and padding for the body element to avoid visual differences in different browsers
+				body { margin: 0 padding: 0 }
+			float: right/left 
+			
+	Combinators: explains relationship between the selectors
+		descendant selector (space)
+			i.e. div p = all <p> elements inside <div> elements
+		child selector (>)
+			i.e. div > p = all <p> elements that are immediate children of a <div> element
+		adjacent sibling selector (+)
+			i.e. div + p = all <p> elements that are placed immediately after <div> elements
+				</div> 
+				<p>
+		general sibling selector (~)
+			i.e. div ~ p = all <p> elements that are siblings of <div> elements
+				</div>
+				<p> ... <p> 
+	
+	Pseudo-class: defines a special state of an element
+		style an element when a user mouses over it
+		style visited and unvisited links differently
+		
+		syntax -> selector:pseudo-class { 
+					property:value;
+				  }
+		i.e. a:link, a:visited, a:hover, a:active
+			can be combined with classes in a.classex:hover
+		p:first-child matches a specified element that is the first child of another element
+		p i:first-child matches the first <i> element in all <p> elements
+		
+		:lang pseudo-class allows you to define special rules for different languages
+			i.e. q:lang(no) { quotes: "~" "~"; } -> <q lang ="no">A quote in a paragraph</q> denoted by ~ on both sides
+	Pseudo-elements: style specified parts of an element
+		style the first leter, or line, of an element
+		insert content before, or after, the content of an element
+	
+		syntax -> selector::pseudo-element {
+					property:value;
+				  }
+		p::first-line alters the first line of a text to block-level elements
+		p::first-letter
+	
+		h1::before inserts some content before the content of an element
+			i.e. h1::before { content: url(smiley.gif); }
+		h1::after inserts some content after the content of an element
+		
+		::selection matches the portion of an element that is selected by the user
+			applied to color, background, cursor, outline
+	
+	Navigation Bar: List of Links
+		i.e. ul { 
+				list-style-type: none; // removes the bullets
+				margin: 0; padding: 0; // removes browser default settings
+			 }
+			 // Vertical Navigation Bar
+			 a {
+			   display: block; // links as block elements and makes whole link area clickable to specify the width
+			   width: 60px;  // block elements take up the full width available by default, so specify pixel
+			 }
+		Horizontal
+			use inline or floating list items
+				specify <li> elements as inline (links have different widths)
+					li { display: inline; }  // removes the line breaks before and after each list item to display them on one line, block by default
+				float all the <li> elements and specify a width for the <a> elements
+					li { float: left; } // get block elements to slide next to each other
+					a { display: block; width: 60px } // specify width and whole area clickable, cannot float next to each other since block elements take up full width -> specify width
+	
+	Image Gallery:
+		have image classes containing the img elements and description
+		img {
+			opacity: 0.4; // alters transparency
+			filter: alpha(opacity=40); // for IE8 and earlier
+		}
+		img:hover {
+			opacity: 1.0;
+			filter: alpha(opacity=100);
+		}
+		can also have a background: url(imagefile) repeat; with borders and transparent box inside for text
+	Image Sprites:
+		collection of images put into a single image
+		
+	[attribute] Selector: select elements with a specified attribute
+		i.e. a[target] selects all <a> elements with a target attribute
+			 a[target="_blank"]
+			 [attribute~="value"] used to select elements with an attribute value containing a specific word (space-separated list of words)
+		     [attribute|="value"] used to select elements with the specified attribute starting with specified value (has to be whole word alone or followed by hyphen)
+			 [attribute^="value"] used to select elements whose attribute value begins with a specified value(value doesn't have to be whole word)
+			 [attribute$="value"] used to select elements whose attribute value ends with a specified value (does not have to be a whole word)
+			 [attribute*="value"] used to select elements whose attribute value contains a specified value (doesn't have to be a whole word)
+		can style forms without class or ID -> input[type="text"], input[type="button"]
+		
+	Counters: like "variables", incremented by CSS rules that track how many times they are used
+		counter-reset: creates or resets a counter
+		counter-increment: increments a counter value
+		content: inserts generated content
+		counter() or counters(): adds the value of a counter to an element
+		
+		i.e. body { counter-rest: section; }
+		     h1::before { counter-increment: section; content: "Section " counter(section) ": "; }
+			 h1 { counter-reset: subsection; }
+			 h2::before { counter-increment: subsection; content: counter(section) "." counter(subsection) " "; }
+		ol { counter-reset: section; list-style-type: none; } 
+		li::before { counter-increment: section; content: counters(section,".") " "; }

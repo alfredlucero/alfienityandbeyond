@@ -1,0 +1,7 @@
+verilog work "display7.v"
+verilog work "clock_750hz.v"
+verilog work "clock_50hz.v"
+verilog work "clock_2hz.v"
+verilog work "clock_1hz.v"
+verilog work "clk_500hz.v"
+verilog work "stopwatch.v"

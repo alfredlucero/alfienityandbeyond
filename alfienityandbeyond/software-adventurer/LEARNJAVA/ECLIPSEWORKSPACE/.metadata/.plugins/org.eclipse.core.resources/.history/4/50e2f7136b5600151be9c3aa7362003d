@@ -1,0 +1,13 @@
+package learnjava2;
+
+import java.util.Scanner;
+
+public class conLoops {
+	public static void main(String args[]){
+		Scanner userInput = new Scanner(System.in);
+		if (userInput.nextInt() == 10)
+			System.out.println("10 is the correct number!");
+		else
+			System.out.println("You failed to be a dime!");
+	}
+}

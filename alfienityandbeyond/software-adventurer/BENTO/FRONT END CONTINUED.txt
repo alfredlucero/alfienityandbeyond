@@ -1,0 +1,273 @@
+FRONTEND CONTINUED
+
+HTML: content
+CSS: style
+JavaScript: behavior
+
+Bootstrap:
+	12 column responsive layout
+	check out components -> copy/paste around for parts
+
+What is the DOM? Document Object Model
+	When looking at panel in DevTools, visual representation of DOM
+	JavaScript can manipulate the DOM
+		<script>
+			var container = document.getElementById("container");
+			container.innerHTML = "New Content!";
+		</script>
+		// shows <div id="container">New Content!</div> for DOM
+		// attach listeners via a DOM property on the DOM node that emits that event
+	API for valid HTML and well-formed XML documents
+	defines logical structure of documents and the way a document is accessed and manipulated (like a tree)
+	object model that specifies interfaces
+	can build documents, navigate their structure, add/modify/delete elements and contents
+	tree-like structure created by browsers so we can quickly find HTML elements using JavaScript
+		HTML elements become nodes, has text
+		DOCUMENT - html - head - title -
+										- body - h1
+													 - p
+		each browser has a slightly different DOM interface
+
+
+jQuery:
+	find elements in HTML document, change HTML content, event handling, animate content, talk over network
+	jQuery(document);
+	i.e. find h1 to change it
+		jQuery("h1"); === $("h1");
+	modify element
+		$("h1").text(); // returns text within element
+		$("h1").text("Where to?"); // replaces text element
+		make sure DOM is finished loading before JavaScript running
+		$(document).ready(function() {
+			$("h1").text("Replaced h1 text");
+		});
+
+	CDN links:
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+	<script src="jquery.min.js"></script>
+	<script src="application.js"></script>
+
+	find elements by ID or Class
+	$("p");
+	$("#container"); // ID
+	$(".articles"); // Class
+
+	Searching the DOM:
+	$("#destinations li"); // descendant selector
+	$("#destinations > li"); // direct children/descendant
+	$(".promo", "#france");
+	$("#destinations li:first"); // first item in list
+	$("#destinations li:last");
+	$("#destinations li:odd"); // li:even
+	$(".asia, .sale");
+
+	Traversing the DOM:
+	$("#destinations").find("li"); // faster to traverse
+	$("li:first"); === $("li").first();/last();
+	$("li").first().next().prev(); // method chaining
+	$("li").first().parent(); // traverse up
+	$("#destinations").children("li"); // traverse down, direct descendants
+	$("#vacations").find(".america");
+	$("#vacations").find("li").last(); === $("#vacations li").last();
+	$("#tours .featured").parent();
+	$("#tours").children(); === $("#tours > li");
+
+	Manipulating the DOM:
+	$(document).ready(function () {
+		// create a <p> node with the price
+		var price = $('<p>From $399.99</p>');
+		// .append, .prepend, .after, .before to append DOM
+		// $('.vacation').before(price); // puts before .vacation
+		// $('.vacation').after(price); // puts after .vacation
+		// $('.vacation').prepend(price); // adds as first child/top of .vacation
+		$('.vacation').append(price); // last child/bottom of .vacation
+		$('button').remove(); // removes button from DOM
+	});
+	can do price.appendTo($('.vacation'));
+	.prependTo, .insertAfter, .insertBefore(<element>);
+
+	Acting on Interaction:
+	$(document).ready(<event handler function>);
+	$('button').on('click', function () {
+		// Target all buttons, watch for any clicks, run function
+	});
+	i.e. replace button with price at bottom of .vacation
+	$(document).ready(function() {
+		$('button').on('click', function () {
+			var price = $('<p>From $399.99</p>');
+			$('.vacation').append(price);
+			$('button').remove();
+		});
+	});
+
+	Refactor Using Traversing:
+	can use this, referring to item that triggered the event
+	i.e. $(this).remove(); removes only button that was clicked
+	$(this).closest('.vacation').append(price); // finds closest parent class .vacation and appends to end, parent finds all of ancestors with proper class
+
+	i.e.
+	$(document).ready(function() {
+		$('.tour').on('click', function() { // reacts upon any part of li clicked
+			var message = $('<span>Call 1-555-jquery-air to book this tour </span>');
+			$(this).append(message); // adds to end of li class
+			$(this).find('button').remove(); // removes button in li
+		});
+	});
+
+	Traversing and Filtering:
+	can add data-price attribute to elements (i.e. data-dataname)
+	Object Methods -> .data(<name>), .data(<name>, <value>)
+	reuse jQuery objects and query DOM once for element
+	$(document).ready(function() {
+		$('vacation').on('click', 'button', function() { // event delegation
+			var vacation = $(this).closest('.vacation');
+			var amount = vacation.data('price');
+			var price = $('<p>From $'+amount+'</p>');
+			vacation.append(price);
+			$(this).remove();
+		});
+	});
+	// Filter classes
+	$('.vacation.onsale') === $('.vacation').filter('.onsale');
+	// Class Manipulation
+	.addClass(<class>), .removeClass(<class>)
+	$('#filters').on('click', 'onsale-filter', function () {
+		$('.highlighted').removeClass('highlighted'); // remove any highlighted classes
+		$('.vacation').filter('.onsale').addClass('highlighted'); // highlight new classes appropriately
+	});
+
+	On DOM load:
+		watch for click, find ticket, show it
+		<button>...</button>
+		<ul class="ticket">...</ul> -> .ticket { display: none; }
+		slideDown() shows it, slideUp(), slideToggle()
+		$('li').length; // shows number of list items, alert('...'); 
+		$(document).ready(function() {
+			alert($('button').length);
+			$('.confirmation').on('click', 'button', function() {
+				$(this).closest('.confirmation').find('.ticket').slideDown();
+			});
+		});
+
+	Expanding on on():
+	mouse events: click, mouseenter(when mouse first positioned over element, mouseover, mousemove, mousedown, mouseout, mouseleave, mouseup, focusin, focusout, dblclick
+	function showTicket() {
+		$(this).closest('.confirmation').find('.ticket').slideDown();
+	}
+	$(document).ready(function() {
+		$('.confirmation').on('click', 'button', showTicket);
+		$('.confirmation').on('mouseenter', 'h3', showTicket);
+	});
+
+	Keyboard Events:
+	keypress, keydown, keyup
+	Form events - blur, focus, select, change, submit
+	use + to convert string to number
+	.val(<new value>) // set input value, .val() // return input value
+	$(document).ready(function() {
+		$('.vacation').on('keyup', '.quantity', function() {
+			var price = +$(this).closest('.vacation').data('price');
+			var quantity = +$(this).val();
+			$('#total').text(price * quantity);
+		});
+	});
+	$(document).ready(function() {
+		$('#nights').on('keyup', function() {
+			var nights = +$(this).val();
+			var dailyPrice = +$(this).closest('.tour').data('daily-price');
+			$('#total').text(nights * dailyPrice);
+			$('#nights-count').text($(this).val());
+		});
+		$('#nights').on('focus', function() {
+			$(this).val(7);
+		});
+	});
+
+	Link Layover:
+	.comments { display: none } -> clicking link shows comments
+	.fadeIn, .fadeOut, .fadeToggle // similar to slide
+	event.stopPropagation(); // stop bubble up, prevents second handler from being called
+	event.preventDefault(); // stops browser from handling default "bubble up" and jumping to top of page
+	$(document).ready(function() {
+		$('.see-photos').on('click', function(event) {
+			event.stopPropagation();
+			event.preventDefault();
+			$(this).closest('.tour').find('.photos').slideToggle();
+		});
+		$('.tour').on('click', function() {
+			alert('This event handler should not be called');
+		});
+	});
+
+	Taming CSS:
+	.css(<attr>, <value>)
+	.css(<attr>)
+	.css(<object>)
+	$(document).ready(function() {
+		$('#vacations').on('click', '.vacation', function() {
+			$(this).css({'background-color': '#252b30',
+									 'border-color': '1px solid #967'});
+			$(this).find('.price').show(); // changes display from none to block
+		});
+	});
+	move css to stylesheet application.css
+	.highlighted { 
+		background-color: #563;
+		border-color: 1px solid #967;
+	}
+	.highlighted .price {
+		display: block;
+	}
+	$(document).ready(function() {
+		$('#vacations').on('click', '.vacation', function() {
+			$(this).toggleClass('highlighted');
+		});
+	});
+	// addClass, removeClass, toggleClass
+
+	Animation:
+	.animate(<object>, (ms time, 'fast', 'slow', 400ms default)); // animates from current state to style that it gives it
+		fadeToggle(), slideToggle() can also be given ms times
+	.hasClass(<class>); // checks if node has a class
+	$(document).ready(function() {
+		$('#vacations').on('click', '.vacation', function() {
+			$(this).toggleClass('highlighted');
+			if($(this).hasClass('highlighted')) {
+				$(this).animate({'top': '-10px'}, 'fast');
+			} else {
+				$(this).animate({'top': '0px'}, 'fast');
+			}
+		});
+	});
+	Alternative:
+	.vacation {
+		-moz-transition: top 0.2s;
+		-o-transition: top 0.2s;
+		-webkit-transition: top 0.2s;
+		transition: top 0.2s;
+	}
+	.highlighted {
+		top: -10px;
+	}
+	$(document).ready(function() {
+		$('#vacations').on('click', '.vacation', function() {
+			$(this).toggleClass('highlighted');
+		});
+	});
+	$(document).ready(function() {
+  $('.tour').on('mouseenter', function() {
+    $(this).addClass('highlight');
+    $(this).find('.per-night').animate({'top': '-14px', 'opacity': '1'}, 'fast');
+  });
+  $('.tour').on('mouseleave', function() {
+    $(this).removeClass('highlight');
+    $(this).find('.per-night').animate({'top': '0px', 'opacity': '0'}, 'fast');
+    $(this).removeClass('.per-night');
+  });
+});
+
+
+
+

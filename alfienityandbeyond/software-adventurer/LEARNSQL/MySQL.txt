@@ -1,0 +1,193 @@
+mysql
+
+SHOW DATABASES;
+	production database vs. test database
+USE DATABASE_NAME;
+
+Creating a table:
+	CREATE TABLE <tablename> (
+		<list of attributes and their types>
+	);
+	i.e. CREATE TABLE tbl(a int, b char(20));
+	CREATE TABLE <tablename> (<attrs and their types>, PRIMARY KEY(a,b,c));
+	
+Inserting and Retrieving Tuples:
+	INSERT INTO <tablename>
+		VALUES( <list of values for attributes, in order> );
+	i.e.
+		INSERT INTO tbl VALUES(10, 'foobar');
+	
+		SELECT *
+		FROM <tablename>
+	i.e. SELECT * FROM tbl
+	
+Creating Index:
+	CREATE INDEX <indexname> ON <tablename>(<list of attributes>);
+	i.e. CREATE INDEX IdxOnAttrB on tbl(b);
+	DROP INDEX <indexname> ON <tablename>;
+	ie. DROP INDEX IdxonAttrB ON tbl; 
+	// Index automatically ccreated on primary keys and unique attributes
+
+Bulk Loading Data:
+	LOAD DATA LOCAL INFILE <dataFile> INTO TABLE <tableName>; (columns separated by \t, NULL by \N)
+		can do FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'; // columns separated by commas, possible double quotes
+	Windows uses pair of CR (carriage return) and LF (line feed) to terminate lines
+	Unix only uses LF character
+		run dos2unix from Ubuntu on Windows-generated text file to convert CR and LF at the end of each line to LF -> dos2unix --help
+	
+	LOAD DATA [LOW_PRIORITY | CONCURRENT] [LOCAL] INFILE
+		[REPLACE | IGNORE]
+		INTO TABLE tbl_name
+		[CHARACTER SET charset_name]
+		[{FIELDS | COLUMNS}
+			[TERMINATED BY 'string']
+			[[OPTIONALLY] ENCLOSED BY 'char']
+			[ESCAPTED BY 'char']
+		]
+		[LINES
+			[IGNORE number LINES]
+			[(col_name_or_user_var,...)]
+			[SET col_name = expr,...]
+			
+	go to current working directory of sql file
+		mysql --local-infile CS143 < load.sql
+	
+Getting Rid of your Tables:
+	DROP TABLE <tableName>; // remove table from database
+	i.e. DROP TABLE tbl;
+
+Getting information about your TABLES:
+	SHOW TABLES;
+	DESCRIBE <tableName>;
+
+Executing SQL From a File:
+	after typing SQL commands into a file, execute commands in file by
+	SOURCE foo.sql; // batch script file (in current working directory)
+	
+	mysql TEST < foo.sql // execute script file directly from Unix shell 
+
+Recording your MySQL Session in a File:
+	TEE foo.txt; // save the queries that you executed and results to a file
+		records all user input and system output until exit mysql or type NOTEE;
+		appends new output to file if existed previously
+
+Quitting mysql:
+	QUIT;
+
+MySQL Users and Privileges:
+	mysql <database> -u <username> -p
+	i.e. mysql TEST -u root -p // root is "database administrator" in this case
+	// root in this case has unrestricted access, create new users, change user privileges, etc.
+	
+	if logged in as root user, can create a new user by
+	CREATE USER <user> IDENTIFIED BY "<password>";
+	
+	list of current users as root:
+	SELECT * FROM mysql.user;
+
+	grant appropriate privileges to user with GRANT command:
+	GRANT ALL ON TEST.* to cs143@localhost; // gives all privileges for TEST database to cs143 user
+	SHOW GRANTS;
+	
+	as root user you can create and drop databases as well
+	CREATE DATABASE TESTDB;
+	DROP DATABASE TESTDB;
+	
+	maintains username and password pairs independently of underlying OS (default MySQL user cs143 is not related to Ubuntu account cs143)
+
+OUTPUTTING FORMAT:	
+	SELECT CONCAT(Col1, ',', Col2) as TableName from Table1;
+	
+	
+Help Facilities:
+	help or help contents or help <topic>
+	
+i.e. Give me the names of all the actors in the movie 'Die Another Day' in <firstname> <lastname> format
+	SELECT CONCAT(first, ' ', last) AS ActorName 
+	FROM Actor, MovieActor 
+	WHERE Actor.id = MovieActor.aid AND (SELECT id FROM Movie WHERE title = 'Die Another Day') = MovieActor.mid;
+
+	Give me the count of all the actors who acted in multiple movies
+	SELECT COUNT(actormult) 
+	FROM (SELECT aid AS actormult FROM MovieActor GROUP BY aid HAVING COUNT(*) >= 2) AS ActorCount;
+	
+	Find all the female actresses who act in rated PG-13 or R movies
+	SELECT DISTINCT CONCAT(last, ',', first) AS ActorName
+	FROM Actor, MovieActor
+	WHERE EXISTS (SELECT id FROM Movie WHERE (rating = 'PG-13' or rating = 'R') 
+		AND MovieActor.mid = Movie.id)
+		AND Actor.id = MovieActor.aid AND Actor.sex = 'Female';
+	
+Accessing MySQL from PHP:
+	
+	Establishing a Connection:
+		first establish a connection to separate application of MySQL
+			$db_connection = mysql_connect("localhost", "cs143", ""); // returns resource handle for connection
+		must close connection after finished
+			mysql_close($db_connection);
+	
+	Selecting a Database:
+		mysql_select_db("TEST", $db_connection); // access a particular database named TEST
+	
+	Issuing Queries:
+		$query = "select * from Student";
+		$rs = mysql_query($query, $db_connection);
+		
+	Retrieving Results:
+		mysql_fetch_row returns the column values of the retrieved row in an array or FALSE if there are no more results
+		use a loop to retrieve all results of the query:
+		while($row = mysql_fetch_row($rs)) {
+			$sid = $row[0];
+			$name = $row[1];
+			$email = $row[2];
+			print "$sid, $name, $email<br />";
+		}
+		
+	Updating Values:
+		$query = "update Student set email = CONCAT(email, '.edu')";
+		mysql_query($query, $db_connection);
+		
+		to find out how many records were altered by a query use mysql_affected_rows
+		$affected = mysql_affected_rows($db_connection);
+		print "Total affected rows: $affected<br />";
+		
+	Handling User Input:
+		always "sanitize" their inputs (i.e. escape characters)
+			mysql_real_escape_string has all "special" characters properly escaped
+		
+		i.e.
+		// C-like printf formatting codes
+		$query = "select * from Student where name = '%s'";
+		$sanitized_name = mysql_real_escape_string($name, $db_connection);
+		$query_to_issue = sprintf($query, $sanitized_name);
+		$rs = mysql_query($query_to_issue, $db_connection);
+		...
+		
+	Basic Error Handling:
+		mysql_errno and mysql_error
+		to verify connection is properly established and exit gracefully when the connection fails
+			$db_connection = mysql_connect("localhost", "cs143", "");
+			if(!$db_connection) {
+				$errms = mysql_error($db_connection);
+				print "Connection failed: $errmsg <br />";
+				exit(1);
+			}
+			...
+	
+	CONSTRAINTS in MySQL: using InnoDB storage engine
+		Primary Key: forbids duplicate values in one or more columns of a table
+			can't have more than one set of attributes specified as the primary key, can't contain null values
+			non-primary candidate keys can be specified using unique constraints (not null)
+			can alter primary keys:
+				ALTER TABLE Product ADD PRIMARY KEY (ProdNum);
+		Foreign Key: ensure consistency of tuple(row) references across tables
+		(table check constraints not supported nor general SQL assertions)
+			points to the primary key of another table, ensures referential integrity
+			ex/ FOREIGN KEY (ProdNum) references Product(ProdNum)
+			ALTER TABLE Order
+			ADD FOREIGN KEY (ProdNum) REFERENCES Product(ProdNum);
+			must add ENGINE=INNODB; to the end of CREATE TABLE statement if have FOREIGN KEY
+		Check Constraints: specify conditions that each tuple in the table should satisfy
+			i.e. CHECK(Quantity >= 1 AND Quantity <= 1000)
+			in SQL92, violation of check constraints are evaluated for each tuple insertion/update in a table
+			not supported in MySQL

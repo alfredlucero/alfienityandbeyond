@@ -1,0 +1,210 @@
+HTML: markup language for describing web pages ("structure")
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link rel="stylesheet" href="styles.css"> // link css file in head section
+</head>
+<body> // visible page content
+<h1>Alfred's First Step into Becoming the Next Great Front End Developer</h1>
+<p>First paragraph into a new beginning</p>
+</body>
+</html>
+
+Formatting Elements:
+<hr> horizontal line
+<b><i><small><del><ins><mark>
+<q><blockquote>
+<abbr title="titlename">ACR</abbr>
+<address> for contact info
+<cite> for work title
+
+Computer Code Elements:
+<kbd> for keyboard input
+<samp> for computer output
+<code> for programming code
+<var> for mathematical variable
+<pre> for preformatted text
+
+HTML CSS: Cascading Style Sheets
+	inline- using a style attribute in HTML elements
+	internal- using a <style> element in the HTML <head> section
+	external - using one or more external CSS files
+	
+	element { property:value; property:value }
+	
+	Fonts
+		color, font-family, font-size
+		
+	CSS Box Model (every HTML model has box around it)
+		border: 1pxx solid black;
+		padding: 10px; // space inside the border
+		margin: 30px; // space outside the border
+		
+	to define a special style for one element, first add an id attribute to the element
+		i.e. <p id="p01">I am uno</p>
+			 p#po1 {
+				color:lightgray;
+			}
+		// id is to address single elements
+	define style for special type (class) of elements
+		i.e. <p class="error">I am an error</p>
+			 p.error {
+				color:cyan;
+			}
+		// class is to address groups of elements
+		
+DEPRECATED TAGS AND ATTRIBUTES IN HTML5:
+	avoid <font>, <center>, <strike>
+	avoid color and bgcolor attributes
+	
+LINKS:
+	<a href="url">link text</a> // can use a relative url as well
+	Styles:
+		a:link { color:green; background-color: transparent; text-decoration: underline/none;
+		a:visited
+		a:hover
+		a:active
+	Target Attribute -> target="..."
+		_blank = new window or table
+		_self = same frame
+		_parent = parent frame
+		_top = full body of the window
+	Bookmarks to jump to specific parts of the web page:
+		i.e. 
+		<h2 id="tips">Useful Tips Section</h2>
+		<a href="#tips">Visit the Useful Tips Section</a>
+		or add a link to the bookmark from another page
+		<a href=html_tips.htm#tips">Visit the useful tips section</a>
+		
+IMAGES:
+	specify the width and height of an image so the page doesn't flicker
+	<img src="..." alt="..." style="...">
+	images in other places: "/images/..." or "http://.../...jpg"
+	float: right or left of the text
+	<map> or image-map is an image with clickable areas
+	<map name="planetmap">
+		<area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+		<area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+		<area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+	</map>
+	
+TABLES:
+	<table style="width:100%">
+		<tr>
+			<th>...</th>
+			...
+		</tr>
+		<tr>
+			<td>...</td>
+			...
+		</tr>
+	</table>
+	Style it with CSS:
+		table, th, td { border: 1px solid black; }
+						border-collapse: collapse; // one border
+			   th, td { padding: 15px; }
+		border-spacing: n px; // space between cells
+		<th rowspan="2"> // span more than one row
+		<caption> // add caption to the top, right after table tag
+		add an id="idname" -> table#idname { style it; }
+			tr:nth-child(odd) or tr:nth-child(even), table#idname th
+		thead, tbody, tfoot
+		colgroup (underneath table tag, after caption, before thead...tr), col
+			<colgroup>
+				<col span="2" style="background-color=lightgray">
+				<col style="background-color:cyan">
+			</colgroup>	// span supported in HTML5, char/align/charoff/valign/width not supported
+			default css settings
+				colgroup { display: table-column-group; }
+
+LISTS:
+	unordered <ul><li>data</li></ul>
+		style="list-style-type:disc/circle/square/none"
+	ordered  <ol><li>data</li></ol>
+		type="1/A/a/I/i"
+	description list <dl><dt>term</dt><dd>describeterm</dd></dl>
+	Horizontal List to make it look like a menu
+	<style> ul#menu li{ display:inline; } </style> // <ul id="menu">
+
+BLOCKS:
+	default display value for most elements is block or inline
+	block-level element starts on new line and takes up full width available
+		i.e. div, h1, p, form
+	inline: doesn't start on a new line, takes up as much width as necessary
+		i.e. span, a, img
+	
+	<div>: block, container for other HTML elements, has style and class
+		div.divname -> <div class="divname"> ... </div>
+		used as a layout tool
+	<span>: inline element used as container for text, has style and class
+		span.spanname -> <span class="spanname"> ... </span>
+LAYOUTS HTML5:
+	header, nav, section, article, aside, footer, details, summary
+	
+RESPONSIVE WEB DESIGN:
+	use CSS and HTML to resize, hide, shrink, enlarge, or move the content
+	can use responsive style sheet like W3.CSS so that there is CSS equality for PC, laptop, tablet, and mobile
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css
+		check this out later
+		
+IFRAME:
+	display a web page within a web page
+	<iframe src="URL" width="200" height="200"></iframe>
+	when target of a link matches the name of an iframe, the link will open in the iframe
+		<iframe src="demo.html" name="iframe_a"></iframe>... <a href="URL" target="iframe_a">...</a>
+
+COLOR NAMES SUPPORTED BY ALL BROWSERS:
+	http://www.w3schools.com/html/html_colornames.asp
+	Hexadecimal #RRGGBB
+	
+SCRIPTS:
+	JavaScript for image manipulation, form validation, dynamic changes of content
+		i.e. <script document.getElementById("demo").innerHTML = "Hello World!";</script>
+			<p id="demo"></p>
+		<noscript> provides an alternate content for users that have disabled scripts in their browser or doesn't support client-side scripting
+		i.e. can change styles
+		<script> function myFunction() { document.getElementById("demo").style.fontSize="25px"; } </script>
+		<button type="button" onclick="myFunction()">Click me</button>
+			 can change images
+		document.getElementById('myImage').src = "pic_bulboff.gif";
+
+HEAD:
+	container for metadata (i.e. title, style, meta, link, script, base
+	<html lang="en-US">
+	
+	<title>: title in browser tab, title for page in favorites, title for page in search engine results
+	<link>: page relationship to an external resource
+		i.e. <link rel="stylesheet" href="mystyle.css">
+	<meta>: page description, keywords (for search engine), author
+			<meta http-equiv="refresh" content="30"> // refreshes content
+			<base href="..." target="_blank"> specifies base URL and base target for all relative URLs in a page
+
+ENTITIES:
+	reserved characters such as (</>) must be replaced with character entities
+	i.e. &entity_name OR &#entity_number; such as &lt; or &#60
+	diacritical marks such as accents can be used such as a&#768;
+HTML ENCODING(CHARACTER SETS):
+	ASCII: first character encoding standard with 127 alphanumeric characters
+	ANSI, ISO-8859-1 (limited to 256) -> UTF-8 is default in HTML 5 (Unicode) covers almost all of the characters and symbols
+UNIFORM RESOURCE LOCATORS:
+	web address composed of words or an Internet Protocol (IP) address
+	browsers request pages from web servers by URL using the ASCII character-set
+	scheme://host.domain:port/path/filename
+		scheme = type of Internet service (http)
+			http, https (secure, encrypted), ftp:file transfer protocol for downloading files, file)
+		host = domain host (www)
+		domain = Internet domain name
+		port = port number at the host (default is 80 for http)
+		path = path at the server (if omitted: root directory of the site)
+		filename = name of a document or resource
+		
+XHTML: HTML written as XML
+	Extensible HyperText Markup Language, stricter
+	differences:
+		XHTML DOCTYPE is mandatory
+		xmlns attribute in <html> is mandatory, <html>, <head>, <title>, <body>
+		elements must be properly nested, closed, lowercase, documents have one root element
+		attribute anmes in lower case, values quoted, minimization is forbidden

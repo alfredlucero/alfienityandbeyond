@@ -1,0 +1,319 @@
+FRONT END:
+Codecademy -HTML AND CSS
+	<head> - info. about HTML file like <title>
+	<a href="...">link</a>
+	<img src="..." alt="alternative" />  // nest to have image links
+	<ol><li>, <ul><li>
+	<p>,<h1>, <body>
+	Inline CSS
+		style="..." i.e. font-size, font-family, color, background-color, text-align
+	<em>, <strong>
+	<table>, <tr>, <td>, <tbody>, <thead><tr><th>..., colspan="2"
+	<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+		<div class="div1"> -> .friend <div class="enemy" id="archnemesis"> -> #archnemesis,<span>
+		body {...} img{...}
+
+CODE GUIDE BY @mdo:
+HTML
+	Syntax:
+		soft tabs (two spaces), nested elemented indented once
+		double quotes, no trailing slash on self-closing elements
+	!DOCTYPE html for consistent rendering in every browser
+	<html lang="en-us">
+	IE compatibility mode: <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	Character encoding: <meta charset="UTF-8">
+	CSS and JavaScript include:
+		<!-- External CSS -->
+			<link rel="stylesheet" href="code-guide.css">
+		<!-- In-document CSS -->
+			<style>...</style>
+		<!-- JavaScript -->
+			<script src="code-guide.js"></script>
+	Attribute order:
+		class (reusable components)
+		id,name (ids more specific and should be used sparingly)
+		data-*
+		src,for,type,href,value
+		title,alt
+		role, aria-
+		
+		i.e. <a class="..." id="..." data-toggle="modal" href="#">Example Link</a>
+		<img src="..." alt="...">, <input class="form-control" type="text">
+	Boolean Attributes:
+		<input type="text" disabled>, <input type="checkbox" value="1" checked>
+		<select>
+		  <option value="1"
+		selected>1</option>
+		</select>
+	Avoid JS genereated markup and HTML markup
+CSS
+	Syntax:
+		soft tabs, individual selectors to a single line
+		one space before opening brace of declaration blocks, one space after :
+		end all declarations with semi-colon
+		don't include spaces after commas within rgb(), hsl(), rect(), etc.
+		don't prefix property values or color parameters with a leading zero
+		lowercase hex values
+		avoid specifying units for zero values
+	
+	Declaration order
+		Positioning, box model, typographic, visual
+		.declaration-order {
+		  /* Positioning */
+		  position: absolute;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+		  z-index: 100;
+		  
+		  /* Box-model */
+		  display: block;
+		  float: right;
+		  width: 100px;
+		  height: 100px;
+		  
+		  /* Typography */
+		  font: normal 13px "Helvetica Neue", sans-serif;
+		  line-height: 1.5;
+		  color: #333;
+		  text-align: center;
+		  
+		  /* Visual */
+		  background-color: #f5f5f5;
+		  border: 1px solid #e5e5e5;
+		  border-radius: 3px;
+		  
+		  /* Misc */
+		  opacity: 1;
+		}
+	
+	Don't use @import
+	Media Query Placement (near relevant rule sets)
+		.element {...}
+		.element-avatar {...}
+		.element-selected {...}
+		
+		@media (min-width: 480px) {
+			.element {...}
+			.element-avatar {...}
+			.element-selected {...}
+		}
+	Indent prefixed properties such that the declaration's value lines up vertically for easy multi-line editing
+		Selection -> Add Previous/Next Line (^updown)
+	Single declarations are one line
+	Nesting in Sass and Less if you need to
+	Class names
+		lowercase and use dashes as breaks in related classes (i.e. .btn)
+	Editor preferences
+		soft-tabs set to two spaces, trim trailing white space on save, UTF-8, new line at end of files
+
+DASH
+	PROJECT 1: Personal Website
+		HTML: structure of the content that goes inside the tags
+		CSS: controls the style of HTML content 
+		<input type="email" placeholder="Your Email Address">
+		absolute url ex/ http://dash.ga.co/assets/logo.png
+		relative url ex/ /assets/logo.png
+		background: url("..."); background-size: cover; (not tiled) background-position: center;
+		border: 0; gets rid of some of the default styling on inputs
+		padding - amount of space between the edge of an element and the stuff inside it
+		input[type="submit"] { ... }
+		http://wallpapercave.com/wp/yDjwSCi.jpg
+		"https://media.licdn.com/media/AAEAAQAAAAAAAAZDAAAAJDM2MDEyNzM5LWM4M2QtNDgzNS05MWYzLWM1ZjFiZGQ3MmYxNg.jpg"
+	PROJECT 2: Responsive Blog Theme
+		<header> just like body
+		navigation bar as a list of links (<ul>) -> <a href="#">...</a>
+			li display:inline, ul: padding: 10px
+		<link href="normalize.css" rel="stylesheet">
+		block: elements like headings, paragraphs, and list items display "block" by default
+			stretch the whole width of the page and have line breaks before and after
+		inline: like <a> exisit within normal flow of the text they're contained within - no line breaks, no taking up whole width of the page
+		padding: top right bottom left;
+		margin creates space on the outside of an element, padding creates space on the inside
+		<article> groups together multiple HTML elements that form a single piece of content
+			margin: 0 auto; // centers it, auto margins on left and right to stretch to edge of page, 0 on top and bottom
+			max-width: 500px;
+			media query, technique that allows us to set CSS styles that only activate when the browser is a certain width
+				@media (max-width: 500px) { // condition runs when width smaller than 500px
+				  h1 { font-size: 36px; }
+				  li {
+				    display: block; // one on top of the other
+					padding: 5px;
+				  }
+				}
+			background: rgba(0,0,0,0.5);
+			<button>buttonName</button>
+		jQuery example 
+			$("button").on("click", function() { alert("A button was clicked!")});
+			$(element).on(event-type, thing-to-be-done); // on hover, scroll, etc.
+	PROJECT 3: BUSINESS Website	
+		<div>: style a group of elements with the same CSS, non-semantic, all-purpose
+		classes let you name and group HTML tags -> .classname
+		line-height lets us increase/decrease the vertical space between lines
+		div -> position: relative and p -> position: absolute, bottom : 0, margin: 0 to push to bottom of div
+		<small>, border-radius: 12px;, text-align: justify;
+		use <span> tag inside another tag (inside the <p>), inline ->
+			block-level elements take up the whole page width, inline elements exist within those lines and only take up as much of the screen as they need to
+			block elements: <p>, <h1>/<h2>, <ul>/<ol>/<li>, <div>
+			inline elements: <a>, <img>, <input>, <span>
+			floats let you slide the content of a <span> or slide an image around inside its container elements
+		radial vs. linear gradient -> need secret code to make them appear in most browsers
+			background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+			vendor prefixes (IE doesn't support, in Safari/Chrome/Opera -webkit-linear-gradient, in Firefox -moz-linear-gradient)
+			graceful degradation: websites don't need to look the same in every web browser, shouldn't punish them
+		fonts: http://www.google.com/fonts/
+		background image size to fixed number or percent -> scales poorly on smaller screens
+			100% -> image duplicates, best not to assign images a specific width and height with CSS
+			set up special stylesheet for vertically-oriented phones -> horizontal more than 700 px wide
+			media queries (max width: 500px), placed at bottom
+		can have multiple classes attached to them and use JavaScript to help for sliding menus (two states)
+		jQuery is a JavaScript library: collection of shortcuts that reduce the amount of code you have to write out
+			$('div').on('click', function() { $(this).toggleClass('show-description');});
+			toggleClass adds or removes a specific class from a specific HTML element depending on whether or not that class is present
+		transitions with vendor prefixes
+			transition: height .5s; -webkit-transition: height .5s; -moz-transition: height .5s;
+
+How to Make Websites on Your Computer, and then Put it on the Internet:
+	sublime text -> open html file in Google Chrome
+	separate site into multiple files
+	main page save as index.html
+	link pages together -> <a href="about.html">About</a>
+	external css files: <link href="style.css" rel="stylesheet">
+	BitBalloon - static site hosting platform
+	
+SUBLIME TUTORIALS	multiple cursors, vintage mode, command palette, plugin community
+	CTRL-+/- to adjust size
+	Preferences adjustments
+
+	Multiple Cursors:
+		FIND REPLACE -> CTRL-D (multiple selection) as many times as needed, type to replace it OR to get all occurrences Alt+F3
+		INCREMENTAL SEARCH -> CTRL+I
+
+	SHORTCUTS:	
+		COMMAND PALETTE -> CTRL-SHIFT-P
+		SIDEBAR -> CTRL-K+CTRL-B
+		DELETE LINE -> CTRL-K+CTRL-K
+		FILE CHANGING -> CTRL-P
+		SYMBOLS (list of all methods) -> CTRL-R 
+
+SEMANTIC HTML:
+	header, nav, section, article (forum/blog/newspaper), aside, footer, summary, figure-figcaption
+	semantic web allows data to be shared and reused across applications, enterprises, and communities
+
+Learning the Shell:
+	shell = program that takes commands from keyboard and gives them to operating system to perform
+	i.e. bash, sh, ksh, tcsh, zsh
+	terminals: gnome-terminal, konsole, xterm, rxvt kvt, nxterm, eterm
+	UP arrow: command history
+	# = superuser with administrative privileges -> $ as root
+	hierarchical directory structure, Linux has single tree
+
+	Navigation:
+		pwd = working directory name
+		ls = list files in working directory, -a to list all hidden files
+		cd = change directory, cd .. = to parent
+		less (view text files) -> less text_file, page up/down, G/1G, n (search), q to quit
+		file (classify a file's contents)
+	A Guided Tour:
+		/ = root directory where file system begins
+		/boot = Linux kernel and boot loader files are kept -> kernel = vmlinuz
+		/etc = configuration files for system
+		/bin, /usr/bin = contains essential programs the system requires to operates and applications for system's users
+		/sbin, /usr/sbin = programs for system administration
+		/usr/local = used for installation of software and other files for use on the local machine -> /usr/local/bin
+		/var = files that change as system is running
+		/lib = shared libraries kept here
+		/home = users keep personal work here
+		/root = superuser's home directory
+		/tmp = programs can write temporary files here
+		/dev = contains devices available to system (floppy disk/hard drive)
+		/proc = virtual, little peep holes into the kernel itself
+		/media,/mnt = mount points
+		symbolic links using ln command -> file that points to another file
+	Manipulating Files:
+		cp - copy files and directories
+			i.e. cp -u *.html destination (copies unique html files not present in destination)
+			i.e. cp file1 file2, cp -i file1 file2, cp file1 dir, cp -R dir1 dir2
+		mv - move or rename files and directories
+			i.e. mv file1 file2, mv file.. dir1
+		rm - remove files and directories
+			i.e. rm file..., rm -r directory
+			rm *~, cp *.txt text_files, mv my_dir ../*.bak my_new_dir
+			use ls wildcard to test command
+		mkdir - create directories
+	Working with Commands:
+		type - display information about command type
+		which - locate a command
+		help - display reference page for shell builtin
+			i.e. help -m cd
+		man - display an on-line command reference
+			i.e. man ls
+		4 kinds of commands = executable program, command built into the shell, shell function, alias
+	I/O Redirection:
+		direct standard output to a file: ls > file_list.txt, ls >> file_list.txt (appended)
+		direct standard input from a file to sort command: sort < file_list.txt
+		Pipelining: ls -l | less
+			ls -lt | head, du | sort -nr (largest to smallest list of directories and space), find . -type f -print | wc -l (total number of files in the current working directory and all its subdirectories)
+		Filters:
+			sort, uniq(removes duplicate lines of data), grep (outputs every line that contains a specified pattern of characters)
+			sed(stream editor), awk(constructing filters)
+		cat to read file and output it to standard output
+		viewing contents of tar files: tar tzvf name_of_file.tar.gz | less
+	Expansion:
+		pathname, tilde, arithmetic, brace, parameter
+		echo -e "Words\tseparated\tby\thorizontal\ttabs."
+	File Permissions:
+		-rwxrwxrwx = - -> regular file (d for directory), read, write, execute permissions for owner, group owner, all other users
+		chmod - modify file access rights
+			777, 755(rwxr-xr-x), 700 (only owner may read, write, execute, 666(all users may read and write the file)
+			for directories: r = allow contents of directory to be listed, w = allows files within directory to be created, deleted, or renamed if x attribute is set, x = allows a directory to be entered (777, 755, 700)
+	Job Control:
+		ps - list the processes running on the system
+			i.e. ps x | grep bad_program -> kill -SIGTERM 2931, kill -SIGKILL 2931
+		kill - send a signal to one or more processes to kill it
+		jobs - an alternate way of listing your own processes
+		bg - put a process in the background
+		fg - put a process in the foreground
+
+		su - temporarily become superuser
+		sudo - temporarily become the superuser
+		chown - change file ownership
+		chgrp - change file's group ownership
+
+Try Git: distributed version control system
+	http://rogerdudler.github.io/git-guide/
+	allows groups of people to work on same documents at the same time
+	git init -> initialize empty repository
+	git status -> get current state of project
+	git add . -> add to staging area to keep track of changes
+	git status -> shows changes to be committed
+	git commit -m "Add file" -> store our staged changes
+	git log -> remembers all the changes we've committed so far
+	git remote add origin(remote name) repository_URL -> push our local repo to GitHub server and add a remote repository
+	git push -u (remember paramaters) origin(remote name) master(default local branch name) -> (tells Git where to put our commits when ready, pushes local changes to origin repo on GitHub)
+	git pull origin master -> (pull down any new changes by others)
+	git diff HEAD (diff of our most recent commit if changes)
+	git diff --staged (diff of our staged files added)
+	git reset filename (unstage files by using this, but file still there)
+	git checkout -- <target> (files can be changed back to how they were at the last commit by using this)
+	create a copy of the code (branch) to make separate commits before merging back to main master branch
+		git branch branchname
+		git checkout <branchname> to switch branches
+		make changes, commit
+		git checkout master
+		git merge branchname (merge changes into master branch)
+		git branch -d <branchname> (delete branch)
+		git push (push everything we've been working on to your remote repository)
+GitHub Tutorial For Beginners:
+	git clone repository_URL
+	git status -> check staging area, differences between repo and us
+	git add filename -> git commit -m "message" -> git push (push up to GitHub)
+	git pull (brings changes from GitHub down to local repo)
+	push and pull depending on whether or not changes were made by others
+		start off with git pull to see if anyone made changes the night before
+		for merge conflicts, manually change it then add, commit
+			continuing merge branch of master -> ESC :wq to save it and get out of commit
+
+GitHub Pages:
+	gh-pages branch is used to publish your site

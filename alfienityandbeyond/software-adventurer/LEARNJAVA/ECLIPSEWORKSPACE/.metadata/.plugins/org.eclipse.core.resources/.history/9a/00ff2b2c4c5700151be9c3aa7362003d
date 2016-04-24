@@ -1,0 +1,10 @@
+package learnjava4;
+
+public class extraClass {
+	
+	// Repeat the message as an echo
+	public void echo(String message) {
+		System.out.println(message + " " + message);
+	}
+	
+}

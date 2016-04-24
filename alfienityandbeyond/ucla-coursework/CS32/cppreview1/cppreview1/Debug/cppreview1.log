@@ -1,0 +1,33 @@
+﻿Build started 11/29/2015 5:48:48 PM.
+     1>Project "C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\cppreview1\cppreview1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt circulararray.cpp heartstrings.cpp intlist.cpp main.cpp
+         main.cpp
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\main.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\main.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\main.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\main.cpp(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\main.cpp(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         intlist.cpp
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\intlist.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\intlist.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         heartstrings.cpp
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\heartstrings.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\heartstrings.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\heartstrings.cpp(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\heartstrings.cpp(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         circulararray.cpp
+     1>c:\users\alfred lucero\desktop\github\projects-coursework\coursework\cs32\cppreview1\cppreview1\circulararray.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\Debug\cppreview1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\Debug\cppreview1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\Debug\cppreview1.lib" /MACHINE:X86 Debug\circulararray.obj
+         Debug\heartstrings.obj
+         Debug\intlist.obj
+         Debug\main.obj
+         LINK : C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\Debug\cppreview1.exe not found or not built by the last incremental link; performing full link
+         cppreview1.vcxproj -> C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\Debug\cppreview1.exe
+     1>Done Building Project "C:\Users\Alfred Lucero\Desktop\GitHub\PROJECTS-COURSEWORK\COURSEWORK\CS32\cppreview1\cppreview1\cppreview1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.35

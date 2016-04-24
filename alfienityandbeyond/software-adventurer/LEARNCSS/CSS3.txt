@@ -1,0 +1,103 @@
+CSS3
+
+Rounded Corners (bubbles)
+	border-radius: 25 px; 
+		two values (top-left and bottom-right; top-right and bottom-left)
+		one value: all four corners
+
+Border Images
+	set an image to used as the border around an element
+	three parts: image, where to slice image define where the middle sections should be repeated or stretched
+	i.e. border-image: url(border.png) 30 round/stretch;
+
+Backgrounds
+	add multiple background images for an element through the background-image property
+	background-image: url(...), url(...); // stacked on top of each other
+	background-position: right bottom, left top;
+	background-repeat: no-repeat, repeat;
+		OR
+		background: url(...) right bottom no-repeat, url(...) left top repeat;
+	
+	can specify size of background images
+	background-size: 100px 80px; background-repeat: no-repeat // can accepts multiple values for size using comma-separated list
+		contain scales the background image to be as large as possible
+		cover scales the background image so that the content area is completely covered by the image
+		
+	full size background image (scales as needed, center image, does not cause scrollbar)
+		use the html element
+		i.e. html { background: url(...) no-repeat center center fixed; background-size: cover; }
+	
+	background-origin specifies where the background image is positioned
+		border-box, padding-box, content-box (starts from the upper left corner of each)
+		
+	background-clip specifies the painting area of the background
+		border-box, padding-box, content-box (outside edge or within content box)
+
+Colors: names, hexadeciaml, RGB, RGBA, HSL, HSLA, opacity
+	HSL: Hue (degree on the color wheel), Saturation, Lightness
+	background-color: rgb(0, 255, 0); opacity:0.6;
+Gradient: display smooth transitions between two or more specified colors
+	linear gradients (goes down/up/left/right/diagonally)
+		background: linear-gradient(red, blue);
+	radial gradients (defined by their center)
+
+Shadow Effects: text-shadow, box-shadow
+Text:
+	text-overflow: specifies how overflowed content that is not displayed should be signaled to the user (clip/ellipsis)
+		div.test { ... overflow: hidden; } div.test:hover { text-overflow: inherit; overflow: visible; }
+	word-wrap: allows long words to be able to be broken and wrap onto the next line (break-all, keep-all)
+Web Fonts: @font-face rule	
+	i.e. @font-face { font-family: myFirstFont; src: url(font.woff); }
+
+Transforms: allow you to translate, rotate, scale, and skew elements
+	translate, rotate, scale, skewX, skewY, matrix
+	rotateX/Y/Z
+Transitions: the CSS property you want to add an effect to, duration of the effect
+	div { width: 100px; height: 100px; transition: width 2s, height 4s; } div:hover { width: 300px; height: 300px; }
+	transition-timing-function specifies the speed curve of the transition effect
+	transition-delay
+Animations: lets element gradually change from one style to another, specify keyframes
+	keyframes hold what styles the element will have at certain times
+	i.e. @keyframes example { from { background-color: red; } to {background-color: yellow; }
+		 div { ... animation-name: example; animation-duration: 4s; }
+		 animation-delay, animation-iteration-count: 0-infinite, animation-direction: alternative or reverse
+		 animation-timing-function: linear/ease/ease-in/ease-out/ease-in-out/ease-in-o
+		
+Multiple Columns
+	column-count,gap,rule-style/width/color, span, width
+
+User Interface: resizing elements, outlines, and box sizing
+	resize: horizontal/vertical/both; overflow: auto;
+	outline-offset: adds space between an outline and the edge or border of an element
+		outline does not take up space, may be non-rectangular
+	box-sizing: allows us to include the padding and border in an element's total width and height
+		width + padding + border = actual width of an element
+		height + padding + border = actual height of an element
+		border-box // better for forming divs that are the same size
+		i.e. .div2 { width: 300px; height: 100px; padding: 50px; border: 1px solid red; box-sizing: border-box; }
+		i.e. * { box-sizing: border-box; }
+
+Flexible Box:
+	ensures that elements behave predictably when the page layout must accommodate different screen sizes and different display devices
+	does not use floats, the flex container's margins collapse with the margins of its contents
+	display: flex (rendered as block), inline-flex (inline)
+	flex items are positioned inside a flex container along a flex line (default: one flex line per flex container)
+	direction: rtl (change right-to-left)
+	flex-direction: specifies the direction of flexible items inside the flex container (default row)
+	justify-content: horizontally aligns the flexible container's items when the items do not use all available space on the main axis
+	align-items: property vertically aligns the flexible container's items when the items do not use all available space on the cross-axis
+	flex-wrap: specifies whether the flex items should wrap or not, if there is not enough room for them on one flex line
+	align-content: modifies the behavior of the flex-wrap property
+	order: order relative to the rest of the flexible items inside the same container
+	margin: auto; absorbs extra space
+	margin: auto; item perfectly centered in both axis
+	align-self: overrides the flex container's align-items property for that item
+	flex: specifies the length of the flex item, relative to the rest of the flex items inside the same container
+	
+Media Queries:
+	instead of looking for a type of a device, they look at the capability of the device
+	checks width and height of viewport/device, orientation, resolution
+	@media not|only mediatype and (expressions) { CSS-Code; }
+	<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+	add email links?
+	

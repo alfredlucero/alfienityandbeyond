@@ -1,0 +1,207 @@
+freeCodeCamp:
+	$(document).ready(function() {
+		$("button").addClass("animated bounce"); // include Animate.css, animated shake/fadeOut
+	});
+	select by type, id, or class
+	.removeClass("");
+	$("#target1").css("color", "red");  // change css value
+	$("#target1").prop("disabled", true); // change properties
+	$("#target4").html("<i>#target4</i>"); // replaces content of html tags/text
+	$("#target4").remove(); // removes HTML element entirely
+	$("#target2").appendTo("#right-well"); // selects HTML elements and append them to another element
+	$("#target5").clone().appendTo("#left-well"); // makes a copy of element before appending to other element, function chaining
+	 $("#target1").parent().css("background-color", "red"); // changing background-color of parent
+	 $("#right-well").children().css("color", "orange"); // changing children of right-well's text to orange
+	 $(".target:nth-child(2)").addClass("animated bounce"); // target:nth-child(n) -> select all the nth elements with the target class or element type, can say target:odd/even
+	 $("body").addClass("animated hinge"); // make entire body drop like a door hinge
+
+jQuery: JavaScript Library
+	lightweight, simplifies AJAX calls and DOM manipulation
+	features: HTML/DOM manipulation, CSS manipulation, HTML event methods, effects and animations, AJAX, utilities, plugins
+	runs the same in all major browsers
+	production version for live website (minified and compressed)
+	development version for testing and development (uncompressed and readable code)
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+
+	Syntax:
+		$(selector).action()
+		i.e.
+			$("*") // selects all elements
+			$("p.intro") // selects all <p> elements with class="intro"
+			$("p:first") // select first p element
+			$("ul li:first") // selects the first <li> element of the first <ul>
+			$("ul li:first-child") // selects first <li> element of every <ul>
+			$(":button") // selects all <button> elements and <input> elements of type="button"
+			$("tr:even") // selects all even <tr> elements
+			$(this).hide() // hides current element
+			$("p").hide() // hides all <p> elements
+			$(".test").hide() // hides all elements with class="test"
+			$("#test").hide() // hides element with id="test"
+	Document Ready Event
+		$(document).ready(function() {
+			// jQuery methods go here...
+		});
+
+	Events:
+		events are fired in response to visitor's actions on the web page
+		mouse events/keyboard events/form events/document/window events
+		i.e.
+			$("p").click(function() {
+				// action goes here
+			});
+			click/dblclick/mouseenter/mouseleave/hover(two functions)/mousedown
+			focus/blur
+		on() method attaches one or more event handlers for the selected elements
+
+	Effects:
+		hide/show(speed, callback)/toggle
+		fadeIn/Out/Toggle/To
+		slideDown/Up/toggle
+		animate()
+			$(selector).animate({params}, speed, callback);
+			i.e.
+			$("button").click(function() {
+				$("div").animate({
+					left: '250px',
+					opacity: '0.5',
+					height: '150px',
+					width: '150px'
+				});
+			});
+			can do += or -= to be relative to the element's current value,
+			can specify as show/hide/toggle
+			creates an "internal" queue with this method calls
+			camelCased for paddingLeft/fontSize
+		// by default, all HTML elements have a static position and cannot be moved; to manipulate position remember to set CSS position to relative/fixed/absolute
+		// queue functionality for animations
+			use stop(stopAll, goToEnd) to stop an animation or effect before it is finished -> kills the current animation being performed on the selected element
+		callback function is executed after the current effect is finished
+			i.e. $(selector).hide(speed, callback) // callback runs after hide finishes
+		chaining allows us to run multiple jquery methods (on the same element) within a single statement
+			simply append the action to the previous action
+
+	HTML:
+		jQuery manipulates the DOM elements and attributes
+
+		get content - text(), html(), val()
+			text() // sets or returns the text content of selected elements
+			html() // sets or returns the content of selected elements (including HTML markup)
+			val() // sets or returns the value of form fields
+				i.e. $("button").click(function() {
+					alert("Value: " + $("#test").val());
+				});
+				i.e. retrieving href
+				$("#link").attr("href");
+			set content by filling in parameters
+			also has callback function: index of current element in list of elements selected and original value
+				i.e. changing text
+				$("#btn1").click(function() {
+					$("#test1").text(function(i, origText) {
+						return "Old text: " + origText + " New text: Hello World! (index: " + i + ")";
+					});
+				});
+				i.e. setting multiple attributes
+				$("#w3s").attr({
+					"href": "link",
+					"title": "titleName"
+				});
+
+		add HTML content:
+			append(), prepend(), after(), before()
+			i.e. function afterText() {
+				var txt1 = "<b>I </b>"; // create with HTML
+				var txt2 = $("<i></i>").text("love "); // create with jQuery
+				var txt3 = document.createElement("b"); // create with DOM
+				txt3.innerHTML = "jQuery!";
+				$("img").after(txt1, txt2, txt3); // insert new elements after <img>
+			}
+		remove elements/content:
+			remove() // removes selected and its child elements
+			empty() // removes child elements from the seleceted element
+			i.e. removing specific elements
+			$("p").remove(".test"); // removes all <p> elements with class="test"
+		manipulating CSS:
+			addClass(), removeClass(), toggleClass(), css() // sets or returns the style attribute
+			css("propertyname");
+			i.e.
+				$("p").css("background-color"); // returns the background-color value of the FIRST matched element
+			css("propertyname","value"); // sets specified css property
+			i.e.
+				$("p").css("background-color", "yellow");
+			i.e. sets multiple css properties
+				$("p").css({"background-color": "yellow", "font-size": "200%"});
+		dimension methods:
+			width() // excludes padding, border and margin, height(), innerWidth() // includes padding, innerHeight(), outerWidth() // includes padding and border, outerHeight() 
+				add outerWidth(true) to get the padding, border, and margin
+	
+	Traversing:
+		to "find" or select HTML elements based on their relation to other elements, can go up (ancestors), down (descendants), and sideways (siblings) in the family tree
+
+		ancestors/traversing up
+			parent() // returns direct parent element, traverses a single level up DOM tree
+			parents() // returns all ancestor elements of the selected element, all the way up to the document's root element (<html>)
+			i.e.
+				$("span").parents("ul"); // returns all ancestors of all <span> elements that are <ul> elements
+			parentsUntil() // returns all ancestor elements between two given arguments
+		descendants/traversing down
+			children() // returns all direct children of the selected element, traverses only a single level down the DOM tree
+			i.e.
+				$("div").children("p.first"); // returns all <p> elements with the class name "first" that are direct children of <div>
+			find() // returns descendant elements of the selected element, all the way down to the last descendant
+				i.e. 
+				$("div").find("*"); // returns all descendants of <div>
+		siblings/traversing sideways
+			siblings() // returns all sibling elements of selected element (share the same parent element)
+			next() // returns next sibling element of selected element
+			nextAll() // returns all next sibling elements of the selected element
+			nextUntil() // returns all next sibling elements between two given arguments
+			prev, prevAll, prevUntil() // for previous siblings
+		filtering
+			first() returns the first element of the selected elements
+				i.e.
+				$("div p").first(); // selects the first <p> element inside the first <div> element
+			last() returns the last element of the selected elements
+			eq() // returns an element with a specific index number of the selected elements
+				i.e. $("p").eq(1); // returns second <p> element
+			filter() // lets you specify criteria
+				i.e.
+				$("p").filter(".intro"); // returns all <p> elements with class name "intro"
+			not() // returns all the elements that do no match the criteria
+
+	AJAX Intro:
+		AJAX = art of exchanging data with a server, and updating parts of a web page without reloading the whole page
+			Asynchronous JavaScript and XML
+			loading data in the background and display it on the webpage, without reloading the whole page (i.e. Gmail, Google Maps, Youtube, Facebook tabs)
+			jQuery AJAX methods allow requests for text, HTML, XML, or JSON from a remote server using both HTTP Get/Post and one can load external data directly into the selected HTML elements of your web page
+
+		$(selector).load(URL, data, callback); // loads data from a server and puts the returned data into the selected element
+			callback function has different parameters: responseTxt (resulting content if the call succeeds), statusTxt (status of call), xhr (XMLHTTPRequest Object)
+
+		request-response between a client and server: GET and POST
+			GET - requests data from a specified resource, gets data from server (may be cached)
+				$.get(URL, callback);
+				i.e.
+				$.get("demo_test.asp", function(data, status) {
+					alert("Data: " + data + "\nStatus: " + status);
+				});
+			POST - submits data to be processed to a specified resource, can get data from server but never caches data and is often used to send data along with the request
+				$.post(URL, data, callback);
+				i.e.
+				$.post("demo_test_post.asp", 
+				{
+					name: "Donald Duck",
+					city: "Duckburg"
+				},
+				function(data, status) {
+					alert("Data: " + data + "\nStatus: " + status);
+				});
+
+			noConflict(): to not conflict with other popular JavaScript frameworks such as Angular, Backbone, Ember, Knockout, etc.
+				$.noConflict(); // releases hold on $ shortcut identifier so other scripts can use it
+				i.e.
+					jQuery(document).ready(function() {
+						...
+					});
+					var jq = $.noConflict(); -> jq("button").click(...);

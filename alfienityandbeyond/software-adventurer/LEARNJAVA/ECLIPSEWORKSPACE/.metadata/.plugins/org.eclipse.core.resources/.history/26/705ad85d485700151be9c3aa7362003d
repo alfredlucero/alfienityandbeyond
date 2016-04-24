@@ -1,0 +1,15 @@
+package learnjava4;
+
+public class Methods {
+	/**
+	 * Practice with methods, classes/objects
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		sayHelloWorld();
+	}
+	
+	static void sayHelloWorld() {
+		System.out.println("Hello World!");
+	}
+}

@@ -1,0 +1,17 @@
+package learnjava3;
+
+public class arrays {
+	/**
+	 * Practice with arrays
+	 * @param args
+	 */
+	public static void main(String[] args){
+		int numbers[] = {0,1,2,3,4};
+		int sum = 0;
+		
+		for (int i = 0; i < 5; i++)
+			sum += numbers[i];
+			
+		System.out.println("The average of the array of numbers is: " + sum/5);
+	}
+}

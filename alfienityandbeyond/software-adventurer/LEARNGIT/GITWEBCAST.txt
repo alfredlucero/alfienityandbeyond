@@ -1,0 +1,17 @@
+Webcast: The Basics of Git and Github July 2013 
+
+Simply begin helping through forking then later ask authorization for help
+	- grab the address online
+	  git clone address (full fledged repo with all of history and data brought to local disk)
+		git branch -a (show all the branch names)
+	- git branch bname, git checkout bname (newly created branch)
+	- git push -u origin bname (push it back to remote repository)
+	  git checkout master (back to original, files updated and modified again to match)
+	  (.git folder contains all the branches and can bring them back)
+	- pull request (work on github side), offers changes into core project maintainer
+	  can write notes to convince authorizer/trainer to take in your change (form of governance)
+	  able to discuss between student/trainer, change code and see those changes before merging
+	  -> merge pull request to add changes onto your version
+	DIAGRAM:
+		clone the repos, make changes through your own branches, send pull requests, approve merge pull requests
+		Start notepad++ GITWEBCAST.txt

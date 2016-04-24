@@ -1,0 +1,8 @@
+INTSTYLE=pa
+INFILE=E:\Alfred_Maya_Lab3\LAB3\project_1\project_1.runs\impl_1\stopwatch_routed.ncd
+OUTFILE=E:\Alfred_Maya_Lab3\LAB3\project_1\project_1.runs\impl_1\stopwatch.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=E:\Alfred_Maya_Lab3\LAB3\project_1\project_1.runs\impl_1
+LICENSE=WebPack
+USER_INFO=211140002_0_0_876

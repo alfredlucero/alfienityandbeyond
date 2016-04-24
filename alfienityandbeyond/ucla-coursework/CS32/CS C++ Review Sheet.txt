@@ -1,0 +1,1493 @@
+C++ Cheat Sheet: 
+
+Terminology:
+Algorithm- set of instructions/steps that solve a particular problem
+Data Structure- data that's operated on by an algorithm to solve a problem
+Interface- collection of simple functions to hide gory details so programmers can use easily
+Abstract Data Type (ADT)- a coordinated group of algorithms, data structures, and interface functions to solve a problem
+Object-Oriented Programming- using classes/ADTs to build programs
+
+Header Miscellaneous:
+#include <iostream> // handles input/output (cin, cout, etc.)
+#include <string> // for string-related functions/objects as part of the library
+#include <cctype> // this library is used for classifying letters/digits (i.e. isdigit, isalpha, isupper, islower, toupper, tolower)
+#include <cmath> // this allows for math functions such as sin, cos, etc.
+#include <cstring> // this pertains to cstrings and related functions such as strcat, strcpy, strlen, strcmp
+#include <cstdlib> // for exit(1)
+#include <vector>	// dynamically resizeable array
+#include <list>		// doubly linked list
+#include <algorithm>  // has the find(begin, end, target), sort(begin, end), reverse(begin, end), count(begin, end, target)
+using namespace std; // in order to drop std::cin, std::cout, etc.
+--Rules--
+1. Don't put implementations of non-inlined functions in header files (ex/ #include "header.h"); Only include class interface.
+2. Include guards with header files.
+	#ifndef POINT_INCLUDED
+	#define POINT_INCLUDED
+		class Point {
+			...
+		};
+	#endif	// POINT_INCLUDED
+3. Prevent against circular dependency.
+	If the file Foo.h defines the class Foo, when does another file require you to say #include "Foo.h"
+	and when can you instead simply provide the incomplete type declaration class Foo; ?
+
+	You have to #include the header file defining a class when
+		- you declare a data member of that class type
+		- you declare a container (e.g. a vector) of objects of that class type
+		- you create an object of that class type
+		- you use a member of that class type
+4. Only include .h files within a .cpp file.
+5. Never put a "using namespace" command in a header file.
+
+		
+Steps of Construction:
+1. Related to inheritance: construct the base part
+2. Construct the data members, consulting the member initialization list. For a member that's not listed,
+	if it's of the built-in type, leave it uninitialized
+	if it's of class type, then default construct it
+3. Execute the body of the constructor
+
+Steps of Destruction:
+1. Execute the body of the destructor
+2. Destroy the data members
+3. Destroy the base part
+
+Arithmetic Operators: */%(remainder)+- (if equal precedence it goes from left to right)
+Comparison Operators: >, <, >=, <=, ==, != (not equal)
+Condition Operators (usually within if-else statements): && - and(both must be true to execute), || - or (only one needs to be true to execute)
+
+Setting Number Precision:
+cout.setf(ios::fixed); // not in scientific notation
+cout.precision(2); // two digits to the right of the decimal point
+
+Basic Variable Types: int, unsigned int, double, long, char, bool, float, int * (pointers: address points to a location in memory) // beware of implicit conversion rules and range considerations for numbers
+
+Basic Input Tricks:
+/* Example for requesting an int followed by a string */
+cout << "How old are you? ";
+int age;
+cin >> age;
+cin.ignore(10000, '\n'); // This "ignores" the rest of the line following the first integer up until pressing enter ('\n')
+
+cout << "What is your name? ";
+string name;
+getline(cin, name);	// for strings, this will enable you to read a line of text into name (remember to #include <string>)
+
+If-Else Statement:
+if(condition)
+	statementT
+else
+	statementF
+
+Casting:
+static_cast<double> // explicit 
+double x = 5/2; // implicitly cast to int and x holds 2
+double x = 5/2.0; // now this holds 2.5 as long as one of the numbers is of double form
+
+Using const:
+/* Example with variables */
+const double PAY_RATE_THRESHOLD = 12.00; // const: never allowed to change once initialized, all caps by convention
+
+Switch Statement:
+/* Example */
+int choice;
+cin >> choice;
+switch(choice) 		// doesn't work with strings
+{
+	case 1:
+	case 2:
+		...
+		break;		// needs break or it will proceed onto the next case
+	case 3:
+	case 4:
+		...
+		break;
+	case 5:
+		...
+		break;
+	default:		// optional, will run if any number other than 1-5
+		...
+}
+
+Loops:
+while (condition)	
+	statement;
+	
+do {
+	statement		// will always run at least once
+} while (condition);
+
+for (initialization; stay-in-loop condition; prepare-for-next-iteration)
+	statement
+/* Infinite Loops */
+for ( ;; ), while(1), while(true)	// needs break; within the statement to get out 
+
+Fixed-Size Arrays: collections of objects of same type, needs to know size at compilation
+/* Example */
+const string monthNames[12] = { "January", "February", ... , "December" };
+
+Dealing with Strings:
+/* Example 1 Basics */
+string s = "Hello";
+for (int k = 0; k < s.size(); k++)	// can also do k != s.size()
+	cout << s[k] << endl;	// s[k] refers to the character at the position k of the string s, undefined if k is out of range
+/* Example 2 Appending */
+string += char, string.append(char), string.push_back(char)
+/* Example 3 Cutting */
+string.substr(0, 3); // cuts first three letters of the string
+
+Dealing with CStrings (array of characters):
+/* Example 1 Output */
+char str[10] = "Hello"; // ends in null terminator aka zero byte '\0'
+for (int k = 0; str[k] != '\0'; k++) // rather than check for size like in strings, you must check for the ending zero byte
+	cout << str[k] << endl;
+char pets[5][7] = { 
+	"cat", "mouse", "eel", "ferret", "horse" 
+};
+for (int k = 0; k < 5; k++)
+	cout << pets[k] << endl; // this prints out the entire kth row of pets
+/* Example 2 Input */
+cin.getline(char array, max number of elements); // since it must end in zero byte, there will be one less interesting character than the max number of elements
+/* Example 3 <cstring> functions */
+strlen(cstr) // gives size of cstring up to zero byte, undefined if no zero byte in char array
+strcpy(destination, source) // rather than setting cstrings equal to one another like str1 = str2, you must copy source to destination; undefined if sizes don't match/ no zero byte
+strcat(cstring, string to append) // not like strings such as str += "...", but cstring still must be big enough to hold whatever is going to be appended plus the zero byte
+strcmp(a, b) --> ex/ if (strcmp(a, b) < 0) ... // if a comes before b it returns negative value, returns 0 if equal, returns positive value if a comes after b
+
+
+Dealing with Functions:
+/* Example 1 Void */
+void greet(int n, string msg) { // this doesn't have a return type but it takes an integer and a string as its arguments; this is pass by value (creates a copy of the variables passed into the function)
+	for (int k = 0; k < n; k++)
+		cout << msg << endl;
+}
+/* Example 2 Return Types */
+bool isdigit(char c) { // this returns true or false and takes a character as its argument
+	return (c == '0' || c == '1' || c == '2' || ... || c == '9'); // instead of the typical if-else, can streamline it to just saying return (...boolean expression...);
+}
+/* Example 3 Functions with Argument References */
+void polarToCartesian(double rho, double theta, double& xx, double& yy){ // & means a reference to the variable being used as the argument for this function, the variable outside the function can be changed
+	xx = rho * cos(theta); 
+	yy = rho * sin(theta);
+}											// double& xx is a reference to double; it's another name for an already existing object
+double x = 10;
+double y = 30;
+polarToCartesian(10.0, 20.0, x, y); // x and y will be changed according to calculations in the function body since it's pass by reference, not pass by value
+void polarToCartesian(double rho, double theta, double* xx, double* yy) // pointer version of pass by reference
+-- Argument Quirks -- 
+void f(Blah b);		// won't be modified but copies an instance of the class/struct
+void f(const Blah& b);  // use when not cheap to copy instance of class/struct, cannot be modified
+void f(Blah& b);	// may be modified
+/* Example 4 Passing Arrays into Functions */
+double computeMean(const int a[], int n) { ... } // arrays like pass by reference
+double meanForADay(const int a[][NDAYS], int nRows, int dayNumber) { ... } // 2D arrays require the second [] to be specified
+/* Example 5 Returning Pointers */
+double* findFirstNegative(double a[], int n) {
+	for (double* p = a; p < a + n; p++)
+	{
+		if (*p < 0)
+			return p;
+	}
+	return nullptr;		// doesn't point to anything legal
+}
+/* Example 6 Inline Functions */
+blah.h
+-------
+inline double area(double r)			// when compiling the body of function will be used, inline is a hint to the compiler
+{										// goal of inline is to remove overhead of function calls
+	return PI * r * r;
+} // use inline when its function is trivial/simple (not with loops/complex methods)
+
+Pointers: (stores memory address)
+--Uses->implement pass by reference, traverse arrays, manipulate dynamic storage, represent relationships in data structures
+--Note->&x means "generate a pointer to x"/"address of x" vs. *p means "the object that p points to"/"follow-the-pointer"
+/* Example 1 Basic */
+int x = 5;
+int * ptr = &x; // cannot cout this for it's only a memory location reference
+*ptr = 6; // changes the value within x to 6
+if (*p == *r) ... // remember to compare the actual object the pointer points to, not the memory addresses
+/* Example 2 Simplification Rules with Arrays */
+&a[i] + j ==> &a[i+j]
+*&x ==> x
+&a[i] < &a[j] ==> i < j
+&a[0] ==> a
+p[i] ==> *(p + i)
+&a[i] - &a[j] ==> i - j
+--Names of Arrays are Constant Pointers -> cannot be incremented/changed
+ex/ 
+const int MAXSIZE = 5;
+double da[MAXSIZE];
+double* dp;
+for (dp = da; dp < da + MAXSIZE; dp++)
+	*dp = 3.0;
+/* Example 3 Using Dynamic Storage (on the "heap", during execution, uses "new") */
+int main()
+{
+	...
+	Target* targets[100];
+	int nTargets = 0;
+	...
+	targets[nTargets] = new Target;
+	nTargets++;
+	...
+	targets[nTargets] = new Target;
+	nTargets++;
+	...
+	targets[0]->move('R');
+	...
+	// suppose k gets the value 0
+	delete targets[0]; // deletes the object that target[0] pointed to, targets[0] is now a dangling pointer, without it the object won't be deleted-> "garbage"
+	targets[0] = targets[1];	// both targets[0] and targets[1] point to same object but it's not necessary because nTargets is decremented
+	// you can set targets[1] = nullptr; but it's optional
+	nTargets--;
+}
+-- Destructors -- // called automatically when object goes away
+Pet::~Pet(){
+	delete m_favoriteToy;
+}
+delete [] ptr; // this is for deleting dynamically allocated arrays
+
+Structs/Classes:
+/* Example 1 Basic Struct */
+struct Employee
+{
+	string name;
+	double salary;  // "data members"/"fields"/"instance variables"/"attributes"
+	int age;
+}; // don't forget semicolon
+-- Set-up --
+Use the dot operator . when what you have on the left is an OBJECT or a REFERENCE TO AN OBJECT.
+Use the arrow operator -> when what you have on the left is a POINTER TO AN OBJECT.
+-- Constructor Side-Note --
+If you declare no constructors at all for a class, the compiler writes a zero-argument constructor for you:
+	Data members of built-in types are left uninitialized.
+	Date members of class types are default-constructed.
+-- Using -> with pointers to structs/classes --
+void celebrateBirthday(Employee* ep) {
+	ep->age++;  // same as (*ep).age++;
+}
+/* Example 2 Using Public/Private with Classes */
+class Target
+{
+  public:  // can be used anywhere
+	Target();	// constructor automatically called to initialize instances of this class to valid state
+	bool move(char dir);	// "methods"/"member functions"/"operations"
+	void replayHistory() const;	// const promises that the function will not modify the object that it's called on
+	int position() const;
+  private:
+	// Invariant: (for Target to be valid)
+	// m_history consists only of Rs and Ls
+	// m_pos == # of Rs minus # of Ls in history
+	int m_pos;
+	string m_history;
+};
+Target::Target() {
+	m_pos = 0;		// can also do this->m_pos = 0; but this is shorter
+	m_history = "":
+}
+bool Target::move(char dir)
+{
+	switch (dir)
+	{	
+		case 'R':
+		case 'r':
+			m_pos++;
+			break;
+		case 'L':
+		case 'l':
+			m_pos--;
+			break;
+		default:
+			return false;
+	}
+	m_history += toupper(dir);
+	return true;
+}
+void Target::replayHistory() const
+{
+	for (int k = 0; k != m_history.size(); k++)
+		cout << m_history[k] << endl;
+}
+int Target::position() const
+{
+	return m_pos;
+}
+void repeatMove(Target& x, int nTimes, char dir)
+{
+	for (int k = 0; k < nTimes; k++)
+		x.move(dir);
+}
+void report(const Target& x)				// need to pass by reference to avoid copying too many objects
+{
+	cout << "There's a target at position "
+		 << x.position() << endl;				// won't compile initially because program doesn't know if the function will not modify target object, need const in the function
+												// can only figure out from declaration if it's safe, doesn't look at implementation
+}
+/* Example 3 Using this */
+void Company::hire(string nm, double sal, int age);
+{
+	if (m_nEmployees == 100) ... error ...	// say Employee constructor is like this: Employee(Company *cp, string name, int sal, int age);
+	m_employees[m_nEmployees] = new Employee(this, nm, sal, age);		// "this" is a pointer to the company who hired the employee!
+	m_nEmployees++;
+}
+/* Example 4 Constructors */
+Circle::Circle(double x, double y, double r)
+	: m_x(x), m_y(y), m_r(r) {} // member initialization list
+Given--
+#include "Circle.h"
+#include <string>
+class StickFigure
+{
+	public:
+		StickFigure(double bl, double headDiameter, std::string nm, double hx, double hy);
+		...
+	private:
+		std::string m_name;
+		Circle m_head;
+		double m_bodyLength;
+};
+The constructor must be--
+StickFigure::StickFigure(double bl, double headDiameter, string nm, double hx, double hy)
+	: m_head(hx, hy, goodDiameter(headDiameter/2), m_bodyLength(bl), m_name(nm)
+{} // m_x = hx;	-->	 won't compile, doesn't have access to private members of Circle type
+/* Example 5 Destructors */
+Uses-- Any time a class allocates a system resources such as reserving memory using the new command,
+opening a disk file, or connecting to another computer over the network, your class must have a destructor
+that frees the allocated memory with the delete command, closes the disk file, or disconnects from the other computer
+/* Example 6 Copy Constructor */
+Use whenever your class allocates dynamic memory/opens system resources.
+ex/ 
+class someClass {
+	public:
+		someClass(const someClass & src) {
+			1. allocate memory for the new variable
+			2. copy data from the old variable into the new one
+		}
+};
+/* Example 7 Assignment Operator= */
+String& String::operator=(const String& rhs)	// "copy-and-swap", solves exception problems, most efficient way
+{
+	if (this != &rhs)		// don't even need to check anymore for self-assignment, optional
+	{
+		String temp(rhs);	// copy constructor already used to store rhs, not dynamically allocated, local variable
+		swap(temp);		
+	}						// destructor is already called
+	return *this;
+}
+/* Example 8 Aliasing */
+void transfer(Account& from, Account& to, double amt)	// two pointers or references as arguments may lead to aliasing- having more than one name for the same object
+{
+	if (&from == &to)
+		return;
+	from.debit(amt);
+	to.credit(amt);
+	if (amt >= 10000)
+		fileForm();
+}
+
+Linked Lists: Data structure that is not next to each other sequentially in memory, items in the list are linked by pointers (no random access, must follow pointers down)
+	- head points to beginning of the list; the tail/nullptr is the end where there are no more nodes in the list
+struct Node {
+	int m_data;
+	Node* m_next;
+};
+/* Example 1 Basic */
+for (Node* p = head; p != nullptr; p = p->m_next)
+	cout << p->m_data << endl;
+/* Example 2 Simple Insertion */
+house * temp = m_head;
+while (temp->m_next != nullptr)
+	temp = temp->m_next;
+house * latest = new house;
+latest->m_name = animal;
+latest->m_next = nullptr;
+temp->m_next = latest;
+/* Example 3 Advanced Insertion */
+// Three cases to handle: inserting at top, at the end, or in the middle.
+void AddItem(string & newItem) {
+	if (m_head == nullptr)
+		AddItemToFront(newItem);
+	else if (newItem < m_head->name)
+		AddItemToFront(newItem);
+	else { // new node belongs somewhere in middle
+		house * above = m_head;
+		while (above->m_next != nullptr)
+		{
+			if (newItem >= above->name && newItem <= above->m_next->name)
+				break;
+			above = above->m_next;
+		}
+		house * latest = new house;
+		latest->name = newItem;
+		latest->m_next = above->m_next;	// link new node to following node
+		above->m_next = latest;	// link above node to new node
+	}
+}
+/* Example 4 Simple Destructor */
+house * temp = m_head;
+while (temp != nullptr)
+{
+	house * nextOne;
+	nextOne = temp->next;
+	delete temp;
+	temp = nextOne;
+}
+ /* Example 5 Deleting a node */
+ // Two cases to consider: deleting the first node or deleting an interior/last node
+void delete(string &item) {
+	if (m_head == nullptr)	// list is empty
+		return;
+	if (m_head->name == item)
+	{
+		house * killMe = m_head;
+		m_head = killMe->next;
+		delete killMe;
+		return;
+	}
+	house * abv = m_head;
+	while (abv->next != nullptr)
+	{
+		if (abv->next->name == item)
+			break;
+		abv = abv->next;
+	}
+	if (abv->next == nullptr)	// if nullptr, value isn't in the list
+		return;
+	house * killMe = abv->next;
+	abv->next = killMe->next;
+	delete killMe;
+--Side Note Doubly-Linked Lists--
+Upon insertion or deletion of a node, one must change the new node's next and previous pointers, the previous node's next pointer, and the following node's previous pointer
+	
+Stacks (LIFO ADT):
+#include <stack>
+using namespace std;
+int main()
+{
+	stack<int> s;
+	s.push(10);
+	s.push(20);
+	s.pop();	// removes most recently pushed item on stack, popping from empty stack -> undefined behavior
+	// pop is a void function that simply throws top away
+	int n = s.top();	// this lets you look at top item of the stack, undefined behavior on empty stack
+	if ( ! s.empty())
+		cout << s.size() << endl;
+}
+// can copy and assign stacks
+// int m = s.pop(); not C++ 
+stack<Zombie> sz;
+sz.push(Zombie(ap, 5, 7));
+sz.top().move();
+--Applications-- convert infix to postfix expressions, solving mazes with depth-first search, storing undo items for your word processor, holds local variables in memory
+
+Queues (FIFO ADT):
+#include <queue>
+using namespace std;
+int main()
+{
+	queue<int> q;
+	q.push(10); // puts it to rear
+	q.push(20);
+	q.pop();	// takes out the front
+	int n = q.front();
+	if ( ! q.empty())
+	{
+		cout << q.size() << endl;
+		cout << q.back() << endl;
+	}
+}
+--Applications-- circular/ring buffer, breadth-first search
+
+Inheritance and Polymorphism:
+// Base class *p = new Derived class;
+// Base class :: function
+class Shape			// base class/superclass/generalization
+{					// abstract: can't create any instances of this shape class
+	virtual void move(double xnew, double ynew); // this provides "dynamic binding", only need to do it in the base class
+	virtual void draw() const = 0;	// "pure virtual function"/"abstract function" -> don't have to implement default one b/c no one will use it
+	virtual ~Shape();				// every derived class will call the base destructor
+	double m_x;						// don't allow virtual pointer to point to shape's virtual table; can't create Shape s but you can have Shape pointers to rect/circles
+	double m_y;						// concrete classes vs. abstract classes
+};
+
+class Circle : public Shape			// in Java, they use the term "extends"
+{									// derived class/subclass/specialization
+	virtual void draw() const;		// inherit override
+	double m_r;
+};
+
+class Rectangle : public Shape		// concrete: can create objects of this class type
+{
+	virtual void draw() const;		// optional to repeat virtual in derived classes to be more clear
+	virtual double diag() const;	// may have a derived Square class
+	double m_dx;
+	double m_dy;
+};
+	******** if draw pure virtual function was not overwritten in rectangle/circle(was omitted), can't create rectangles/circles (abstract) *********
+Shape * sp;
+sp = new Polygon(...);
+delete sp;	// this is undefined behavior because at run time it doesn't know which destructor to call, might just do shape's and lead to a memory leak
+// -> need to have virtual destructor to have it decide at compile time use the correct destructor
+// can't make Shape's destructor pure virtual either ( = 0) because every derived class needs to destroy the base shape part
+
+class Polygon : public Shape
+{
+	...
+	virtual ~Polygon();
+	...
+	Node* m_vertices;
+};
+** If a class is designed to be a base class, it should have a virtual destructor. **
+
+Recursion:
+-> Break up into Base Case and Simplifying Steps; Beware of Memory Usage
+Techniques:
+s = sumArr(arr, n-1); // first n-1 elements
+s = sumArr(arr+1, n-1);  // last n-1 elements
+s = sumArr(arr, n/2);  // sums 1st half
+s = sumArr(arr+n/2, n-n/2); // sums 2nd half
+/* Example 1 Basic */
+int fact(int n)	// Factorials
+{
+	if (n == 0)		// Base Case
+		return 1;
+	return (n * fact(n-1));	// Simplifying Step
+}
+/* Example 2 Basic 2 */
+bool contains(const int a[], int n, int target)
+{									// need base cases and sub-problems
+	if (n <= 0)					
+		return false;
+	if (a[0] == target)				// a[n-1] for "last and rest"
+		return true;
+	return contains(a+1, n-1, target);		// a, n-1 for "last and rest"
+}
+/* Example 3 sumArr Techniques */
+int sumArr(int arr[], int n)
+{
+	if (n == 0) return 0;
+	if (n == 1) return arr[0];
+	int front = sumArr(arr, n-1);	// Front to Back Strategy- process first n-1 elements then last 
+	int total = front + a[n-1];
+	return total;
+}
+	int rear = sumArr(arr+1, n-1); // Back to Front Strategy, process last n-1 elements then first
+	int total = a[0] + rear;
+	return total;
+	
+	int first = sumArr(arr, n/2);	// Divide and Conquer
+	int second = sumArr(arr + n/2, n - n/2);
+	return first + second;
+void printArr(int arr[], int size)
+{
+	if (size == 0)
+		return;
+	cout << arr[0];
+	printArr(arr+1, size-1);
+}
+int count(int arr[], int size, int val)
+{
+	if (size == 0)
+		return 0;
+	int total;
+	total = count(arr+1, size-1, val);
+	if (arr[0] == val)
+		total++;
+	return total;
+}
+/* Example 4 Working with Linked Lists */
+int biggest(Node * cur)
+{
+	if (cur->next == nullptr)
+		return cur->val;
+	int rest = biggest(cur->next);
+	return max(rest, cur->val);
+}
+int findPos(Node * cur, int val)
+{
+	if (cur == nullptr)	// # not in list
+		return -1;
+	if (cur->value == val)
+		return 0;	// # in top node
+	int posInRestOfList = findPos(cur->next, val);
+	if (posInRestOfList == -1)
+		return -1;	// # not in tail
+	else 
+		return posInRestOfList + 1;
+}
+/* Example 5 Solving a Maze - Backtracking */
+void solve(int x, int y, bool& found)
+{
+	m[y][x] = '#'; // drop crumb as visited
+	if (x == fx && y == fy)
+		found == true;
+	if (m[y-1][x] == ' ')	// check north
+		solve(x, y-1);
+	if (m[y+1][x] == ' ')	// check south
+		solve(x, y+1);
+	if (m[y][x-1] == ' ')	// check west
+		solve(x-1, y);
+	if (m[y][x+1] == ' ')	// check east
+		solve(x+1, y);
+}
+-- Other applications: building chess game computer with Minimax algorithm --
+Psuedocode:
+FindBestIdealHumanMove()
+{
+	For each legal move the ideal human could make
+		Temporarily make the move			// can do this for however many levels deep
+		See how the computer would respond
+		Undo the move
+	Return the move that hurts the computer most
+}
+
+Templates/Generic Programming:
+-- For rules on headings, revisit slide 21 in lecture 9.
+-- Always place entire templated functions in a header file.
+-- Defining functions as inline asks the compiler to directly embed the functions' into the calling function for speed
+/* Example 1 Basic */
+template<typename T>
+T minimum(const T& a, const T& b)	// conversions not allowed, classes must have operator< function
+{
+	if (a < b)
+		return a;
+	else
+		return b;
+} // When called the compiler manufactures and compiles a function for the desired type with the same logic implementation.
+/* Example 2 Default Construction*/
+template<typename T>
+T sum(const T a[], int n)
+{
+	//T total = 0;
+	T total = T();		// This default constructs the type T to its corresponding neutral value (0, false, null, etc.).
+	for (int k = 0; k < n; k++)
+		total += a[k];
+	return total;
+}
+/* Example 3 Classes */
+template <typename T>	// Pattern for manufacturing classes
+class Stack
+{
+	public:
+		Stack();
+		void push(const T& x);
+		void pop();
+		T top() const;
+		int size() const;
+	private:
+		T m_data[100];
+		int m_top;
+};
+template<typename T>
+Stack<T>::Stack()
+	: m_top(0)	// If array of objects of class type, every element of m_data will be default constructed (needs a default constructor or it won't compile).
+{}
+/* Example 4 Taking in Functions/Pointers */
+template<typename Iter, typename Func>
+Iter find_if(Iter b, Iter e, Func f)
+{
+	for ( ; b != e; b++)
+		if (f(*b))
+			break;
+	return b;
+}
+bool isNegative(int k)
+{
+	return k < 0;
+}
+bool isEmpty(string s)
+{
+	return s.empty();
+}
+int main()
+{
+	// Func f is pointer to function that takes an int and returns a bool based on isNegative
+	vector<int>::iterator p = find_if(vi.begin(), vi.end(), isNegative);
+	// Func f is pointer to function that takes a string and returns a bool based on isEmpty
+	list<string>::iterator q = find_if(ls.begin(), ls.end(), isEmpty);	
+}
+/* Example 5 Operator>= */
+bool operator>=(const Dog &a, const Dog &b)  // defined outside class
+	return (a.getWeight() >= b.getWeight());
+bool operator<(const Dog &other)
+	return (m_weight < other.m_weight);		// defined inside class
+
+Standard Template Library(STL):
+-- Vectors -- list of items contiguously stored in an array
+ex/ vector<int> vi;
+	vector<double> vd(10);	// size is 10, each element is 0.0
+	vector<string> vs(10, "Hello"); // size is 10, each with "Hello"
+	int a[5] = { 10, 20, 30, 40, 50 };
+	vector<int> vx(a, a+5);	// vx.size() is 5, vx[0] is 10, vx[1] is 20, ..., vx[4] is 50
+	// This is a dynamically resizeable array.
+	-> push_back (puts to the end of the vector), pop_back (beware undefined behavior if empty)
+	-> size, front, back
+	-> at: vi.at(1) = 60; // if given position out of bounds, it will throw an exception
+C++11
+	vector<int> vx {10, 20, 30, 40, 50};
+	int a[5] { 10, 20, 30, 40, 50 };
+vector<int> vi;
+vi[0] = 10;		// undefined! vi.size() is 0, there are no elements, vi may point to a nullptr or to an empty array
+// storing doesn't change the size
+-- Lists -- Doubly linked list
+#include <list>
+using namespace std;
+
+list<int> li;
+li.push_back(20);
+li.push_back(30);
+li.push_front(10);
+li.push_front(40);
+li.pop_front();		// can also pop_back();
+cout << li.size();	// 3
+cout << li.front(); // 10
+cout << li.back();	// 30
+
+li.begin()							li.end()
+	V									V
+	10			20			30			
+// if begin is equal to end, the list is empty.
+// can't use < or > operators because the positions of the nodes in memory may vary, remember how linked lists are
+for (list<int>::iterator p = li.begin(); p != li.end(); p++)
+	cout << *p << endl;		// gives you the value, not the node
+	// writes 10, 20, 30, one per line
+list<double> ld(10);
+// ld.size() is 10, each element is 0.0
+list<string> ls(10, "Hello");
+// ls.size() is 10, each element is "Hello"
+vector<string> vs(ls.begin(), ls.end());
+// vs.size() is 10, vs[0] is "Hello" onwards to vs[9] = "Hello"
+
+// Iterators act like pointers but are really objects that help you go on to each element in the list, can increment/decrement iterator to go up or down.
+list<int>::iterator p = li.endl();
+p--;
+p--;
+// p -= 2 won't compile
+
+li.begin()			p						li.end()
+	V				V						V
+	10				20			30			
+
+list<int>::iterator q = li.insert(p, 40);		// insert 40 just before where the p iterator is
+// insert returns an iterator to the position of the newly added node
+
+li.begin()		q			p			li.end()
+	V			V			V				V
+	10			40			20		30
+
+list<int>::iterator p;
+...
+li.begin()		p					li.end()
+	V			V						V
+	10			20			30
+
+list<int>::iterator q = li.erase(p);
+// returns iterator pointing to the node after the one you got rid of
+// p = li.erase(p);		erases node at p then p points to one just after the one that was removed
+
+li.begin()				q		li.end()
+	V					V		V
+	10					30		
+// It's now undefined to use p (*p, p++, etc.) until you assign p a new value.
+// Another way to do push_back
+li.insert(li.end(), 50);
+//Another way to do push_front
+vi.insert(vi.begin(), 60);
+/* Example 1 Passing containers as a const reference parameter */
+void tickleNerds(const list<string> & nerds)
+{
+	list<string>::const_iterator it;		// needs to be const_iterator or else error
+	for (it = nerds.begin(); it != nerds.end(); it++)	// iterators are objects that know what it points to
+		cout << *it << " says teehee!" << endl;
+		
+-- Maps -- 
+-> allows you to associate two related values (stored in a struct variable)
+/* Example 1 Basic */
+#include <map>
+#include <string>
+using namespace std;
+
+main() {
+	map<string, int> name2Age;
+	name2Age["Carey"] = 40;	// only works one way from strings to ints
+	map<string, int>::iterator it;
+	it = name2Age.find("Dan");		// can only search based on first type- string in this case
+	if (it == name2Age.end())	// if not found, the iterator points to the end()
+	{
+		cout << "Not found!" << endl;
+		return;
+	}
+	cout << it->first;		// now you can see the pair values
+	cout << it->second;
+	for (it = name2Age.begin(); it != name2Age.end(); it++)
+	{
+		cout << it->first;		// map maintains its items in alphabetical order
+		cout << it->second;
+	}	// to alphabetize structs and classes, one must define an operator< method for the left-hand class/struct
+
+-- Set --
+-> container that keeps track of unique items
+/* Example 1 Basic */
+#include <set>
+using namespace std;
+main() {
+	set<int> a;
+	a.insert(2);	// alphabetical order
+	a.insert(3);
+	a.insert(2);	// duplicates are ignored and not added
+	cout << a.size();
+	a.erase(2);
+	// must define operator< for structs/classes
+	set<int>::iterator it;
+	it = a.find(2);
+	if (it == a.end())
+	{
+		cout << "2 was not found";
+		return 0;
+	}
+	cout << "I found " << (*it) << endl;
+	set <string> geeks;
+	geeks.insert("carey");
+	set<string>::iterator it;
+	it = geeks.find("carey");
+	if (it != geeks.end())
+	{
+		cout << "bye bye" << *it;
+		geeks.erase(it);
+	}
+}
+-- unordered_set, unordered_map --
+/* Example 1 Basic */
+	unordered_map<string, double> ious;
+	string name;
+	double amt;
+	while (ioufile >> name >> amt)
+		ious[name] += amt;	// reads in all the names and amounts -> creates bill 0 and returns reference to double, then add the amt
+	for (unordered_map<string,double>::iterator it = ious.begin(); it != ious.end(); it++)
+		cout << it->first << " owes me $" << it->second << endl;	// iterate through each pair
+-- Compound STL --
+/* Example 1 Basic */
+main() {
+	// How about associating people's names with the courses they take?
+	map<string, list<Course> > crsmap;
+	// How about associating people with the friends they have?
+	map<Person, set<Person> > friendster; // remember to define operator< for Person class
+	// How about associating people with the groups of courses they've taken and grades received per course?
+	map<Person, map<Course, string> > degAudit;
+}
+-- #include <algorithm> --
+/* Example 1 Basic */
+bool is_even(int n)
+	return (n % 2 == 0);
+main() {
+	list<string> names;
+	...
+	list<string>::iterator a, b, itr;
+	a = names.begin();
+	b = names.end();
+	itr = find (a, b, "Judy");
+	if (itr == b)
+		cout << "I failed!";
+	else	
+		cout << "Hello: " << *itr;
+	int a[4] = {1, 5, 10, 25};
+	int * ptr;
+	ptr = find(&a[0], &a[4], 19);
+	if (ptr == &a[4])
+		cout << "Item not found!" << endl;
+	ptr = find_if(%a[0], &a[4], is_even);	// based off of a predicate function that returns bool value
+	vector<string> n;
+	n.push_back("carey");
+	n.push_back("alfred");
+	sort(n.begin(), n.end()); // can also do sort (arr, arr+4, predFunc);
+}
+
+Big-O Analysis: measure efficiency and speed of algorithm
+/* Example 1 O(n^2) */
+for(int i = 0; i < n; i++)
+	for(int j = 0; j < n; j++)
+		arr[i][j] = 0;
+/* Example 2 O(nlog(n)) */
+for (int i = 0; i < n; i++)
+{
+	int k = i;
+	while (k > 1)
+	{
+		sum++;
+		k = k/2;
+	}
+}
+/* Example 3 Working with STL Vectors */
+void printNums(vector<int> &v){
+	int q = v.size();
+	for (int i = 0; i < q; i++)
+	{
+		int a = v[0];	// get 1st item
+		cout << a;		// print it out
+		v.erase(v.begin());	// erase 1st item
+		v.push_back(a);	// add it to end
+	}
+}
+-- Big-O Breakdown --
+	Insert at the top/middle: O(n)
+	Insert at end: O(1)
+	Delete an item from top/middle: O(n)
+	Delete an item from the end: O(1)
+	Access an item: O(1)
+	Finding an item: O(n)
+/* Example 4 More about STL Containers */
+-- Maps/Sets --
+	Insert a new item: O(log2(n))
+	Finding an item: O(log2(n))
+	Deleting an item: O(log2(n))
+-- Queues/Stacks --
+	Inserting a new item: O(1)
+	Popping an item: O(1)
+	Examing the top: O(1)
+-- Lists --
+	Inserting an item (top, middle*, bottom): O(1)
+	Deleting an item (top, middle*, bottom): O(1)
+	Accessing an item(top/bottom): O(1)
+	Accessing an item(middle): O(n)
+	Finding an item: O(n)
+	* But to get to middle, you may have to iterate through X items at O(X) cost
+
+Different Types of Sorting:
+/* Selection Sort: O(N^2), stable */
+void selectionSort(int num[], int length) {  // from least to greatest
+	int i, j, index_first, temp;		// order one at a time from front, swapping at steps if necessary
+	for (int i = 0; i < length; i++)	// think of arranging books by height 1 at a time
+	{
+		index_first = i;
+		for (int j = i; j < length; j++)
+		{
+			if (num[j] < num[index_first])
+				index_first = j;
+		}
+		temp = num[index_first];
+		num[index_first] = num[i];
+		num[i] = temp;
+	}
+}
+Psuedocode:
+	for each of the N books
+		find the smallest book between slots i and NDAYS
+		swap this smallest book with book i
+/* Insertion Sort: O(N^2), best case O(N), stable */
+void insertionSort(int A[], int n) {
+	for (int s = 2; s <= n; s++)
+	{	// imagine sorting a hand of cards, shifting and checking more cards as you go
+		int sortMe = A[s-1];	// make copy of last val in current set
+		
+		int i = s - 2;
+		while (i >= 0 && sortMe < A[i])		// shift values in focus region right until we find proper slot for sortMe
+		{
+			A[i+1] = A[i];
+			i--;
+		}
+		A[i+1] = sortMe; 	// store sortMe value into vacated slot
+	}
+}
+Pseudocode:
+	s = 2
+	while books need sorting:
+		focus on the first s books
+		if the last book in set is in the wrong order then
+			A. Remove it from shelf
+			B. Shift the books to right as required
+			C. Insert our book into the proper slot
+		s = s + 1
+/* Bubble Sort: O(N^2), best case O(N), stable */
+void bubbleSort(int Arr[], int n) {
+	bool atLeastOneSwap;		// keep comparing pairs and swap if out of place as you go
+	do {						// if atleast one swap repeat to the end again
+		atLeastOneSwap = false;	
+		for (int j = 0; j < (n-1); j++)
+		{
+			if (Arr[j] > Arr[j+1])
+			{
+				Swap(Arr[j], Arr[j+1]);
+				atLeastOneSwap = true;
+			}
+		}
+	} while (atLeastOneSwap == true);
+}
+Psuedocode:
+	while the shelf isn't sorted
+		repeatedly swap adjacent books if they're out of order
+/* Shellsort/h-sorting: O(N^1.25/1.40), worst case O(N^2), unstable */
+Pseudocode h-sort:
+	pick value of h-sort
+	for each element in the array:
+		if A[i] and A[i+h] are out of order then
+			swap the two elements
+	if you swapped any elements during the last pass, then repeat the entire process again (same h value)
+-> choose decreasing h-values such as 8, 4, 2, 1 and sort accordingly
+/* Merge Sort: O(N log2 N) for worst/avg case (sort left, sort right, merge), stable, recursion */
+Psuedocode Merge Algorithm:
+	Initialize counter variables i1, i2 to 0
+	While there are more items to copy
+		if a1[i1] is less than a2[i2]
+			copy a1[i1] to output array B and i1++
+		else
+			copy a2[i2] to output array B and i2++
+		if either array runs out, copy the entire contents of the other array over
+void merge(int data[], int n1, int n2)
+{
+	int i = 0, j = 0, k = 0;
+	int* temp = new int[n1+n2];		// allocate a new array to merge
+	int* sechalf = data + n1;
+	
+	while (i < n1 || j < n2)
+	{
+		if (i == n1)				// if first half finished, fill in the rest of sechalf's contents
+			temp[k++] = sechalf[j++];	
+		else if (j == n2)			// if second half finished, fill in the rest of first half
+			temp[k++] = data[i++];
+		else if (data[i] < sechalf[j])	// put items in order by comparing both halves
+			temp[k++] = data[i++];
+		else 
+			temp[k++] = sechalf[j++];
+	}
+	for (i = 0; i < n1 + n2; i++)		// transfer data into proper array and delete dynamic one
+		data[i] = temp[i];
+	delete [] temp;
+}
+Psuedocode MergeSort:
+	if array has one element, then return
+	split the array in two equal sections
+	call MergeSort on the left half
+	call MergeSort on the right half
+	merge the two halves back together
+/* Order Sort/Quicksort: O(N log2 N) avg case, worst case O(N^2), unstable, recursion */
+Pseudocode:		// it's slow when array is mostly sorted/in reverse
+	Select an arbitrary item P from the array
+	Move items smaller than or equal to P to the left and larger items to the right; P goes in-between
+	Recursively repeat this process on the left items
+	Recursively repeat this process on the right items
+void QuickSort(int array[], int first, int last)
+{
+	if (last - first >= 1)
+	{
+		int pivotIndex;
+		pivotIndex = partition(array, first, last);
+		QuickSort(array, first, pivotIndex-1);
+		QuickSort(array, pivotIndex+1, last);
+	}
+}
+int partition(int a[], int low, int high)
+{							// Imagine coming inwards from left and right side, swapping bigger with smaller values
+	int pi = low;
+	int pivot = a[low];		// Select first item as pivot value
+	do
+	{
+		while (low <= high && a[low] <= pivot)	// Find first value > than pivot
+			low++;
+		while (a[high] > pivot)			// Find first value <= than pivot
+			high--;
+		if (low < high)					// Swap the larger with the smaller
+			swap(a[low], a[high]);
+	} while (low < high);
+	swap(a[pi], a[high]);		// Swap pivot to proper position in array
+	pi = high;
+	return pi;				// Return pivot index to the QuickSort function
+}
+-> partitioning into two piles (all bigger than splitter and all smaller than splitter), select pivot
+-> Introsort is variation (worst case O(N log2 N))
+/* Binary Search */
+int simpleBS(string A[], int size, string findMe)
+	return BS(A, 0, size-1, findMe);	// Recursive Helper Function
+int BS(string A[], int top, int bot, string f)
+{
+	if (top > bot)
+		return -1;
+	else
+	{
+		int mid = (top + bot) / 2;
+		if (f == A[mid])
+			return mid; // found
+		else if (f < A[mid])	// search first half if smaller
+			return BS(A, top, mid - 1, f);
+		else if (f > A[mid])	// search latter half if greater
+			return BS(A, mid + 1, bot, f);
+	}
+}
+/* Heap Sort: O(N log2 N), unstable */
+Pseudocode:
+	convert our input array into maxheap:
+		for (curNode = startNode(N/2 - 1; lowest, right-most node in tree with at least one child) through rootNode)		// heapify from bottom-up, O(N)
+			focus on subtree rooted at curNode and think of this subtree as maxheap
+			keep shifting the top value down until your subtree becomes a valid maxheap
+	while there are numbers left in the heap // O(N log2 N)
+		extract biggest value from the heap and re-heapify
+		place value in last open slot of array
+
+Trees: Hierarchical Data Structure
+	- parent/child terminology, nodes and edges, path between nodes
+	- a tree has one node designated as the root and for every node, there is exactly one path from the root to that node
+	- if a node has no children, it is a leaf node vs. an interior node
+	- levels or depth defines how deep a node is in a tree
+	struct Node
+	{
+		string m_data;
+		vector<Node*> child;
+	};
+/* Example 1 Recursion with Trees */
+int count(const Node* p)
+{	
+	if (p == nullptr)							// Base Case: for empty trees
+		return 0;
+	int total = 1;
+	for (int i = 0; i < p->child.size(); i++)		// Simplifying Case: loops through children recursively
+	{
+		total += count(p->child[k]);
+	}
+	return total;
+}
+/* Example 2 Print out the Tree */
+void printTree(const Node* p, int depth = 0) 	// Prints out recursively one family at a time with proper indentation
+{
+	if (p != nullptr)
+	{
+		cout << p->data << endl;
+		for (int k = 0; k != p->child.size(); k++)
+		{
+			cout << string(depth, "  ") << p->data << endl;		// take advantage of string default constructor to give two times the depth number of spaces
+			printTree(p->child[k], depth+1);			// can't be depth++ because it would increment the depth every loop
+		}
+	}
+}
+-- Tree Recursion Techniques --
+	Pre-order Traversal: processing the tree by looking at the current node BEFORE looking at the children (left then right)
+		void PreOrder(Node* cur)
+		{
+			if (cur == nullptr)
+				return;
+			cout << cur->value;
+			PreOrder(cur->left);
+			PreOrder(cur->right);
+		}
+	Post-order Traversal: processing the tree by looking at the current node AFTER looking at the children
+		void PostOrder(Node* cur) {
+			if (cur == nullptr)
+				return;
+			PostOrder(cur->left);
+			PostOrder(cur->right);
+			cout << cur->value;
+		}
+	In-order Traversal: use this to print a BST in alphabetical order
+		void InOrder(Node* cur) {
+			if (cur == nullptr)
+				return;
+			InOrder(cur->left);
+			cout << cur->value;
+			InOrder(cur->right);
+		}
+	Level-Order Traversal: need temp pointer variable and queue of node pointers
+		insert root node pointer into queue
+		while queue isn't empty
+			dequeue the top node and put in temp
+			process the node
+			add the node's children to queue if they are not nullptr
+-- Binary Search Tree --
+	struct Node 
+	{
+		string name;
+		Node* left;
+		Node* right;
+	};
+	-> Everything greater than root/node goes to the right, everything less to the left; allows for 2^N questions to find name
+	-> Side-Note: Huffman encoding scheme to compress files
+	-> AVL Trees: differ by at most 1 level on each subtree, must balance
+	-> Red-Black Trees: used in sets/maps, 2-3 trees?
+/* Example 3 Searching through a BST: O(log2 N), worst case: O(N) */
+bool search(int v, Node* ptr) { 	// recursive version
+	if (ptr == nullptr)
+		return false;
+	else if (v == ptr->value)
+		return true;
+	else if (v < ptr->value)
+		return search(v, ptr->left);
+	else
+		return search(v, ptr->right);
+}
+bool search(int v, Node* ptr) {	// iterative version
+	while (ptr != nullptr)
+	{
+		if (v == ptr->value)
+			return true;
+		else if (v < ptr->value)
+			ptr = ptr->left;
+		else
+			ptr = ptr->right;
+	}
+	return false;
+}
+/* Example 4 Inserting a node into BST: O(log2 N) */
+void insert(const string& value) {
+	if (m_root == nullptr)
+	{
+		m_root = new Node(value);
+		return;
+	}
+	Node* cur = m_root;
+	for(;;)
+	{
+		if (value == cur->value)
+			return;
+		if (value < cur->value)
+		{
+			if(cur->left != nullptr)
+				cur = cur->left;
+			else
+			{
+				cur->left = new Node(value);
+				return;
+			}
+		}
+		else if (value > cur->value)
+		{
+			if (cur->right != nullptr)
+				cur = cur->right;
+			else
+			{
+				cur->right = new Node(value);
+				return;
+			}
+		}
+	}
+}
+/* Example 5 Find the minimum or maximum in BST */
+int getMin(Node* pRoot) {
+	if (pRoot == nullptr)
+		return -1;
+	if (pRoot->left == nullptr)
+		return pRoot->value;
+	return getMin(pRoot->left);	// just switch right for max
+/* Example 6 Destroying the BST */
+void freeTree(Node* cur)
+{
+	if (cur == nullptr)
+		return;
+	freeTree(cur->left);
+	freeTree(cur->right);
+	delete cur;
+}
+-- Deleting a node -- Three cases- node is a leaf, node has one child, node has two children
+	- need a parent and cur pointer
+	
+Hash Tables:
+	- search and insert lots of items in O(1) constant time, give up sorted ordering of keys
+	- need a hash function to place element in proper bucket
+		int hashFunc(int idNum) {
+		const int ARRAY_SIZE = 100000;
+		int bucket = idNum % ARRAY_SIZE;	// simple way but this still has overlaps/collisions between numbers and ambiguity
+		return bucket;
+	}
+-- Closed Hash Table with Linear Probing (put whole ID and keep going down until a free bucket, ID as close as possible to intended bucket)
+		to search, compute bucket # with hash function and keep probing down until we find value or an empty bucket
+		struct bucket {
+			int idNum;
+			bool used;
+		};
+		-> use a closed/linear probing hash table when you don't intend to delete items from your hash table
+		-> can take up to O(N) time if nearly full
+		-> Load Factor = Max # of values to insert / Total Buckets in Array
+		-> Average # of Tries to insert/find an item: 1/2(1+1/(1-L)) for L < 1.0
+		-> FNV algorithms for hash functions: 
+			unsigned int h = constant
+			for every character ch
+			{
+				h += ch;
+				h *= constant
+			}
+/* Example 1 Inserting into Closed HashTable with Linear Probing */
+void insert(int idNum)
+{
+	int bucket = hashFunc(idNum);
+	for (int tries = 0; tries < NUM_BUCK; tries++)
+	{
+		if (m_buckets[bucket].used == false)
+		{
+			m_buckets[bucket].idNum = idNum;
+			m_buckets[bucket].used = true;
+			return;
+		}
+		bucket = (bucket + 1) % NUM_BUCK;
+		/*
+		bucket = bucket + 1;		// same way to wrap around the end
+		if (bucket == NUM_BUCK)
+			bucket = 0;
+		*/
+	}
+	// no room left in hash table
+}
+/* Example 2 Searching through a Closed Hash Table with Linear Probing */
+bool search(int idNum)
+{
+	int bucket = hashFun(idNum);
+	for (int tries = 0; tries < NUM_BUCK; tries++)
+	{
+		if (m_buckets[bucket].used == false)
+			return false;
+		if (m_buckets[bucket].idNum == idNum)
+			return true;
+		bucket = (bucket + 1) % NUM_BUCK;
+	}
+	return false;
+}
+-- Open Hash Table: each array bucket points to a linked list of values
+	-> easy to delete and insert items into linked list and search for items, almost always more efficient than closed
+	-> average number of tries to find/insert an item: 1 + L/2
+	-> choose a prime number of buckets (i.e. 2021 rather than 2000)
+	-> there are tradeoffs with memory and faster searches when adding more buckets or having a smaller hash table
+	int hashFunc(string& name)	// example hash function for strings
+	{	// others include CRC32, CRC64, MD5, SHA2
+		int i, total = 0;
+		for (i = 0; i < name.length(); i++)
+			total = total + (i+1) * name[i];
+		total = total % HASH_TABLE;
+		return (total);
+	}	// std::string strToHash = ...; int bucket = crc32(strToHash) % NUM_BUCKETS; 
+-- Comparison Hash Tables vs. Binary Search Trees --
+	O(1) regardless of # of items vs. O(log2 N)
+	easy to implement vs. complex to implement
+	closed: limited by array size; open: not limited but high load impacts performance vs. unlimited size
+	wastes a lot of space if you have large hash table with few items vs. only uses as much memory as needed (one node per item inserted)
+	no ordering (random) vs. alphabetical ordering
+- Side Note - record is a group of related data that has a bunch of fields and a bunch of records is a table
+	a key field is one that is unique across all records
+/* Example 3 Making Efficient Tables */
+class TableOfStudents
+{
+	public:
+		TableOfStudents();
+		~TableOfStudents();
+		void addStudent(Student& stud);
+		Student getStudent(int s);
+		int searchByName(string& name);
+		int searchByPhone(int phone);
+	private:
+		vector<Student> m_students;
+		map<string, int> m_nameToSlot;	// these are indexes
+		map<int, int> m_idToSlot;
+		map<int, int> m_phoneToSlot;
+};
+void addStudent(Student& stud)
+{
+	m_students.push_back(stud);
+	int slot = m_students.size()-1;
+	m_nameToSlot[stud.name] = slot;
+	m_idToSlot[stud.IDNum] = slot;
+	...
+}	// remember once you delete or update a record's searchable fields, you must update the indexes as well!
+// databases like "Oracle" use this approach to store and index data except it's on disk rather than memory
+-- Unordered Map: hash-based version #include <unordered_map> 
+	using namespace std::tr1;
+	using namespace std;
+
+Heap Data Structures:
+	- good to implement priority queues
+	- uses a "complete" binary tree (top n-1 levels filled with nodes, all nodes on bottom level as far left as possible)
+-> Maxheap
+	- value contained by a node is always greater than or equal to the values of the node's children
+	- complete binary tree, highest priority item/biggest item is root
+/* Example 1 Extracting the Biggest Item/Adding a node: O(log2 N) */
+Pseudocode Extraction:
+	if tree is empty return error
+	else the top item is biggest, remember it for later
+	if heap has only one node, delete it and return the saved
+	copy value from right-most node in the bottom-most row to the root node
+	delete that node
+	repeatedly swap the just-moved value with larger of its children until value is greater than or equal to both of its children ("sifting down")
+	return saved value to user
+~ Array Version
+	if count == 0 (empty) return error
+	heap[0] holds biggest value; save it
+	if count == 1, count = 0 and return saved value
+	heap[0] = heap[count-1] (copy value from bottom-right-most node)
+	delete: count = count - 1
+	repeated swap value with larger of two children i = 0, swap heap[i] with heap[2*i+1] or heap[2*i+2]
+Pseudocode Adding a Node:
+	if tree is empty, create new root node and return
+	else insert new node in bottom-most left-most position of tree
+	compare value with parent's value
+	if new value is greater than its parent's value, then swap them -> repeat until finished "reheapification"
+~ Array Version
+	heap[count] = value, count = count + 1 (inserts into bottom-most left-most open slot)
+	compare new heap[i] with parent heap[(i-1)/2]
+	if new value is greater than parent then swap
+	repeat until proper place or reach top of array
+-- Implementing a Heap with Array
+	- root value in heap[0]
+	- bottom-most, right-most node in heap[count-1]
+	- bottom-most, left-most empty spot in heap[count]
+	- add or remove node by setting heap[count] = value; and/or updating our count
+	- leftChild(parent) = 2 * parent + 1 / rightChild(parent) = 2 * parent + 2
+	- parent = (child - 1) / 2
+
+Graphs/Matrices:
+	- Graphs - an ADT that stores a set of entities and also keeps track of the relationships between all of them
+		holds vertices or nodes
+		edges connect the two vertices/nodes to each other
+		directed: from one vertex to another in specific direction
+		undirected: bidirectional
+	- adjacency matrix with double dimensional array (use if lots of edges but few vertices, "dense graph")
+	- adjacency list with array of n linked lists (few edges and lots of vertices, "sparse graph")
+	depth-first traversal keeps moving forward until it hits a dead ened or previously-visited vertex then backtracks to try another path
+		if we've already visited the current vertex return
+		otherwise mark the current vertex as visited
+		process the current vertex
+		for each edge leaving the current vertex
+			determine which vertex the edge takes us to call the depth-first-traveral on that vertex
+		Stack version ~
+			push start_room on stack
+			while stack isn't empty
+				pop top item off the stack and put it in variable c
+				if c hasn't been visited yet
+					drop breadcrumb
+				for each door d leaving the room
+				if room r behind door d hasn't been visited
+					push r onto the stack
+	breadth-first traversal explores the graph in growing concentric circles
+		add the starting vertex to our queue
+		mark the starting vertex as "discovered"
+		while the queue isn't empty
+			dequeue the top vertex from the queue and place in c
+			process vertex c
+			for each vertex v directly reachable from c
+				if v hasn't yet been "discovered"
+				mark v as "discovered"
+				insert vertex v into the queue
+	- finding the shortest path (cheapest weighted cost) by Dijkstra's Algorithm
+		an array called Dist holds the current best known cost to get from s to every other vertex in the graph
+		for each vertex i, Dist[i] starts out with a value of 0 for vertex s and infinity for all other vertices
+		an array called Done that holds true for each vertex that has been fully processed and false otherwise
+		for each vertex i, Done[i] starts out with a value of false
+	Pseudocode:
+		while there are still unprocessed vertices:
+			set u = the closest unprocessed vertex to the start vertex s
+			mark vertex u as processed: Done[u] = true; // we now know how to reach u optimally from s
+			loop through all unprocessed vertices:
+				set v = the next unprocessed vertex
+				if there's an edge from u to v then compare:
+					the previously computed path from s to v (i.e. Dist[v]) or
+					the path from s to u, and then from u to v (i.e. Dist[u] + weight(u,v))
+					if the new cost is less than the old cost then
+						set Dist[v] = Dist[u] + weight(u,v)
+			
+	
+Debugging:
+-Linker Issues- unresolved reference/undefined symbol, multiply defined symbol
+CTRL-F5- Run program from start to finish
+F10- Step through program one line at a time, doesn't go into functions
+F11- Step through program one line at a time, including functions
+F9- Set a breakpoint at a line, press F5 to run up to that point
+
+Class Design Steps:
+1. Determine classes (look for the nouns) and objects required to solve problem.
+2. Determine outward-facing functionality (look for the verbs) of each class.
+3. Determine the data each of you classes holds and how they interact with each other.
+	- Consider uses: Class X uses objects of Class Y, but may not actually hold objects of Y
+	- Has-A: Class X contains one or more instances of Class Y (composition)
+	- Is-A: Class X is a specialized version of Class Y

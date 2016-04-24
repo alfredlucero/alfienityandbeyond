@@ -1,0 +1,114 @@
+JOIN, Table Operations:
+
+	joining tables -> combining data from two or more tables
+	a table join creates a temporary table showing the data from the joined tables
+	i.e.
+		SELECT customers.ID, customers.Name, orders.Name, orders.Amount
+		FROM customers, orders
+		WHERE customers.ID=orders.Customer_ID
+		ORDER BY customers.ID; // use fully qualified names to be specific with column data, use commas to separate
+	use custom names ct.ID -> FROM customers AS ct
+	
+	Types of JOIN
+		INNER returns rows when there is a match between the tables
+			i.e. SELECT column_name(s)
+				 FROM table1 INNER JOIN table2
+				 ON table1.column_name=table2.column_name;
+		LEFT returns all rows from the left table, even if there are no matches in the right table
+			if there are no matches for the ON clause in the table on the right, the join will still return the rows from the first table in the result
+			if no match is found for a particular row, NULL is returned
+		RIGHT returns all rows from the right table, even if there are no matches in the left table
+	
+	UNION
+		UNION combines multiple datasets into a single dataset, and removes any existing duplicates
+			used to combine the result-sets of two or more SELECT statements; must have same number of columns, same data types, columns must be in same order
+			i.e. SELECT column_name(s) FROM table1
+				 UNION
+				 SELECT column_name(s) FROM table2;
+			if the columns don't match exactly across all queries, you can use NULL(or any other value)
+				 SELECT FirstName, LastName, Company FROM businessContacts
+				 UNION
+				 SELECT FirstName, LastName, NULL FROM otherContacts;
+		UNION ALL combines multiple datasets into one dataset, but does not remove duplicate rows
+	
+	INSERT
+		SQL tables store data in rows
+		INSERT INTO statement is used to add new rows of data to a table in the database
+			i.e. INSERT INTO table_name
+				 VALUES(value1, value2, value3,...); // order of values is same order as columns in table
+				must provide a value for every column that does not have a default value or does not support NULL
+			i.e. INSERT INTO table_name(column1, column2, column3, ..., columnN)
+				 VALUES(value1, value2, value3, ..., valueN);
+			insert into specific columns only
+				i.e. INSERT INTO Employees(ID, FirstName, LastName)
+					 VALUES(9, 'Samuel', 'Clark');
+	
+	UPDATE and DELETE
+		UPDATE allows us to alter data in the table
+			i.e. UPDATE table_name
+				 SET column1=value1, column2=value2, ...
+				 WHERE condition; // if you omit WHERE, all records in the table will be updated
+		DELETE is used to remove data from your table permanently
+			i.e. DELETE FROM table_name
+				 WHERE condition; // if you omit WHERE, all the records will be deleted
+	
+	Creating a Table
+		CREATE TABLE involves naming the table and defining its columns and each column's data type
+			i.e. CREATE TABLE table_name
+				 (
+				  column_name1 data_type(size),
+				  column_name2 data_type(size),
+				  ...
+				  columnN data_type(size)
+				  );
+				  
+				  CREATE TABLE Users
+				  (
+					UserID int NOT NULL AUTO_INCREMENT,
+					FirstName varchar(100) NOT NULL,
+					LastName varchar(100) NOT NULL,
+					City varchar(100) NOT NULL,
+					PRIMARY KEY(UserID)
+				  );
+			Data Types:
+				INT, FLOAT(M,D), DOUBLE (M,D)
+				DATE, DATETIME, TIMESTAMP, TIME
+				CHAR(M), VARCHAR(M), BLOB (images/large data), TEXT
+			use UserID for Users table's primary key
+			SQL constraints to specify rules for table data
+				NOT NULL -> indicates column cannot contain any NULL value
+				UNIQUE -> no duplicate value in column
+				PRIMARY KEY -> enforces table to accept unique data for a specific column and this constraint
+							   creates a unique index for accessing the table faster
+				CHECK -> determines whether the value is valid or not from a logical expression
+				DEFAULT -> if no value is supplied to a column, then the column gets the value set to this
+				// specify column level constraint(s) after the data type of that column
+			AUTO_INCREMENT allows a unique number to be generated when a new record is inserted into a table
+				default starting value is 1 and increments by 1 for each new record
+		
+	Alter, Drop, Rename a Table
+		ALTER TABLE is used to add, delete or modify columns in an existing table/add and drop various constraints
+			i.e. ALTER TABLE People ADD DateOfBirth date;
+				 ALTER TABLE People DROP COLUMN DateOfBirth;
+				 DROP TABLE People; // delete entire cable
+				 ALTER TABLE People CHANGE FirstName name varchar(100); // renames FirstName to name
+				 RENAME TABLE People TO Users; // rename entire table to Users
+	
+	VIEW
+		virtual table that is based on the result-set of an SQL statement
+		allows us to structure data in a way that users or classes of users find natural or intuitive
+		restrict access to data in way that a user can see and modify exactly what they need 
+		summarize data from various tables and use it to generate reports
+		i.e. always up-to-date data
+			CREATE VIEW view_name AS
+			SELECT column_name(s)
+			FROM table_name
+			WHERE condition;
+			
+		CREATE VIEW List AS				-> SELECT * FROM List;
+		SELECT FirstName, Salary
+		FROM Employees;
+		
+		update a view by using CREATE OR REPLACE VIEW
+		DROP VIEW view_name to delete a view
+			
