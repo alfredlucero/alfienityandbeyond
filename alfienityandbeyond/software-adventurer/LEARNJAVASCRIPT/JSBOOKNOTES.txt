@@ -1,0 +1,866 @@
+JAVASCRIPT & JQUERY: interactive front-end web development
+by JON DUCKETT
+	
+	Ch. 1 Introduction:
+		- Events->Methods->Change properties of Objects
+		- Browser represents each window or tab using a window object, location tells the URL
+		- Current web page modelled using a document object
+		- Browser creates a document object and a new object/node for each element on the page -> Document Object Model (DOM)
+		1. Receive a page as HTML code/separate document
+		2. Create a model of the page and store it in memory
+		3. Use a rendering engine to show the page on screen
+		- All browsers use a JS interpreter/scripting engine
+		- HTML: content layer, .html, gives page structure and semantics
+		- CSS: presentation layer, .css, styling
+		- JS: behavior layer, .js, interactivity
+		- Progressive Enhancement: page should still work with varying devices, connections, screen sizes, capabilities, js functionality
+		- link to JS file in <script> element
+		- document.write() writes content into the document -> document object represents the entire web page, . = member operator
+	Ch. 2 Basic Javascript Instructions:
+		- script composed of instructions/statements, use variables (var) for short-term memory, comments (// or /**/)
+		- numbers, strings, boolean, arrays, objects, undefined, null
+		- var elName = document.getElementById('name');
+			elName.textContent = 'string';
+		- arrays i.e. var colors = ['white', 'black', 'custom']; (array literal format) vs. var colors = new Array('white', 'black', 'custom'); (array constructor format); can use colors.item(index#) to access data from the array vs. colors[index#]; array.length
+		- strings: use + for concatenation
+	Ch. 3 Functions, Methods, & Objects:
+		- functions can be anonymous, have parameters, return value
+		i.e. function functionName (functionParam, ...) { ... }
+			-> function area(width, height) {
+				return width * height;
+			} // function declaration that you can call later in your code
+			-> var area = function(width, height) {
+				return width * height;
+			}; // function expression, not processed until the interpreter gets to that statement
+			-> immediately invoked function expressions (IIFE): not given a name and executed once as the interpreter comes across them
+			i.e. var area = (function() { var width = 3; var height = 3; return width * height;}());
+			-> use anonymous functions and IIFEs for code that only needs to run once within a task like for event handlers and listeners, to assign value of a property to an object, as argument when function is called; any variables declared within that anonymous function are effectively protected from variables in other scripts that might have the same name
+		- when a variable is created inside a function using the var keyword, it can only be used in that function = local variable or function-level/local scope
+		- if one cerates a variable outside of a function, then it can be used anywhere within the script called a global variable, stored in memory for as long as the web page is loaded into the web browser; without using var it's global
+		- objects group together a set of variables and functions to create a model of something you would recognize from the real world -> variables = properties, functions = methods
+		i.e. var hotel = { 
+			name: 'Quay', 
+			rooms: 25, 
+			booked: 25, 
+			roomTypes: ['twin', 'double'], 
+			checkAvailability: function() { 
+				return this.rooms - this.booked; 
+			}
+		}; // object literal notation
+		- accessing objects via bracket/dot notation i.e. var hotelName = hotel.name; vs. var hotelName = hotel['name'];
+		- creating an object with constructor notation - new and Object()
+		i.e.
+		var hotel = new Object();  // empty object -> var hotel = {};
+		hotel.name = 'Quay';
+		hotel.rooms = 40;
+		hotel.booked = 25;
+		hotel.checkAvailability = function() {
+			return this.rooms - this.booked;
+		};
+		- use delete keyword to delete a property i.e. delete hotel.name;
+		- object constructors can use a function as a template for creating objects
+		i.e.
+		function Hotel(name, rooms, booked) { 
+			this.name = name;
+			this.rooms = rooms;
+			this.booked = booked;
+			this.checkAvailability = function() {
+				return this.rooms - this.booked;
+			};
+		} // constructor function begins with capital letter
+			-> this keyword is used to indicate that the property or method belongs to the object that this function creates
+			-> instantiating the object i.e. var parkHotel = new Hotel('Park', 120, 77);
+			-> if object is using constructor function, only add or remove properties from the one instance of the object, not all objects created with that function
+		- default object in the global scope or global context is the window object i.e. this.innerWidth
+		- this keyword is a reference to the object that the function is created inside
+			-> when a function is defined an object, it becomes a method and this refers to the containing object
+			-> if a named function has been defined in global scope and it is then used as a method of an object, this referes to the object it is contained within
+			i.e.
+			var width = 600;
+			var shape = {width: 300};
+			var showWidth = function() {
+				document.write(this.width);
+			};
+
+			shape.getWidth = showWidth;
+			shape.getWidth(); // refers to shape.width === 300
+		- when a variable has been declared but has not yet been assigned a value, it is undefined; var keyword not used = global scope
+		- objects created with literal notation are good when you are storing / transmitting data between applications, for global or configuration objects that set up information for the page
+		- when you need to create multiple objects within the same page, you should use an object constructor to provide a template for the objects; good for objects with similar functionality, complex objects 
+		- array = special type of object and hold a related set of key/value pairs (key is its index number)
+		- toolkit with three compartments
+			1. browser object model contains objects that represent the current browser window or tab such as browser history and device's screen
+			2. document object model uses objects to create a representation of the current page, creates a new object for each element and each individual section of text within the page
+			3. global javascript objects represent things that the JS language needs to create a model of such as dates and times
+		- browser object model creates a model of the browser tab or window -> topmost object is window (i.e. window.print();) -> document, history, location, navigator, screen (i.e. window.screen.width)
+			-> innerWidth, innerHeight, window.history.length
+		- document object model creates a model of the current web page, topmost object is document (whole page) -> <html>, <head>, <body>, etc. i.e. document.getElementById('idName');, document.lastModified;
+			-> document.title/lastModified/URL/domain/write()/getElementById()/querySelectorAll()/createElement()/createTextNode()
+			i.e. var el = document.getElementById('idName'); el.innerHTML = msg;
+		- global javascript objects such as String (i.e. toUppercase();), Number, Boolean, Date, Math (Math.PI();), Regex
+			-> String.length/toUpperCase/toLowerCase/charAt/indexOf/lastIndexOf/substring/split(splits string by a character and stores each individual part in an array/trim(removes whitespace from start and end of string)/replace
+		- 6 data types: String, Number, Boolean, Undefined (declared but no value has been assigned to it yet), Null (no value), and Object
+			-> JavaScript treats every variable as an object in its own right, arrays and functions are considered types of objects
+			-> Number: isNan/toFixed/toPrecision/toExponential
+			-> Math.PI/round/sqrt(n)/ceil/floor/random
+			-> var today = new Date(); -> dates stored as number of milliseconds since midnight on January 1, 1970 (Unix time)
+		Ch. 4 Decisions and Loops
+			- if (...) { ... } else { ... }
+			- === strict equal to checks both the data type and value are the same; && ||
+			- switch(value) { case ...: ... break; default: ... break; }
+			- type coercion when JS can convert data types behind the scenes to complete an operation i.e. ('1' > 0) 
+			- weak typing because the data type for a value can change vs. strong typing in which you specify what data type each variable will be
+			- falsy values: false, 0, '', 10/'score' -> NaN, var temp;
+				-> null and undefined only == to themselves, NaN not == to anything, false == 0 -> true vs. false === 0 -> false // beware of these 
+			- using truthy values to check for existence of an element within a page i.e. if (document.getElementById('idName')) {}
+			- logical operators will not always return true or false because they return the value that stopped processing, used to creatively to set values for variables or even create objects
+			i.e.
+				var artist = 'Regine';
+				var artistA = (artist || 'Unknown');
+			- for (var i = 0; i < 10; i++) { document.write(i); }
+			- while (i < 10) { i++; }
+			- do { ... } while (condition);
+		Ch. 5 Document Object Model
+			- DOM specifies how browsers should create a model of an HTML page and how JavaScript can access and update the contents of a web page while it is in the browser window, use a DOM tree ->Application Programming Interface (API): lets programs and scripts talk to each other, states what your script can ask the browser about the current page and how to tell the browser to update what is being shown to the user -> scripts update the DOM tree not the source HTML file
+			- four main types of nodes that are objects with methods and properties: document node (represents the entire page, corresponds to document object), element node (HTML elements), attribute nodes (part of that element), text node (always a new branch of the DOM tree and no further branches from it, cannot have children)
+			- accessing and updating the DOM involves locatin gthe node that represents the element you want to work with and using its text content, child elements, and attributes
+			- selecting an individual element node: getElementById(), querySelector() // CSS selector, returns first matching element
+			- select multiple elements (nodelists): getElementsByClassName(), getElementsByTagName(), querySelectorAll()
+			- traversing between element nodes: parentNode, previousSibling/nextSibling, firstChild/lastChild
+			- certain browsers have inconsistent DOM method functionality -> jQuery
+			- access/update text nodes -> i.e. select <li> element node, use firstChild property to get the text node, use text node's only property, nodeValue, to get the text from the element
+			- work with HTML content: innerHTML = property that allows access to child elements and text content; textContent; createElement()/createTextNode()/appendChild()/removeChild() -> DOM manipulation
+			- access or update attribute values: use properties such as className / id, hasAttribute()/getAttribute()/setAttribute()/removeAttribute()
+			- methods that find elements in the DOM tree are DOM queries, cache locations of element nodes within the DOM tree in a variable; may return one element or may return a NodeList
+			- NodeList order is the same in which element nodes appeared in the HTML page, may want to select one elemnt or loop through each item and perform statements on each of element nodes, collection objects that are indexed
+				-> length property, item() method returns a specific node from the NodeList when you tell it the index number
+				-> live NodeList, when script updates the page, the NodeList is updated at the same time, methods beginning with getElementsBy_ return this
+				-> static NodeList, when script updates the page, the NodeList is not updated to reflect the changes made by the script, methods beginnning with querySelector... return this and reflect the document when then query was made
+				-> getElementsByTagName('tagName')/getElementsByClassName('className')/querySelectorAll('li[id]')/('li.hot') return a NodeList
+				-> elements.length, item(indexNumber), elements[indexNumber]
+				-> querySelector() returns the first element node that matches the CSS-style selector
+			- when you have an element node, you can select another element using these properties: parentNode (finds the element node for the containing/parent element), previousSibling/nextSibling, firstChild/lastChild -> results will be null if not exist, read-only to select a new node
+				-> some browsers add a text node whenever they come across whitespace between elements; most browsers except IE treat whitespace between elements as a text node so the properties return different elements in different browsers
+			- to work with the content of elements you can navigate to the text nodes or work with the containing element
+				-> nodeValue: accesses text from node
+				-> innerHTML: gets/sets text and markup
+				-> textContent/innerText: gets/sets text only
+			i.e. document.getElementById('idName').firstChild.nextSibling.nodeValue
+			- adding/removing content from a DOM tree by using the innerHTML property and DOM manipulation
+				-> adding a new content by storing it with markup in a string, select element you want to replace, set the innerHTML property to be the new string
+				-> remove all content from an element by setting innerHTML to an empty string, provide entire fragment minus one element you want to remove
+				-> DOM manipulation adding by creating text node and element node, add text node to element node, select element you want to add the new fragment to, append the new fragment to the selected element
+					--> document.createElement(), document.createTextNode(), document.appendChild() i.e. newEl.appendChild(newText) -> position.appendChild(newEl)
+				-> remove elements by storing element to be removed in a variable, store the parent of that element in a variable (parentNode), remove the element from its containing element (removeChild())
+					--> i.e. containerEl.removeChild(removeEl);
+			- document.write() rarely used but adds content that was not in original source code
+			- DOM manipulation is slower than innerHTML with lots of changes to content, more code vs. element.innerHTML don't add content from user due to security risks, difficult to isolate single elements, event handlers may no longer work
+			- cross-site scripting attacks or XSS; otherwise attacker could gain access to your users' accounts
+				-> involves placing malicious code into a site, can give the attacker access to information in the DOM, website's cookies, session tokens
+				-> validate input by limiting characters to supply information, can't allow untrusted users to submit HTML markup or JS
+				-> double-check validation on the server because they can bypass validation by turning JS off
+				-> all potentially dangerous characters should be escaped
+				-> insert content into certain parts of template files
+				-> add as text (not markup) using properties like textContent rather than innerHTML
+				-> never place any user's content in script tags, HTML comments, tag names, attributes, css values
+				-> any content generated by users that contain characters that are used in code should be escaped on the server i.e. & < > ` '" /
+				-> use JS encodeURIComponent() to encode user input in links
+				-> use textContent or innerText rather tahn innerHTML; use .text(), not .html()
+			- .getAttribute(), hasAttribute(), setAttribute(), removeAttribute()
+				-> className property to change the value of the class attribute, override the entire value of the class attribute vs. id; can add a new value to existing class attribute by reading the content of the attribute first then adding new text or jQuery .addClass()
+		Ch. 6 Events:
+			- UI events such as load, unload, error, resize, scroll
+			- keyboard events such as keydown, keyup, keypress
+			- mouse events such as click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout
+			- when event occurs, it is fired or raised that trigger a function or script
+			- focus events i.e. focus/focusin, blur/focusout; form events i.e. input, change, submit, reset, reset, cut, copy, paste, select; mutation observers i.e. DOMSubtreeModified, DOMNodeInserted, DOMNodeRemoved, DOMNodeInsertedIntoDocument, DOMNodeRemovedFromDocument
+			- event handling: select the element nodes you want the script to respond to, indicate which event on the selected nodes will trigger the response (binding an event to a DOM node), state the code you want to run when the event occurs (named or anonymous function)
+			- select element, specify event, call code -> i.e. on blur on input username to validate the length of form characters once user is done typing 
+			- three ways to bind an event to an element: HTML event handlers (bad practice i.e. <a onclick="hide()"> as it is better to separate the JS from HTML), traditional DOM event handlers (can only attach a single function to any event, element.onevent = functionName; i.e. el.onblur = checkUsername, onsubmit, onchange, onfocus, onmouseover, onmouseout), DOM level 2 event listeners (allow one event to trigger multiple functions)
+			- element.addEventListener('event', functionName [, Boolean]); to add an event listener to the dom element node(s), usually set to false for event flow boolean; remove with removeEventListener()
+			- IE8 or lower has troubles with using this; must use attachEvent() rather than addEventListener -> check by doing if (el.addEventListener) { ... do work ... } else { ... IE5-8 way with attachEvent ... }
+			- passing parameters requires a workaround since you cannot have parentheses after the function names ->wrap the function in an anonymous function
+			i.e. el.addEventListener('blur', function() {
+				checkUsername(5);
+			}, false);
+			- since HTML elements nest inside other elements, if you hover or click on a link, you will also be hovering or clicking on its parent elements; order in which the events fire is known as event flow
+			- event bubbling: event starts at the most specific node and flows outwards to the least specific one (default) -> a to li to ul to body to html to document to window
+			- event capturing: event starts at the least specific node and flows inwards to the most specific one
+			- flow of events matter when code has event handlers on an element and one of its ancestor or descendant elements
+				-> final parameter in the addEventListener() method lets you choose the direction to trigger events: true = capturing phase, false = bubbling phase
+			- when an event occurs, the event object tells you information about the event, and the element it happened upon; passed to any function that is the event handler or listener
+				-> e for event: properties include target(most specific element interacted with), type, cancelable; methods such as preventDefault() - cancel default behavior of the event, stopPropagation() - stops the event from bubbling or capturing any further
+				-> can use preventDefault() to prevent being taken to a new page after submitting the form; stopPropagation() to stop event from bubbling up to its ancestor elements with separate event handlers responding to same events on the containing elements; can use return false; to prevent the default behavior of the element and prevent the event from bubbling up or capturing further but it blocks further code within that function and moves to next statement after function was called
+				-> check in IE5-8 with if (!e) { e = window.event; }; get properties with target = e.target || e.srcElement;
+				-> event object's target property is the best way to determine which element the event occurred on
+			- adding event listeners for a lot of elements can use a lot of memory and slow down a page -> can place event handlers on parent element and use event object's target property to find which of its children the event happened on due to event flow
+				-> attaching an event listener to a containing element and responding to one element rather than having an event handler for each child element -> event delegation of event listener to a parent + works with new elements, helps with this keyword, simplifies code
+			- can respond to W3C DOM events, HTML5 events (i.e. form events on submit, input, change, readystatechange, DOMContentLoaded, hashchange), BOM events such as with touchscreen devices like touchstart, toucheven, touchmove, orientationchange
+			- user interface events occur as a result of interaction with the browser window rather than the HTML page contained within it such as a page loaded or browser window resized
+				-> load, unload, error, resize, scroll
+			- focus and blur events used to change the appearance of an element but now CSS :focus pseudo-class is better solution
+			- mouse events, all elements on a page support these and they bubble
+				-> click, dblclick, mousedown/touchstart, mouseup/touchend, mouseover, mouseout, mousemove
+				-> on mouseover and mouseout can just use CSS :hover pseudo-class
+			- event object can tell you where the cursor was positioned when an event was triggered such as screenX/Y of entire screen on your monitor, pageX/Y, clientX/Y position of cursor within the browser's viewport
+			- keyboard events such as input, keydown, keypress, keyup
+				-> event object has a property called keyCode which can be used to tell which key was pressed, returns an ASCII code or you can do String.fromCharCode(event.keycode);
+			- form events such as submit, change, input; often use focus and blur events with forms, validation/checking form values
+			- mutation events and observers when elements are added to or removed from the DOM such as DOMNodeInserted, DOMNodeRemoved, DOMSubtreeModified, DOMNodeInsertedIntoDocument, DOMNodeRemovedFromDocument
+				-> slow and unresponsive, mutation observers are designed to wiat until a script has finished its task before reacting then report chnages as a batch
+			- HTML5 Events such as DOMContentLoaded (fires when the DOM tree is formed), hashchange (fires when the URL hash changes without the entire window refreshing; hashes are used on links to specific parts within a page as anchors and on pages that use AJAX to load content), beforeunload (event fires on the window object before the page is unloaded)
+				-> data- attributes allow you to store custom data on any HTML element
+			- events are the browser's way of indicatin gwhen something has happened; binding is the process of stating which event you are waiting to happen and which element you are waiting for that event to happen upon; can use event delegation to monitor for events that happen on all of the children of an element; most commonly used events are W3C DOM events
+		Ch. 7 jQuery:
+			- achieve a variety of common JS tasks quickly and consistently across all major browsers and without any fallback code to select elements, perform tasks, and handle events
+			- find elements using CSS-style selectors -> function called jQuery() or $() lets you find one or more elements i.e. $('li.hot') finds all <li> elements with a class of hot
+			- do something with the elements using jQuery methods i.e. $('li.hot').addClass('complete');
+			- differences from DOM: cross-browser, simpler to select elements, event handling works in all major browsers, methods affect all selected elements without need to loop through each one, additional methods for animation, can apply multiple methods to a selection and store selections in a variable
+			- minification leads to smaller file to make it faster to download as it removes unnecessary spaces and carriage returns
+			- uses feature detection to find the best way to achieve a task with the use of many conditional statements
+			- selectors: *, element, #id, .class, selector1, selector2
+			- hierarchy: ancestor descendant, parent > child (direct child of another element), previous + next (adjacent sibling selector only selects elements that are immediately followed by the previous element), previous ~ siblings (sibling selector will select any elements that are a sibling of the previous element)
+			- basic filters such as :not(selector), :first, :last, :even, :odd, :eq(index), :gt(index), :lt(index), :header, :animated, :focus
+			- content filters such as :contains('text'), :empty, :parent, :has(selector)
+			- visiblity filters such as :hidden, :visible
+			- child filters such as :nth-child(expr), :first-child, :last-child, :only-child
+			- attribute filters [attribute], [attribute='value'], etc.
+			- form such as :input, :text, :password, :radio, :checkbox, :submit, :image, :reset, :button, :file, :selected, :enabled, :disabled, :checked
+			- when you make a selection, the jQuery object that is created has a property called length; if no matching elements, won't return or do anything
+			- get/change content with .html(), .text(), .replaceWith(), .remove(); elements such as .before(),.after(),.prepend(), .append(),.remove(),.clone(),.unwrap(),.detach(),.empty(),.add(); attributes such as .attr(), .removeAttr(), .addClass(), .removeClass(), .css(); form values such as .val(), .isNumeric()
+			- finding elements with .find(), .closest(), .parent(), .parents(), .children(), .siblings(), .next(), .nextAll(), .prev(), .prevAll(); filter with .filter(), .not(), .has(), .is(), :contains(); order in selection with .eq(), .lt(), .gt()
+			- dimension such as .height(), .width(), .innerWidth(), .innerHeight(); position such as .offset(), .position()
+			- effects and animation such as .show(), .hide(), .toggle(), .fadeIn/Out, slideDown/Up, delay/stop/animate
+			- events document.ready(), .load(), .on() - user interaction, .click(), .hover(), .submit()
+			- if a jQuery selection holds more than one element and a method is used to get information from the selected elements, it will retrieve information from only the first element; use .each() to get the content of all of the elements
+			i.e. var content = $('li').html(); // retrieves content of the first list item
+			- if a jQuery selection holds more than one element and a ethod is used to update information on the page, it will update all of the elements in the matched set, not just the first one
+			- when you create a selection with jQuery it stores a reference to the corresponding nodes in the DOM tree, not copies; caching a jQuery object stores a reference to elements in a variable
+				-> find matching nodes in the DOM tree, create jQuery object, store references to the nodes in the jQuery object
+				-> reference to object stored in variable usually called $referenceNode
+			i.e. $('li').html('Updated all list items in the matched set');
+			- the ability to update all of the elements in the jQuery selection is known as implicit iteration
+			i.e. $('li.hot').addClass('favorite'); // adds it to multiple of list items with class hot
+			- the process of placing several methods in the same selector is referred to as chaining; most methods used to update the selection can be chained, whereas to retrieve infromation from the DOM cannot
+			i.e.
+				$('li[id!="one"]')
+					.hide()
+					.delay(500)
+					.fadeIn(1400);
+			$(document).ready(function() { // .ready() checks that the page is ready for your code to work with, waits for browser to construct DOM tree
+			}); // checks if the browser supports DOMContentLoaded
+			OR
+			$(function() { // shorthand for document.ready()
+
+			}); // creates function-level scope for its variables and prevents naming collisiosn with other scripts using same variable names
+			- .load() event fires after the page and all of it resources have loaded
+			- .html() retrieves only the HTML inside the first element in the matched set, along with any of its descendants; .text() returns the content from every element in the jQuery selection, along with the text from any descendants -> both .html() and .replaceWith() methods carry the same security risks as using the DOM's innerHTML property
+			- .remove() removes all of the elements in the matched set; .replaceWith() replaces every element in a matched set with new content and returns the replaced elements
+			- insert .before()/.after() selected elements, .prepend()/.append() inserts content inside the selected elements after the opening tag or before the closing tag
+			- .attr() creates new attribute and gives it the specified value if attribute doesn't exist vs. removeAttr(); addClass(), removeClass() let you add or remove an individual class name within the value of the class attribute and they do not affect any other class names
+			i.e.
+			$('li#one').attr('id'); to get value of attribute,
+			$('li#one').attr('id', 'hot'); to update value of attribute
+			- .css() to set and get the value of a CSS property
+			i.e.
+			$('li').css('background-color');
+			$('li').css('padding-left', '+=20');
+			$('li').css({
+				'background-color': '#aaa',
+				'font-family': 'Courier'
+			});
+			- .each() allows you to perform one or more statements on each of the items in the selection of elements that is returned by a selector; this refers to the current node
+			- .on() is used to handle all events and jQuery handles all of the cross-browser issues
+			i.e.
+			$('li').on('click', function() {
+				$(this).addClass('complete');
+			});
+			- event object with type, which, data, target, pageX, pageY, timeStamp, .preventDefault(), .stopPropagation()
+			i.e. .on(events[, selector][, data], function(e));
+			i.e.
+			$('ul').on(
+				'click mouseover',
+				':not(#four)',
+				{status: 'important'},
+				function(event) {
+					listItem = 'Item: ' + e.target.textContent + '<br />';
+					itemStatus = 'Status: ' + e.data.status + '<br />';
+					eventType = 'Event: ' + e.type;
+					$('#notes').html(listItem + itemStatus + eventType);
+				}
+			);
+			- slideDown/Up, fadeIn/Out, delay, hide/show
+			- .animate() to create effects and animations by changing CSS properties -> speed, easing, complete
+			i.e.
+			$('li').on('click', function() {
+				$(this).animate({
+					opacity: 0.0,
+					paddingLeft: '+=80'
+				}, 500, function() {
+					$(this).remove();
+				});
+			});
+			- traversing the DOM with .find() -> all elements witihin current selection that match selector, .closest() -> nearest ancestor (not just parent) that matches selector
+				-> .parent(), .parents(), .children(), .siblings(), .next(), .nextAll(), .prev(), .prevAll()
+			- add and filter content with .add(), .filter() -> finds elements in matched that in turn match a second selector, .find() -> finds descendants of elements in matched set that match the selector, :not()/.not(), :has()/.has(), :contains(), .is() -> checks whether current selection matches a condition
+			i.e.
+			var $listItems = $('li');
+			$listItems.fitler('.hot:last').removeClass('hot');
+			$('li:not(.hot').addClass('cool');
+			$listItems.has('em').addClass('complete');
+			$listItems.each(function() {
+				var $this = $(this);
+				if ($this.is('.hot')) {
+					$this.prepend('Priority item: ');
+				}
+			});
+			$('li:contains("honey")').append(' (local)');
+			- find elements by index number with .eq(), :lt(), :gt()
+			- selectors for form elements such as :button, :checkbox, :checked, :chcecked, :disabled, :enabled, :focus, :file, :image, :input, :password, :radio, :reset, :selected, :submit, :text
+			- methods such as .val() to retrieve from <input>, <select>, and <textarea>, .is() to see whether a form input is selected/checked, $.isNumber() to check whether the value represents a numeric value, .on() for events such as blur, change, focus, select, submit
+			- .remove() deletes tha matched elements and all of their descendants from the DOM tree, .detach() retains any event handlers so they can be inserted back into the page (keeps a copy of them in memory), .empty() removes child nodes and descendants, .unwrap() removes parents of matched set, .clone() creates a copy of the matched set (including descendants and text nodes)
+			- .width()/.height(), .innerWidth(), .innerHeight(), .outerWidth(true), .outerHeight(true) with margins, .scrollLeft(), .scrollTop()
+				-> browser can display scroll bars if the height or width of a box's content is larger than its allocated space or the current page represented by document object is larger than the dimensions of the browser window's viewable area (viewport) - $(window).height(); needs DOCTYPE specified 
+				-> .offset() and .position()
+			- can use .noConflict() at start of script to tell jQuery to release the $ shortcut so that other scripts can use it
+		Ch. 8 AJAX & JSON
+			- Ajax allows you to request data from a server and load it without having to refresh the entire page -> rise in single page web applications (web-based tools that are more like software applications in browser)
+			- servers typically send back HTML, XML or JSON (JavaScript Object Notation)
+			- Ajax uses an asynchronous/non-blocking processing model -> user can do things while the web browser is waiting for the data to load
+				-> browser requests information from a web server, then it processes the server's response and shows it within the page
+				-> implement an object called XMLHttpRequest to handle Ajax requests, doesn't wait for a response from the server
+				-> server-side technologies include ASP.net, PHP, Node.js, Ruby
+			- the request: var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'data/test.json', true); // HTTP method, url of page that will handle request, boolean indicating if asynchronous
+				xhr.send('search=arduino'); // sends prepared request to the server
+			- the response: xhr.onload = function() { // when browser received and loaded a response from server, onload event fires
+				if (xhr.status === 200) { // checks if status is okay
+					// code to process the results from the server
+				}
+			}
+			- Ajax request usually comes in one of three formats: HTML, XML, or JSON
+				-> HTML: data sent from server goes straight into page but doesn't have good data portability (only for web browser), request must come from same domain
+				-> XML: tag names are different because they describe the data they contain, more strict HTML, flexible data format and works well with different platforms and applications, processed using same DOM methods as HTML, verbose, request must come from same domain as rest of page, require lot of code to process, easier to process with jQuery
+				-> JSON: syntax similar to object literal notation, called from any domain, can contain malicious contain XSS, syntax is strict in breaking file
+			- JSON is plain text data, involves key-values, keys should be placed in double quotes, value can be strings, number, Boolean, array, object, null
+			i.e.
+			{
+				"location": "San Francisco, CA",
+				"capacity": 270,
+				"booking": true
+			}
+			- JavaScript's JSON object can turn JSON data into a JavaScript object and can convert a JavaScript object into a strong
+				-> JSON.stringify() converts JavaScript objects into a string, formatted using JSON
+				-> JSON.parse() processes a string containing JSON data and converts it into JavaScript objects ready for the browser to use
+				-> server response 200 for okay, 304 not modified, 404 not found, 500 internal error on server
+			i.e. loading HTML with Ajax
+			var xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				// Conditional check won't work locally, only on a server
+				if (xhr.status === 200) { // if server status okay
+					document.getElementById('content').innerHTML = xhr.responseText;
+				}
+			};
+			xhr.open('GET', 'data/data.html', true);
+			xhr.send(null);
+			// loading XML with Ajax -> XML must be turned into HTML
+			i.e. loading JSON with Ajax: when JSON data reaches the browser the script must then convert the string into a JavaScript object known as deserializing an object with parse()
+			-> stringify() converts objects into a string using JSON notation to be sent back to server known as serializing an object
+			i.e.
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'data/data.json', true);
+			xhr.send(null);
+			xhr.onload = function() {
+				if (xhr.status === 200) {
+					responseObject = JSON.parse(xhr.responseText);
+					var newContent = '';
+					for (var i = 0; i < responseObject.events.length; i++) {
+						newContent += '<div class="event">';
+						newContent += '<img src="' + responseObject.events[i].map + '" ';
+						newContent += 'alt="' + responseObject.events[i].location + '" />';
+						newContent += '<p><b>' + responseObject.events[i].location + '</b><br>';
+						newContent += responseObject.events[i].date + '</p>';
+						newContent += '</div>';
+					}
+					document.getElementById('content').innerHTML = newContent;
+				}
+			}
+			- Ajax works smoothly with data from your own server but for security reasons browsers do no load Ajax response from other domains known as cross-domain request -> three workarounds
+				-> load data from remote server by creating a file on your server that collects the data from the remote server and other pages on your site then request the data from the file on your server that gets it from the remote server called a proxy, relies upon creating pages in server-side languages (ASP.net, PHP, NodeJS, or Ruby)
+				-> JSONP involves adding a <script> element into the page which loads the JSON data from another server because no restrictions on the source of script in a <script> element
+					--> needs function that will process JSON data that the server sends, requests the data from the server using a <script> element and src attribute
+					--> JSON-formatted data is sent as an argument to the function/"padding"
+					--> file on server is often written so you can specify the name of the function that will process the data that is returned: http://example.org/upcomingEvents.php?callback=showEvents
+				-> browser and server communicate by sending information to each other using HTTP headers - Cross-Origin Resource Sharing or CORS involves adding extra information to the HTTP headers to let the browser and server know that they should be communicating with each other
+			- jQuery Ajax requests only data from a server: .load() - loads HTML fragments into an element, $.get() - loads data using the HTTP GET method used to request data from the server, $.post() - loads data using HTTP POST used to send data that updates data on server, $.getJSON(), $.getScript(), $.ajax()
+				-> has object called jqXHR which makes it easier to handle the data returned from the server -> responseText, responseXML, status, statusText
+				-> .done(), .fail(), .always(), .abort()
+				-> $('#content').load('jq-ajax3.html #content');
+				-> $.get(url[, data][, callback][, type]) - url specifies where the data is fetche dform, data provides any extra information to send to server, callback indicates the function that should be called when data is returned, type shows the type of data to expect from the server
+				-> POST method is used when sending form data to a server, .serialize() selects all of the information from the form, puts it into a string ready to send to server and encodes characters that cannot be used in a query string, sends successful form controls
+				-> can check whether a page is being requested by an Ajax call using the X-Requested-With header and if has value of XMLHttpRequest you know it is Ajax request
+				-> parameters of post include the url of the page that the data is being sent to, the data that was just coollected from the form, and the callback function that will display the results
+				$.getJSON('data/rates.json')
+				.done(function(data) {
+					// successful server return
+				}).fail(function() {
+					// unsuccessful server return
+				}).always(function() {
+					// always running
+				});
+				$.ajax({
+					type: "POST",
+					url: url,
+					timeout: 2000,
+					beforeSend: function() {
+						$content.append('<div id="load">Loading</div>');
+					},
+					complete: function() {
+						$('#loading').remove();
+					},
+					success: function(data) {
+						$content.html($(data).find('#container')).hide().fadeIn(400);
+					},
+					fail: function() {
+						$('#panel').html('<div class="loading">Please try again soon.</div>');
+					}
+				});
+		Ch. 9 APIS
+		- User interfaces allow humans to interact with programs; application programming interfaces let programs including scripts talks to each other
+			-> DOM is an API; jQuery is a JS file with an API -> allow you to access and update a web page that is loaded in the browser and respond to events
+		- HTML5 APIs: geolocation to tell where the user is located; localStorage/sessionStorage to store information in the browser when a user closes tab/window or while tab/window is open; history to show how to access items from the browser's history
+		- can check if browser supports object through conditions
+		i.e.
+		if (navigator.geolocation) { ... } else { ... }
+			-> library called Modernizr handles cross-browser issues and checks if browser supports recent features
+		- Modernizr is a script you can use in your pages to tell whether the browser supports features of HTML, CSS, and JavaScript -> can do if (Modernizr.geolocation) { ... }
+		- geolocation provides data in the form of longitude and latitude points, check first if browser supports the object
+			-> navigator.geolocation.getCurrentPosition(success, fail): asynchronous request; success - Position, fail - PositionError
+		- before HTML5 cookies were tha main mechanism for storing information but they cannot hold much data, are sent to the server every time you request a page from that domain and not secure -> storage object (local and session)
+			-> browsers store 5MB of data per domain in a storage object, employ a same origin policy which means data can only be accessed by other pages in the same domain
+			-> http:// = protocol; subdomain = www.; domain = google.com; port (usually 80 for web pages) = :80
+			-> setItem() and getItem(), .length, commonly used to store JSON-formatted data and parse() is used to turn the JSON-formatted data into a JS object and stringify() is used to transform objects into JSON-formatted strings
+			-> synchronous storage and access
+		- browser's history remembers the pages you visited and history API can be used to update the location bar and history
+			-> each tab or window in browser keeps its own history of pages you have viewed
+			-> can update the browser history stack using the pushState() and replaceState() methods, information added to history object when Ajax request is made
+			-> to help show the right content, the onpopstate event fires whenever the user requests a new page to load the appropriate content into the page, uses the location object and the state information in the history objects
+		- jQuery UI is a suite of jQuery plugins that extends jQuery with a set of methods to create widgets, effects, interactions, theme roller
+			-> common structure: jQuery is loaded, plugin is loaded, anonymous function runs when the page is ready
+		- AngularJS is a framework that makes it easier to create web apps that write, read, update, and delete dadta in a database on a server
+			-> model view controller or MVC, templating, data binding; separates content (HTML), presentation (CSS), and behavior (JavaScript)
+			-> View is what the user sees, HTML page in web app, lets you create templates with spaces for particular types of content, if user changes values in the view, commands are sent up the chain to update the model
+			-> ViewModel or controller will update the view if there are changes to the model and will update the model if there are changes in the view -> task of keeping data synchronized between the two is known as data binding
+			-> the Model is usually stored in the database and managed by server-side code that can access and update the model; when the model has been updated, change notifications are sent to the ViewModel and can be passed onto the View to keep it updated
+			-> attributes that start with ng- (short for Angular) called directives
+			i.e.
+			<html ng-app>
+			...
+			<input ng-model="name" type="text"/>
+			<textarea ng-model="message"></textarea>
+			...
+			{{name}}
+			{{message}} // automatically takes the content of the form elements and writes it into the page where the corresponding curly braces are
+			-> controller or ViewModel can use a constructor function that is passed another object called $scope as an argumenet -> $scope object properties set in the constructor function i.e. ng-controller="BasketCtrl" -> controller can act also as the model in sharing data with the view if no database
+			-> HTML file can be called a template because it will display whatever data is in the corresponding controller
+			i.e.
+			<table ng-controller="BasketCtrl">
+				... {{ description }}
+				... {{ cost }}
+				ng-model="qty"
+				{{qty * cost | currency }}
+			function BasketCtrl($scope) {
+				$scope.description = 'Single ticket';
+				$scope.cost = 9;
+				$scope.qty = 1;
+			}
+			-> data binding: data in the JavaScript file is bound to the HTML and vice versa; if the ViewModel changes, the view updates, if the view changes, the ViewModel updates
+			-> page can have multiple controllers, each of which has its own scope for ann element
+			-> controller (JS file) collects the model (JSON data) from a file on the server/database to update the view in the HTML
+			-> to collect data, Angular uses $http service and uses the XMLHTTPRequest object to make Ajax requests; uses get(), post(), and jsonp() to fetch data; uses delete() and create new records with put()
+			i.e.
+			<table ng-controller="TimetableCtrl">
+				...
+				<tr ng-repeat="session in sessions">
+					<td>{{ session.time }}</td>
+					<td>{{ session.title }}</td>
+					<td>{{ session.detail }}</td>
+				</tr> // creates a new table row for each object in sessions array
+			</table> // HTML template or view is where the loop occurs
+			function TimetableCtrl($scope, $http) {
+				$http.get('js/items.json')
+					.success(function(data) { $scope.sessions = data.sessions; })
+					.error(function(data) { console.log('error'); });
+			}
+			{
+				"sessions": [
+					{"time": "09.00", "title": "Intro to 3D Modeling", "detail": "Come..."}
+					{"time": "10.00", "title": "Circuit Hacking", "detail": "Head to the..."}
+				]
+			}
+			-> use of templates that take content from JavaScript and update the HTML page, rise in MVC-influenced frameworks for web-based application development, use of libraries to save developers having to write so much code i.e. another one is Backbone
+		- large websites expose their APIs that allow you to access and update the data on their sites i.e. Facebook, Twitter, Google Maps to show maps in your web pages
+			-> need to register and request an API key in order to get data from their servers
+			-> maps object stored within google object, Map(), mapOptions
+		- APIs let you write code that will make a request, asking another program or script to do something and also specify the format in which the repsonse will be given
+	Ch. 10 Error Handling & Debugging
+		- JavaScript interpreter uses the concept of execution contexts - one global execution context that correspond to variable scope
+		- every statement in a script lives in one of three execution contexts: global context (code that is in a script but not in a function and only one global context in any page), function context (within each function), eval context(text is executed like code in an internal function called eval())
+		- JavaScript interpreter processes one line of code at a time and when a statement needs data from another function, it stacks the new function on top of the current task in creating a new execution context
+		- each time a script enters a new execution context, there are two phases of activity: prepare by creating a new scope; variables, functions, and arguments are created; value of this keyword is determine; execute by assigning values to variables and reference functions and run code, execute statements
+		- hoisting: can call functions before they have been declared and assign a value to a variable that has not yet been declared because any variables and functions within each execution context are created before they are executed
+			-> preparation phase often described as taking all of the variables and functions and hoisting them to the top of execution context; each creates its own variables object
+		- functions are said to have lexical scope and are linked to the object they were defined within; for each execution context, the scope is the current execution context's variables object, plus the variables object for each parent execution context
+			-> imagine each function is a nesting doll, children can ask parents for information in their variables but parents cannot get variables from children; each child will get same answer from same parent
+			i.e.
+			var greeting = (function() {
+				var d = new Date();
+				var time = d.getHours();
+				var greeting = greetUser();
+				function greetUser() {
+					if (time < 12) {
+						var msg = 'Good morning ';
+					} else {
+						var msg = 'Welcome ';
+					}
+					return = msg + getName();
+
+					function getName() {
+						var name = 'Molly';
+						return name;
+					}
+				}
+			});
+			alert(greeting);
+		- if a statement generates an error then it throws an exception -> goes through the stack looking for error handling code until it gets to the global context and creates an Error object
+			-> SyntaxError, ReferenceError (not declared/within scope), TypeError (unexpected data type cannot be coerced), RangeError, URIError, EvalError
+			-> SyntaxError: mismatching or unclosed quotes - unexpected EOF, missing closing bracking -expected token ')', missing comma in array - expected token ']', malformed property name - expected an identifier but found 'name' instead
+			-> ReferenceError: variable is undeclared or named function is undefined - can't find variable randomFunction
+			-> TypeError caused by trying to use an object or method that does not exist/ dom node doesn't exist
+		- Chrome and Firefox developer tools to debug script or try,catch,throw, and finally statements to handle errors gracefully such as for requesting data from a third party
+			-> console.info(), console.warn(), console.error(), console.group()-console.groupEnd(), console.table(), console.assert()
+			-> pause execution of a script on any line using breakpoints
+			-> can add conditional breakpoint to stop on that line if true
+			-> can create a breakpoint in code using just the debugger keyword (debugger;) and can place within a conditional statement to trigger if the condition is met
+			-> try { ... } // try to execute this code (continue, break or return will go to the finally option and must have catch, finally or both)
+				 catch (exception) { ... } // good to inform users if issues on live website arise
+				 finally { ... } // will run either way
+			-> can generate your own errors before the interpreter creates them with the throw new Error('message'); i.e. can throw error for NaN when string is involved in mathematical calculations  with numbers other than addition
+			-> can use jslint/jshint and jsonlint for validation tools, Stack Overflow, another browser, console logging, stripping it back, explaining the code
+	Ch. 11 Content Panels
+		- content panels allow you to showcase extra information within a limited space such as accordions (titles which when clicked expand to show a larger panel of content), tabbed panels (show one panel but click on another tab, the panel is changed), modal windows (lightboxes, hidden panel displayed), photo viewer (display different images within the same space when the user clicks on the thumbnails, and responsive slider (show panels of content that slide into view as the user navigates between them)
+		- creating an accordion with ul, label button, hidden panel holding content in a div
+		i.e.
+		$('.accordion').on('click', '.accordion-control', function(e){
+			e.preventDefault();
+			$(this).next('.accordion-panel').not(':animated').slideToggle();
+		});
+		- creating tabbed panel with unordered list and each li element represents a tab and within each tab is a link with href attribute; each panel is stored in a div with an id attribute that shares same value
+		i.e.
+		$('.tab-list').each(function() {
+			var $this = $(this);
+			var $tab = $this.find('li.active');
+			var $link = $tab.find('a');
+			var $panel = $($link.attr('href'));
+
+			$this.on('click', '.tab-control', function(e) {
+				e.preventDefault();
+				var $link = $(this);
+				var id = this.hash;
+
+				if (id && !$link.is('.active')) {
+					$panel.removeClass('active');
+					$tab.removeClass('active');
+
+					$panel = $(id).addClass('active');
+					$tab = $link.parent().addClass('active')
+				}
+			});
+		});
+		- a design pattern is a term used to describe a common approach to solving a range of programming tasks
+			-> module pattern is a popular way to write code that contains both public and private logic
+			i.e.
+			var modal = { // public functions
+				center: function() {
+					...
+				},
+				open: function(settings) {
+					...
+				},
+				close: function() {
+					...
+				}
+			};
+			var modal = (function() { // 
+				...
+				// private vars
+				return { // available on the modal object for public use
+					center: function() {
+						...
+					}
+				};
+			}());
+		- photo gallery created with one large <div> element that will hold the main picture and a second <div> element to hold a set of thumbnails that show the other images you can view
+			-> cache already loaded images in an object, show right image when loading images asynchronously by handling requests
+			-> sliders with animation/advance timer i.e. var timeout = setTimeout(function, delay); clearTimeout(timeout);
+		- create a jQuery plugin that manipulates a jQuery selection and can return a Jquery selection (pass it set of DOM element sin a jQuery selection, manipulate the DOM elements, return jQuery object so tha tothe rfunctions can be chained off it)
+			-> can create a function that extends the functionality of jQuery: $.fn.accordion = function(speed) { // Plugin will go here } - plugins written as methods that are added to the .fn object
+			-> must return the jQuery selection to chain methods by doing return this
+			-> protect the namespace with IIFE to create function-level scope for the code in the plugin
+			i.e.
+			(function($){												
+				$.fn.accordion = function(speed) { // return the jQuery selection
+					// Plugin code will go here
+					this.on('click', '.accordion-control', function(e) {
+						e.preventDefault();
+						$(this)
+							.next('.accordion-panel')
+							.not(':animated')
+							.slideToggle(speed);
+					});
+
+					return this; // return the jQuery selection
+				}
+			})(jQuery); // pass in jQuery object
+			$('.menu').accordion(500); // jquery.accordion.js
+			// pass in more values through options parameter that contains object literal, jQuery represents the object passed into the function that contains the selection of elements that the plugin is working with
+		- immediately invoked function expressions (IIFEs) are used to contain scope and prevent naming collisions
+	Ch. 12 Filtering, Searching, and Sorting
+		- filtering lets you reduce a set of values, by selecting  the one stha tmeet stated criteria, search that match one or more words specified, sorting to reorder set of items on page based on criteria
+		- array is an object with property names as index numbers
+			-> adding items: push() to add one or more items and return number of items in it, unshift() to add one or more items to start of array and returns new length of it
+			-> removing items: pop() to remove last element from array and return the element, shift() to remove first element and return it
+			-> iterating: forEach() to executes a function once for each element in the array, some() checks if some elements in array pass a test specified by a function, every() checks if all elements in array pass a test specified by function
+			-> combining: concat() to create new array containing this array and other arrays/values
+			-> filtering: filter() to create new array with elements that pass a test specified by a function
+			-> reordering: sort() reorders items in array using a compare function, reverse()
+			-> modifying: map() calls a function on each element in array and creates new array with results
+		- jQuery collections are array-like objects representing DOM elements
+			-> adding or combining items: .add() adds elements to a set of matched elements
+			-> removing items: .not() removes elements from a set of matched elements
+			-> iterating: .each() applies same function to each element in matched set
+			-> filtering: .filter() reduces number of elements in matched set to those that either match a selecctor or pass a test specified by a function
+			-> converting: .toArray() converts a jQuery collection to an array of DOM elements
+		- older browsers don't support latest methods of Array object but script called ECMAScript 5 Shim can reproduce these; ECMAScript is the standard that modern JavaScript is based upon (ECMA International) 
+			-> W3C looks after HTML and CSS
+			-> forEach(), some(), every(), filter(), map() not supported in IE 8 or older, need shims to reproduce functionality for legacy browser
+		- objects in an array or as properties of other objects
+			-> order is important for arrays with sort() and length
+			i.e.
+			var people = [
+				{name: 'Casey', rate: 70, active: true}
+			];
+			people[0].name; // forEach(), push, pop
+			var people = {
+				Casey = {rate: 70, active: true}
+			}; 
+			people.Casey.rate; // delete or set to blank, iterate with Object.keys
+			-> looping through array and adding to table
+			var $tableBody = $('<tbody></tbody>');
+			for (var i = 0; i < results.length; i++) {
+				var person = results[i];
+				var $row = $('<tr></tr>');
+				$row.append($('<td></td>').text(person.name));
+				$row.append($('<td></td>').text(person.rate));
+				$tableBody.append($row);
+			}
+			$('thead').after($tableBody);
+			-> forEach() is flexible to perform any kind of processing with the items in an array, anonymous function acts as a filter
+			i.e.
+			var results = [];
+			people.forEach(function(person) {
+				if (person.rate >= 65 && person.rate <= 90) {
+					results.push(person);
+				}
+			});
+			-> filter() applies same function to each item in the array but it only returns true or false and if true it adds that item to a new array
+			i.e.
+			function priceRange(person) {
+				return (person.rate >= 65) && (person.rate <= 90);
+			};
+			var results = [];
+			results = people.filter(priceRange);
+		- storing references to objects and DOM nodes (jQuery collections)
+			-> i.e. rows.push({ person: this, $element: $row }); // person points to original object in people array and does not copy it, store a reference to each individual row of the table and no need to select or create the row again
+		- HTML5 allows you to store any data with an element using an attribute that starts with the word data-
+			-> filtered image gallery with data-tags
+		i.e.
+		(function() {
+			$('<button/>', {
+				text: 'Show All',
+				class: 'active',
+				click: function() {
+					$(this)
+						.addClass('active')
+						.siblings()
+						.removeClass('active');
+					$imgs.show();
+				}
+			}).appendTo($buttons);
+
+			$.each(tagged, function(tagName) {
+				$('<button/>', {
+					text: tagName + ' (' + tagged[tagName].length + ')',
+					click: function() {
+						$(this)
+							.addClass('active')
+							.siblings()
+							.removeClass('active');
+						$imgs
+							.hide()
+							.filter(tagged[tagName])
+							.show();
+					}
+				}).appendTo($buttons);
+			});
+		}());
+			-> livesearch based on the alt text for the image and the images are narrowed down to match the search criteria as you type; uses indexOf() of the String object to check for the search term, case sensitive and should use toLowerCase() and returns -1 if not found; use a cache object to store the text along with images that uses that text
+			cache = [ {element: img reference, text: 'alt-text'}]
+		i.e.
+		(function() {
+			var $imgs = $('#gallery img');
+			var $search = $('#filter-search');
+			var cache = [];
+
+			$imgs.each(function() {
+				cache.push({
+					element: this,
+					text: this.alt.trim().toLowerCase()
+				});
+			});
+
+			functionfilter() {
+				var query = this.value.trim9).toLowerCase();
+
+				cache.forEach(function(img) {
+					var index = 0;
+					if (query) {
+						index = img.text.indexOf(query);
+					}
+
+					img.element.style.display = index === -1 ? 'none' : '';
+				});
+			}
+
+			if ('oninput' in $search[0]) {
+				$search.on('input', filter);
+			} else {
+				$search.on('keyup', filter);
+			}
+		}());
+			-> sort() orders items lexicographically, unexpected results with sorting numbers and must create a compare function; <0 involves a before b, 0 means in same order, >0 means b before a
+			i.e. ascending order for numbers
+			var prices = [1,2,125,2,19,14];
+			prices.sort(function(a, b) {
+				return a - b;
+			});
+				--> table sorting with data-sort holding data type in <th>, compare functions for name()- strings, duration()- mins/secs, date()- dates
+			i.e.
+			var compare = {
+				name: function(a, b) {
+					a = a.replace(/^the /i, '');
+					b = b.replace(/^the /i, '');
+
+					if (a < b) {
+						return -1;
+					} else {
+						return a > b ? 1 : 0;
+					}
+				},
+				duration: function(a, b) {
+					a = a.split(':');
+					b = b.split(':');
+
+					a = Number(a[0]) * 60 + Number(a[1]);
+					b = Number(b[0]) * 60 + Number(b[1]);
+
+					return a + b;
+				},
+				date: function(a, b) {
+					a = new Date(a);
+					b = new Date(b);
+
+					return a - b;
+				}
+			}; // support older browsers with a shim script
+	Ch. 13 Form Enhancement & Validation
+		- validation checks whether the user has provided the right information before submitting the form
+		- need fallback code to handle IE5-8 that used a different event model than other browsers i.e addEvent(el, event, callback); IE uses attachEvent() and the event object is not automatically passed into the event-handling function and not available via the this keyword rather than addEventListener()
+		i.e.
+		// Helper function to add an event listener
+		function addEvent(el, event, callback) {
+			if ('addEventListener' in el) {
+				el.addEventListener(event, callback, false); // use addEventListener if it works
+			} else { // make a callback method of el
+				el['e' + event + callback] = callback;
+				el[event + callback] = function() {
+					el['e' + event + callback](window.event); // call prev function
+				};
+				el.attachEvent('on' + event, el[event + callback]);
+			} // to cal second function which then calls the first one
+		- <form> element have properties such as action(URL the form is submitted to), method (GET or POST), name (more common to select a formo by the value of its id attribute), elements; have methods such as submit(), reset(); have events submit, reset
+			-> forms collection holds a reference to each of the <form> elements that appear on a page i.e. document.forms[1]; or access by value of its name attribute i.e. document.forms.login
+			-> each <form> element in the page also has an elements collection that holds all of the form controls within that form i.e. document.forms[1].elements[0]; or document.forms[1].elements.password;
+			-> form control properties such as value, type, name, defaultValue, form, disabled, checked, defaultChecked, selected; methods such as focus(), blur(), select(), click(); events such as blur, focus, click, change, input, keydown, keyup, keypress
+			-> <select> and <option> have properties such as options, selectedIndex, length, multiple, selectedOptions; methods such as add(option, before), remove(index)
+		- HTML5 adds form elements and attributes to perform tasks that had previously been performed by JavaScript but appearance vary a lot between different browsers and their error messages i.e. type='search', 'email', 'url', 'telephone', 'number', 'range', 'color', 'date', 'month', 'week', 'time', 'datetime'
+			-> attributes such as autofocus, placeholder, required, min, max, step, value, autocomplete, pattern, novalidate
+			-> older desktop browsers do not support the new input types or present the elements and error messages in different ways/inconsistent
+			-> most modern mobile browsers support the main HTML5 elements and show a keyboard that is adapted to the type/accessible
+			-> polyfill is a script that provides functionality you may expect a browser to support by default, use a JS or jQuery plugin and often come with CSS files that are used to style the functionality the script adds
+			-> feature detection means checking whether a browser supports a feature or not such as modernizr.js with conditional loader and if a feature is not supported a polyfill script will be loaded to emulate that feature i.e. Require.js is another conditional loader
+			i.e.
+			if (!Modernizr.cssanimations) {
+				// CSS animations are not supported
+				// Use jQuery animation instead
+			} -> commonly used with YepNope.js, a conditional loader of polyfills, passed object literal with three properties of test, yep file to load if condition is true and nope file to load if condition returns false
+			i.e.
+			yepnope({
+				test: Modernizr.cssanimations,
+				yep: 'css/animations.css',
+				nope: ['js/jquery.js', 'js/animate.js']
+			});
+		- validation is the process of checking whether a value meets certain rules; faster to check values in the browsers than it is to send data to the server to be checked, saves resources on the server, proper format
+			-> keep track of a valid object for all forms, master flag for submitting and errors
+			i.e.
+			function isRequired(el) {
+				return ((typeof el.required === 'boolean') && el.required) ||
+					(typeof el.required === 'string');
+			}
+			function isEmpty(el) {
+				return !el.value || el.value === el.placeholder;
+			}
+			var validateType = { // check with regex to check for patterns in strings
+				email: function(el) {
+					// Check email address
+					// var valid = /[^@]+@[^@]+/.test(el.value);
+				},
+				number: function(el) {
+					// Check if it is a number
+				},
+				date: function(el) {
+					// Check date format
+				}
+			}
+		- Regular expressions search for characters that form a pattern and can replace those characters with new ones
+			-> . : any single character except newline
+			-> [] : single character contained within brackets
+			-> [^ ]: single character not contained within brackets
+			-> ^ starting position in any line
+			-> $ ending position in any line
+			-> () sub expressions called a block or capturing grouop
+			-> * preceding element zero or more times
+			-> \n : nth marked subexpression
+			-> {m,n} : preceding element at least m, but no more than n, times
+			-> \d : digit
+			-> \D : non-digit character
+			-> \s : whitespace character, \S: anything but whitespace
+			-> \w : alphanumeric character, \W: non-alphanumeric character
+		i.e.
+		/^\d+$/ : number
+		^[ \s]+ : whitespace at start of line
+		/[^@]+@[^@]+/ : email
+		- note dependencies or scripts that are required in another script to be included in the page in order to work
+		- code duplication is bad practice, DRY principle: don't repeat yourself and apply code reuse
+
+		

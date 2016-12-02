@@ -1,0 +1,39 @@
+MEAN STACK SPA SETUP:
+
+app
+	models/
+		... model files ...
+
+	routes.js
+	config
+		db.js
+	node_modules <!-- created by npm install -->
+	public <!-- all frontend and angular stuff -->
+		css
+		js
+			controllers <!-- angular controllers -->
+			services <!-- angular services -->
+			app.js <!-- angular application -->
+			appRoutes.js <!-- angular routes -->
+		img
+		libs <!-- created by bower install -->
+		views
+			... html files ...
+		index.html
+	.bowerrc <!-- tells bower where to put files (public/libs) -->
+	bower.json <!-- tells bower which files we need -->
+	package.json <!-- tells npm which packages we need -->
+	server.js <!-- set up our node application -->
+
+	Postman (works with CORS public API)
+
+	bower install, npm install
+
+	grunt serve
+
+	yeoman (yo angular, generator-angular, generator-karma)
+	yo angular:route account
+	yo angular:route account-add --url=create/account
+	yo angular:route account-view --url=account/:id
+	yo angular:route account-delete --url=account/:id/delete
+	yo angular:route account-edit --url=account/:id/edit

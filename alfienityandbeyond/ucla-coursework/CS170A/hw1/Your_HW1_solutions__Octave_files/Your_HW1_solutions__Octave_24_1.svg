@@ -1,0 +1,745 @@
+<svg height="420px" viewBox="0 0 576 432" width="560px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 5.0 patchlevel 4 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect fill="none" height="432" width="576" x="0" y="0"/>
+<defs>
+
+	<circle id="gpDot" r="0.5" stroke-width="0.5"/>
+	<path d="M-1,0 h2 M0,-1 v2" id="gpPt0" stroke="currentColor" stroke-width="0.333"/>
+	<path d="M-1,-1 L1,1 M1,-1 L-1,1" id="gpPt1" stroke="currentColor" stroke-width="0.333"/>
+	<path d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1" id="gpPt2" stroke="currentColor" stroke-width="0.333"/>
+	<rect height="2" id="gpPt3" stroke="currentColor" stroke-width="0.333" width="2" x="-1" y="-1"/>
+	<rect fill="currentColor" height="2" id="gpPt4" stroke="currentColor" stroke-width="0.333" width="2" x="-1" y="-1"/>
+	<circle cx="0" cy="0" id="gpPt5" r="1" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt6" stroke="none" xlink:href="#gpPt5"/>
+	<path d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z" id="gpPt7" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt8" stroke="none" xlink:href="#gpPt7"/>
+	<use id="gpPt9" stroke="currentColor" transform="rotate(180)" xlink:href="#gpPt7"/>
+	<use fill="currentColor" id="gpPt10" stroke="none" xlink:href="#gpPt9"/>
+	<use id="gpPt11" stroke="currentColor" transform="rotate(45)" xlink:href="#gpPt3"/>
+	<use fill="currentColor" id="gpPt12" stroke="none" xlink:href="#gpPt11"/>
+	<path d="M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z" id="gpPt13" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt14" stroke="none" xlink:href="#gpPt13"/>
+	<filter filterUnits="objectBoundingBox" height="1" id="textbox" width="1" x="0" y="0">
+	  <feFlood flood-color="white" flood-opacity="1" result="bgnd"/>
+	  <feComposite in="SourceGraphic" in2="bgnd" operator="atop"/>
+	</filter>
+	<filter filterUnits="objectBoundingBox" height="1" id="greybox" width="1" x="0" y="0">
+	  <feFlood flood-color="lightgrey" flood-opacity="1" result="grey"/>
+	  <feComposite in="SourceGraphic" in2="grey" operator="atop"/>
+	</filter>
+</defs>
+<g color="white" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.00">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.00">
+	<g shape-rendering="crispEdges" stroke="none">
+		<polygon fill="rgb(255, 255, 255)" points="19.6,408.0 559.0,408.0 559.0,39.2 19.6,39.2 "/>
+	</g>
+</g>
+<g color="black" fill="none" stroke="rgb(255, 255, 255)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,408.0 L28.0,408.0 M559.1,408.0 L550.7,408.0  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,411.7)">
+		<text><tspan font-family="{}">2</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,355.3 L28.0,355.3 M559.1,355.3 L550.7,355.3  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,359.0)">
+		<text><tspan font-family="{}">3</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,302.6 L28.0,302.6 M559.1,302.6 L550.7,302.6  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,306.3)">
+		<text><tspan font-family="{}">4</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,249.9 L28.0,249.9 M559.1,249.9 L550.7,249.9  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,253.6)">
+		<text><tspan font-family="{}">5</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,197.2 L28.0,197.2 M559.1,197.2 L550.7,197.2  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,200.9)">
+		<text><tspan font-family="{}">6</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,144.5 L28.0,144.5 M559.1,144.5 L550.7,144.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,148.2)">
+		<text><tspan font-family="{}">7</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,91.8 L28.0,91.8 M559.1,91.8 L550.7,91.8  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,95.5)">
+		<text><tspan font-family="{}">8</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,39.1 L28.0,39.1 M559.1,39.1 L550.7,39.1  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(14.0,42.8)">
+		<text><tspan font-family="{}">9</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,408.0 L19.6,399.6 M19.6,39.1 L19.6,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(19.6,423.7)">
+		<text><tspan font-family="{}">1</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M109.5,408.0 L109.5,399.6 M109.5,39.1 L109.5,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(109.5,423.7)">
+		<text><tspan font-family="{}">2</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M199.4,408.0 L199.4,399.6 M199.4,39.1 L199.4,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(199.4,423.7)">
+		<text><tspan font-family="{}">3</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M289.4,408.0 L289.4,399.6 M289.4,39.1 L289.4,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(289.4,423.7)">
+		<text><tspan font-family="{}">4</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M379.3,408.0 L379.3,399.6 M379.3,39.1 L379.3,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(379.3,423.7)">
+		<text><tspan font-family="{}">5</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M469.2,408.0 L469.2,399.6 M469.2,39.1 L469.2,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(469.2,423.7)">
+		<text><tspan font-family="{}">6</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M559.1,408.0 L559.1,399.6 M559.1,39.1 L559.1,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(559.1,423.7)">
+		<text><tspan font-family="{}">7</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M19.6,39.1 L19.6,408.0 L559.1,408.0 L559.1,39.1 L19.6,39.1 Z  " stroke="black"/></g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(289.3,21.8)">
+		<text><tspan font-family="{}">random projection of the iris data</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+	<g id="gnuplot_plot_1a"><title>gnuplot_plot_1a</title>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g onmousemove="gnuplot_svg.showHypertext(evt,'')" onmouseout="gnuplot_svg.hideHypertext()"><title> </title>
+	<use color="rgb(  0,   0, 255)" transform="translate(77.4,324.4) scale(2.00)" xlink:href="#gpPt6"/></g>
+	<use color="rgb(  0,   0, 255)" transform="translate(75.1,331.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(66.8,338.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(78.1,339.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(76.4,327.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(104.1,302.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(74.4,336.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(82.5,326.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(69.7,346.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(79.0,333.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(87.0,313.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(86.6,331.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(71.7,338.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(47.7,357.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(72.7,304.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(95.1,295.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(79.2,307.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(79.7,320.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(104.9,297.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(86.1,318.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(99.2,311.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(88.4,314.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(47.3,345.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(102.9,308.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(105.3,327.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(88.6,325.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(93.4,316.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(84.7,320.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(78.5,321.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(85.5,334.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(86.5,331.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(91.4,305.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(82.7,323.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(82.1,311.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(81.3,329.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(63.8,330.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(75.5,312.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(73.1,334.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(63.5,348.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(83.6,323.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(72.5,324.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(66.5,341.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(63.6,347.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(98.0,308.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(113.3,309.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(76.3,330.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(90.0,321.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(72.0,340.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(85.9,316.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(76.3,327.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(330.3,174.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(313.8,192.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(343.9,171.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(268.0,235.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(320.8,188.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(301.5,222.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(327.5,188.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(211.3,275.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(317.4,193.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(261.1,241.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(224.6,270.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(289.7,211.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(266.4,232.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(320.5,203.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(244.5,236.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(308.4,188.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(305.1,217.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(270.7,236.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(311.1,199.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(258.4,241.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(334.0,192.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(274.7,216.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(337.2,190.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(315.9,211.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(296.6,203.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(307.3,191.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(334.2,180.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(352.5,168.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(309.3,205.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(232.3,247.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(251.0,246.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(242.5,251.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(262.9,231.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(348.8,193.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(303.0,224.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(311.9,200.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(329.3,180.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(301.4,205.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(275.7,230.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(268.1,235.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(290.8,234.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(314.4,204.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(269.1,230.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(212.3,272.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(281.7,229.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(280.7,230.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(282.9,226.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(294.4,209.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(197.1,268.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(276.6,227.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(429.0,136.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(353.6,187.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(422.0,128.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(387.8,169.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(411.6,144.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(470.8,104.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(302.0,231.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(442.0,129.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(404.3,154.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(445.0,106.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(363.6,161.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(372.4,166.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(393.9,142.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(348.5,188.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(365.2,167.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(381.9,149.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(383.8,164.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(480.8,95.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(494.9,89.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(340.1,199.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(412.1,128.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(341.4,192.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(475.7,103.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(344.2,178.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(405.4,143.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(422.4,136.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(337.0,182.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(342.2,184.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(395.7,154.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(405.3,146.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(432.9,124.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(459.7,100.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(398.0,150.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(349.8,188.2) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(376.3,192.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(445.4,98.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(401.9,144.9) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(382.8,167.7) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(335.0,189.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(388.8,140.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(406.0,132.4) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(374.7,136.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(353.6,187.8) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(423.5,129.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(414.6,127.0) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(378.8,141.5) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(352.6,173.3) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(369.7,160.1) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(386.1,154.6) scale(2.00)" xlink:href="#gpPt6"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(352.5,188.5) scale(2.00)" xlink:href="#gpPt6"/>
+</g>
+	</g>
+<g color="white" fill="none" stroke="rgb(  0,   0, 255)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2.00">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2.00">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(77.4,328.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(75.1,334.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(66.8,342.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(78.1,342.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(76.4,331.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(104.1,306.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(74.4,339.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(82.5,330.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(69.7,350.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(79.0,337.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(87.0,317.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(86.6,335.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(71.7,342.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(47.7,361.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(72.7,308.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(95.1,299.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(79.2,311.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(79.7,324.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(104.9,301.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(86.1,322.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(99.2,314.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(88.4,318.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(47.3,348.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(102.9,312.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(105.3,331.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(88.6,329.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(93.4,320.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(84.7,323.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(78.5,325.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(85.5,338.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(86.5,335.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(91.4,309.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(82.7,327.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(82.1,315.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(81.3,333.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(63.8,333.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(75.5,316.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(73.1,338.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(63.5,351.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(83.6,326.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(72.5,328.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(66.5,344.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(63.6,351.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(98.0,312.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(113.3,313.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(76.3,333.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(90.0,325.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(72.0,344.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(85.9,320.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(76.3,331.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  s</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(330.3,178.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(313.8,195.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(343.9,175.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(268.0,239.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(320.8,191.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(301.5,226.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(327.5,192.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(211.3,279.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(317.4,196.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(261.1,245.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(224.6,273.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(289.7,215.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(266.4,235.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(320.5,207.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(244.5,240.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(308.4,191.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(305.1,221.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(270.7,240.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(311.1,202.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(258.4,245.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(334.0,195.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(274.7,219.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(337.2,194.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(315.9,215.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(296.6,206.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(307.3,195.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(334.2,183.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(352.5,172.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(309.3,208.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(232.3,251.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(251.0,249.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(242.5,255.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(262.9,234.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(348.8,197.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(303.0,227.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(311.9,204.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(329.3,184.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(301.4,209.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(275.7,234.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(268.1,239.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(290.8,238.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(314.4,208.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(269.1,233.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(212.3,275.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(281.7,233.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(280.7,234.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(282.9,230.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(294.4,213.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(197.1,272.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(276.6,231.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  v</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(429.0,139.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(353.6,191.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(422.0,132.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(387.8,173.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(411.6,148.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(470.8,107.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(302.0,235.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(442.0,133.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(404.3,158.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(445.0,109.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(363.6,164.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(372.4,170.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(393.9,146.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(348.5,191.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(365.2,170.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(381.9,153.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(383.8,168.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(480.8,98.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(494.9,92.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(340.1,203.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(412.1,132.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(341.4,196.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(475.7,107.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(344.2,182.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(405.4,147.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(422.4,139.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(337.0,186.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(342.2,188.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(395.7,158.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(405.3,150.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(432.9,128.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(459.7,104.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(398.0,154.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(349.8,191.9)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(376.3,196.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(445.4,102.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(401.9,148.6)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(382.8,171.4)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(335.0,192.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(388.8,144.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(406.0,136.1)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(374.7,140.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(353.6,191.5)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(423.5,133.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(414.6,130.7)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(378.8,145.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(352.6,177.0)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(369.7,163.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(386.1,158.3)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(352.5,192.2)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">  V</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="rgb(  0,   0,   0)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+</g>
+</svg>

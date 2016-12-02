@@ -1,0 +1,232 @@
+NODEJS AND EXPRESSJS FREECODECAMP:
+
+Adding an account to npmjs.org
+	- npm adduser // new user
+	- npm whoami // see currently logged in user
+
+Npm helps you build projects and can tell about project in package.json
+	- npm install -g npm // update node package manager
+	- npm init --scope=<username> // new project
+	- npm help json // for documentation on those fields
+	- npm install <pkg> --save // install package and save it as dependency in package.json file
+	- dependencies are fetched from the registry, unpacked in the node_modules folder
+	- npm install <modulename> --save // install a module and update package.json dependency file
+	- npm ls // shows what you installed
+	- npm can be used as a task runner and scripts can run tests on startup i.e. "test": "node test.js"
+	- npm publish // push packages into the registry
+	- npm view // to view package details
+	- packages have version numbers following standard "SemVer"
+		-> 1.2.3 // Major version (update for breaking API changes).minor version (API additions).patch version(for every change)
+		-> npm version (major | minor | patch -> see npm help version), must always bump the version on update before publishing again
+		-> every published package have dist-tags which maps strings like "latest" (current version of package) to version numbers
+			--> npm dist-tag add <pkg>@<version> [<tag>]/ rm <pkg> <tag>
+			--> can point "latest" to something other than the most recent release and can't ever remove "latest" dist-tag
+	- npm outdated // to detect when someone else updates their package and thenr un npm install to pull them in
+		-> npm update // installs all dependencies to the latest version possible
+		-> npm rm or npm uninstall to remove the dependencies, can do --save to remove them from your package.json file
+	- can access command-line arguments via the global process object with an argv property i.e. process.argv -> ['node', '/path/to/your/program.js', command-line args...]
+	- buffer objects are node's way of efficiently representing arbitary arrays of data -> can be convertred to strings by calling the toString() i.e. var str = buf.toString()
+	- to perform a filesystem operation use the fs module -> to load this or any other "global" module use var fs = require('fs')
+		-> all synchronous or blocking filesystem methods in the fs module end with 'Sync'
+		-> fs.readFileSync('/path/to/file')  // returns Buffer object and must call .toString() to convert object to file line string
+		-> asynchronous by doing fs.readFile() and must collect value from a callback function that you pass in as second argument 
+			--> function callback (err, data) { ... }, check if first argument is truthy, Buffer object as second argument
+		i.e.
+		var fs = require('fs');
+		var file = process.argv[2];
+		// fs.readFile(file, 'utf8', callback) { ... }
+		fs.readFile(file, function(err, buffer) {
+			if (err) {
+				console.log('Filed to read file asynchronously');
+			} else {
+				var fileLines = buffer.toString().split('\n');
+				var numLines = fileLines.length;
+				console.log(numLines);
+			}
+		});
+		-> fs.readdir() takes pathname as first argument and a callback as its second -> function callback(err, list) { ... }
+			--> list = array of string filenames
+			--> const path = require('path'); use path.extname to return extension of path from last occurance of the period to end of string
+		i.e.
+		var fs = require('fs');
+		var path = require('path');
+		var folder = process.argv[2];
+		var ext = '.' + process.argv[3]
+		fs.readdir(folder, function(err, files) {
+			if (err) {
+				return console.error(err);
+			} else {
+				files.forEach(function(file) {
+					if (path.extname(file) === ext) {
+						console.log(file);
+					}
+				});
+			}
+		});
+	- to define a single function export, assign your function to the module.exports object, overwriting what is already there
+		-> module.exports = function(args) { ... }
+		-> use require() to load the module in original program file but local modules must be prefixed with './'
+		i.e. var mymodule = require('./mymodule.js');
+		-> function bar (callback) {
+			foo(function(err,data) {
+				if (err)
+					return callback(err); // early return
+				// ... no error, continue doing things with 'data'
+
+				// all went well and call calback with 'null' for the error argument
+				callback(null, data);
+			});
+		}
+		i.e.
+		// program.js
+		var filterFn = require('./filter.js');
+		var dir = process.argv[2]; 
+		var ext = process.argv[3];
+
+		// Call single filter function export module 
+		filterFn(dir, ext, function(err, files) {
+			// Return on error in reading directory files
+			if (err)
+				console.error('There was an error: ' + err);
+
+			// Print each filtered file on a new line
+			files.forEach(function(file) {
+				console.log(file);
+			});
+
+		});
+
+		// filter.js
+		var fs = require('fs');
+		const path = require('path');
+
+		module.exports = function(dir, ext, callback) {
+			fs.readdir(dir, function(err, files) {
+				// Return on error in reading directory files
+				if (err)
+					return callback(err);
+
+				// Filter the files in the directory by extension name
+				files = files.filter(function(file) {
+					return path.extname(file) === '.' + ext;
+				});
+
+				// No error, return all the filtered files
+				callback(null, files);
+			});
+		}
+	- check out the http core module to do GET/POST requests, first argument can be the URL you want to GET, callback has the signature function callback(response) { ... }
+		-> response object is a Node Stream object that emit events; three events that are of most interest are 'data', 'error', and 'end'
+		-> i.e. listen to an event by response.on("data", function(data) { ... }), "data" event is emitted when a chunk of data is available and can be processed
+		-> response object/ Node Stream from http.get() has a setEncoding() method to call with "utf8" to have "data" events emit Strings rather than the standard Node Buffer objects you have to explicitly convert to Strings
+		i.e.
+		var http = require('http');
+		var url = process.argv[2];
+		http.get(url, function(response) {
+			// Emit Strings rather than Node Buffer objects on 'data' events
+			response.setEncoding('utf8');
+
+			// On data events, write String contents of each 'data' event from reponse
+			// to a new line on the console
+			response.on('data', console.log);
+			response.on('error', console.error);
+		}).on('error', console.error);
+		-> read all the data events using the bl package
+		i.e.
+		var http = require('http');
+		var bl = require('bl');
+		var url = process.argv[2];
+
+		http.get(url, function(response) {
+			response.pipe(bl(function (err, data) {
+				if (err)
+					return console.error(err);
+				data = data.toString();
+				console.log(data.length);
+				console.log(data);
+			}));
+		});
+		-> read all the data events using the 'end' event
+		var http = require('http');
+		var url = process.argv[2];
+		var body = '';
+
+		http.get(url, function(response) {
+			response.on('data', function(chunk) {
+				body += chunk;
+			});
+			response.on('end', function() {
+				console.log(body.length);
+				console.log(body);
+			});
+		});
+		-> retrieve data from three servers in the same order as the URLs in command-line arguments and print the data to the console after you have them all; counting callbacks is one of the fundamental ways of managing async in Node -> can use [async] or [after] third-party library
+		i.e. counting callbacks, output asynchronous results from three different urls in the proper order in command-line arguments
+		var http = require('http');
+		var bl = require('bl');
+		var count = 0;
+		var urlResults = [];
+
+		function printUrlResults() {
+			for (var i = 0; i < urlResults.length; i++) {
+				console.log(urlResults[i]);
+			}
+		}
+
+		funciton httpGet(index) {
+			http.get(process.argv[2 + index], function(response) {
+				response.pipe(bl(function(err, data) {
+					if (err)
+						return console.error(err);
+
+					// Get data string results from specific url and index it properly 
+					urlResults[index] = data.toString();
+					count++;
+
+					// Print url results after all data events for each url have been returned
+					if (count === 3)
+						printUrlResults();
+				}));
+			})
+		}
+
+		for (var i = 0; i < 3; i++)
+			httpGet(i);
+	- creating a raw TCP server by using the net module from the Node core
+		-> has method net.createServer() that you pass a function connection listener that is called more than once; every connection received by your server triggers another call to the listener
+		i.e. function listener(socket) { ... }
+		-> net.createServer() also returns an instance of your server and you must call server.listen(portNumber) to start listening on a particular port
+		i.e.
+		var net = require('net');
+		var server = net.createServer(function(socket) {
+			// socket handling logic
+		});
+		server.listen(8000); // port number
+		-> socket object contains a lot of meta-data regarding the connection and is a Node duplex Stream that can be read from and written to
+		-> socket.write(data) to write data to the socket and socket.end() to close the socket; socket.end(data) to write and close shorthand
+		-> date.getFullYear(), date.getMonth() // starts at 0, date.getDate() // returns day of month, date.getHours(), date.getMinutes()
+		i.e.
+		var net = require('net');
+		var port = Number(process.argv[2]);
+
+		function zeroFill(i) {
+			return (i < 10 ? '0' : '') + i;
+		}
+
+		function now() {
+			var d = new Date();
+			return d.getFullYear() + '-'
+			+ zeroFill(d.getMonth() + 1) + '-'
+			+ zeroFill(d.getDate()) + ' '
+			+ zeroFill(d.getHours()) + ':'
+			+ zeroFill(d.getMinutes());
+		}
+
+		// Set up a raw TCP server with net module
+		var server = net.createServer(function(socket) {
+			// Socket handling logic
+			socket.end(now() + '\n');
+		});
+
+		// Listen to connections on port number
+		server.listen(port);

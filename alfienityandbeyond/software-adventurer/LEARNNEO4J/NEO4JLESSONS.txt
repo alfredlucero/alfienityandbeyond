@@ -1,0 +1,38 @@
+BITCOIN PROTOCOL:
+
+Bitcoin = the online peer-to-peer currency; digital online money
+	- built-in scripting language to create financial instruments such as smart contracts, need to have secure online transactions through cryptographic protocols
+	- public key cryptography: public keys disseminated widely paired with private keys which are known only to the owner
+		-> use a public key to authenticate that a message originated with a holder of the paired private key/sign off a message with a private key to be decrypted by public key to verify the person who sent the message or encrypting a message with a public key to ensure that only the holder of the paired private key can decrypt it
+	- digital signature: mathematical scheme for demonstrating authenticity of a digital message or documents
+		-> has a key generation algorithm that selects a private key uniformly at random from a set of possible private keys; outputs private key and corresponding public key
+		-> signing algorithm that produces a signature given a message and a private key
+		-> signature verifying algorithm that given the message, public key, and signature, either accepts or rejects the message's claim to authenticity
+	- cryptographic hash function: mathematical algorithm that maps data of arbitrary size to a bit string of a fixed size (hash function) which is designed to also be one-way function that is infeasible to invert
+		-> input data = message, output hash value = message digest
+		-> avalanche effect/small change to message should change hash value drastically
+	- signed letters of intent and limited protection from forgery, digital money in the form of messages
+	- use serial numbers to make coins uniquely identifiable, tracked by bank which bitcoins belong to whom and balance is present -> but we can make everyone collectively the bank
+		-> shared public ledger showing all bitcoin transactions called the block chain
+		-> broadcast transactions to network to help with double spending? proof-of-work
+			-- make it computationally costly for network users to validate transactions
+			-- reward them for trying to help validate transactions
+			-- validate queue of pending transactions through proof-of-work
+	- Bitcoin uses SHA-256 hash function, requires the hash of a block's header to be lower than or equal to a number known as the target
+		-> takes on average about 10 minutes to validate, give others incentives to do proof-of-work
+		-> validation process is called mining; for each block of transactions validated, the miner receives a bitcoin reward ~ 25 bitcoins, plus transaction fees
+		-> competition to approve transactions, costing computing power
+		-> has agreed upon time ordering of the blocks
+	- transaction is not confirmed until it is part of a block in the longest fork, at least 5 blocks follow it in the longest fork - "6 confirmations"
+
+	- must first install wallet program such as Multbit
+		-> have online stores with Bitcoin address with public/private key pair and then hash public key to form your Bitcoin address
+		-> transaction hashes rather than serial numbers or central authority, long series of transactions in the block chain
+		-> Genesis block = special transaction with no inputs but 50 Bitcoin output vs. coinbase transaction - rewarding the miner who validated that block of transactions
+		-> can create transactions with multiple inputs or multiple outputs, inputs must be at least as much as the sum of all the outputs; if inputs sum up to more than the outputs, the excess is used as transaction fee paid to minders who successfully validate the block which the current transaction is part of; use for change
+		-> block chain is public, possible to see every Bitcoin transaction ever, most open and transparent financial instrument ever seen
+		-> Merkle tree for space-saving data structure
+		-> programmable money as every Bitcoin transaction is associated to a script in the Bitcoin programming language
+		-> minimal unit of Bitcoin is the Satoshi (one/one hundred millionth of Bitcoin)
+		-> block chain must be in sync with the latest transactions before doing anything over Bitcoin network
+		-> proof-of-work by finding a nonce to append to queue of pending transactions and hashing the combination -> output hash begins with a long run of zeroes

@@ -1,0 +1,198 @@
+HTML&CSS: design and build websites
+by JON DUCKETT
+	
+	Introduction:
+		- Connect to web via an Internet Service Provider (ISP)
+		- To find the location of a web server, your browser connects to a Domain Name System (DNS) server -> give IP address associated with requested domain name/web address when visiting a site
+	Ch.1 Structure: HyperText Markup Language
+		<body> : main browser window
+		<head> : information about the page
+		- HTML pages are text documents, use tags (markups) in pairs
+	Ch. 2 Text:
+		headings <h1> - <h6> (structural markups)
+		paragraphs <p>, <b>, <i>, superscript <sup>, subscript <sub>
+		<br />, <hr />
+		- semantic markup add extra information to the pages and describe content of web pages more accurately -> used by screen readers or search engines
+		<em> emphasis, <blockquote> quotation text, <strong>
+		<abbr> abbreviation, <cite>, <dfn> definition, <address>
+		<del>/<ins>/<s> changes to content
+	Ch. 3 Lists:
+		ordered <ol>, unordered<ul>, list item <li>, definition list <dl> - <dt> term - <dd> definition
+	Ch. 4 Links:
+		Links from one website to another, one page to another on the same website, one part of a web page to another part of the same page
+		<a href="absolute URL/relative URL">link name</a>
+		- URL = Uniform Resource Locator, made up of the domain name followed by the path to that page or image
+		- Directory structure: place pages for each different section of the site into a new folder, homepages of each section in a child folder is index.html (web servers often set up to return this if no file name specified)
+		- mailto:alfred@example.com -> starts up the user's email program and addresses an email to a specified email address
+		- target="_blank" -> open in a new window
+		- link to specific part of the same page with ids #link i.e. http:/www.htmlandcssbookcom/#bottom
+	Ch. 5 Images:
+		keep all images in an images folder with a folder called interface for logos and buttons, a folder called products/news
+		<img src="..." alt="text description if cannot see" />
+		good to specify height/width so it can allocate proper space before text
+		- block elements always appear on a new line i.e. h1 or p
+		- inline elements sit within a block level element and do not start on a new line i.e. b, em, img, span
+		- old code used to use align: left/right 
+		- use css float to have all of the text wrap around the image
+		- websites mainly use .jpg, .gif, or .png format, save images at same width and height it will appear on the website and at 72 pixels per inch
+		- Adobe Photoshop or Photoshop Elements for beginners
+		- use jpg for many colors, gif/png for few colors -> belong to image format called a bitmap (lots of mini squares)
+		- vector images differ from bitmap images and are resolution-independent -> created in Adobe Illustrator, SVG (scalable vector graphics)
+		<figure> contains <img> and <figcaption>
+	Ch. 6 Tables
+		<table> written out row by row
+		<tr> table row, <td> table data/cell, <th> table heading
+		<th scope="col"> or <th scope="row">
+		colspan="#" to indicate how many columns that cell should run across
+		rowspan="#" to indicate how many rows a cell should span down the table
+		headings should be inside <thead>
+		body should be inside <tbody>
+		footer should be inside <tfoot>
+	Ch.7 Forms
+		<form action="http://www.example.com/subscribe.php" method="get">
+			<p>Form controls will appear here</p>
+		</form>
+		method: sent using get (values added to the end of the URL specified in the action attribute, ideal for short forms or when you are retrieving data from the web server)
+			- or post sent HTTP headers (for uploading a file, long forms, sensitive data such as passwords, adding/deleting information from a database)
+		<input>
+			type="text" : single-line text input; maxlength attribute
+			name : value identifies the form control and is sent along with the information they enter to the server
+			type="password" : server should communicate using Secure Sockets Layer (SSL) for security
+			type="radio" : pick one of a number of options, name(should be same for all of the radio buttons used to answer the question, value (each should be different), checked
+			type="checkbox" : select and unselect one or more options in answer to a question
+			type="file" : method must be post
+			type="submit" : send a form to the server, value controls the text that appears on a button
+			type="image" : use an image for the submit button
+			type="hidden" : not shown on the page, allow authors to add values to forms that users cannot see i.e. may use a hidden field to indicate which page the user was on when they submitted a form
+			type="date"
+			type="email"
+			type="url"
+			type="search" : placeholder text
+		<textarea> for multi-line text input
+		<select> dropdown list box, choose one option
+			<option> specify the options that the user can select from, selected attribute
+		<button> can add text and images between the tags
+		<label> added next to each form control to make it accessible for vision-impaired users
+			- wrap around both the text description and the form input or kept separate and use teh for attribute to indicate which form control it is a label for
+		<fieldset> to group related form controls together, <legend> as caption to identify the purpose of that group of form controls
+		- form validation to check if filled out correctly, browsers such as Chrome and Opera supported HTML5 validation (usually done in JS), using required to fill it out
+	Ch. 8 Extra Markup:
+		- HTML4 (1997) -> XHTML 1.0 (2000): Strict and Transitional and Frameset -> HTML5 (2000) : <!DOCTYPE html>
+		comments <!-- -->
+		- id to uniquely identify that element, global (can be used on any element)
+		- class to cover many elements
+		- block level elements such as <h1>, <p>, <ul> always start on a newn line
+		- inline elements continue on the same line as their neighbouring elements such as <a>, <b>, <em>, <img>
+		<div> to group a set of elements together in one block-level box
+		<span> inline equivalent of <div>
+		<iframe> can see another page in a smaller window, can embed Google Map into a page, content can be html page, src/height/width/seamless (scrollbards are not desired)
+		<meta> inside <head> and contains information about the web page
+			- name="..." content="..."
+			-description used by search engines to understand what the page is about; keywords; robots to indicate whether search engines should add this page to search results or not such as noindex or nofollow
+			- http-equiv="..." content="..." -> author, pragma (prevents the browser from caching the page with content="no-cache"), expires to indicate when the page should expire and no longer be cached
+	Ch. 9 Flash, Video & Audio:
+		- Flash movies pertaining to animation or media player in Flash, saved with .fla extension -> must be saved in different format known as .swf -> embed using <object> and <embed> OR JavaScript with the SWFObject
+		- need Flash Player plugin to run in browsers, transitioning to <video> and <audio> with HTML5
+		- many video formats such as AVI, Flash Video, H264, MPEG, Ogg Theroa, QuickTime, WebM, Windows Media
+		- converting a video into another format is known as "encoding" the video, upload in at least two formats (WebM and MP4)
+		- use hosted video sites such as YouTube or Vimeo to avoid extra bandwidth costs from web hosting companies
+		- to add a Flash Video: convert to FLV format, run in FLV player, include player and video on page
+		<video> has a number of attributes which allow you to control video playback such as src, poster, width, height, control, autplay, loop, preload with none/auto/metadata
+		<source> to specify video available in different formats
+		- most popular format for putting audio on web pages is MP3
+		- use hosted service such as myspace/soundcloud, flash, HTML5 <audio> : src, controls, autoplay, preload, loop, and <source>
+	Ch. 10 Introducing CSS:
+		- Imagine there is an invisible box around every HTML element and CSS works by associating style rules consisting of a selector and declaration
+		<link> tells the browser where to find the CSS file used to style the page, href="path", rel="stylesheet", type="text/css"
+		<style> for internal css
+		* = universal selector, applies to all elements in the document
+		type, class, id
+		child selector i.e. li > a: targets any <a> elements that are children of an <li> element but not other <a> elements in the page
+		descendant selector i.e. p a: targets any <a> elements that sit inside <p>
+		adjacent sibling i.e. h1+p: targets the first <p> element after any <h1> element
+		general sibling i.e. h1~p: had two <p> elements that are siblings of an <h1> element applying to both
+		- Cascade: last rule takes precedence if two selectors are identical, more specific one takes precedence over general ones, !important 
+		- can force a lot of properties to inherit values from their parent elements by using inherit for the value of the properties
+		- when a CSS property does not display as expected, it is referred to as a browser quirk or CSS bug
+	Ch. 11 Color:
+		- color property for text specified by RGB, hex, or names
+		- medium contrast for better readability
+		- opacity, rgba, hsl colors (hue, saturation, lightness)
+	Ch. 12 Text:
+		- serif fonts have extra details on the ends of the main strokes, used for long passages of text; sans-serif have straight ends and better for smaller text; monospace (fixed-width) for coding
+		- more than one typeface specified in order of preference known as font stack i.e. font-family: Georgia, Times, serif;
+		- font-size by pixel, percentages, em; @font-face to download font from url; font-weight for bold text
+		- FOUC = Flash of Unstyled Content, FOUT = Flash of Unstyled Text -> delete any unnecessary glyphs or host the font on a Content Delivery Network (special type of web hosting that offers faster delivery of files)
+		- font-style (i.e. italics, oblique), text-transform (i.e. uppercase, lowercase) with letter-spacing set by ems, text-decoration (i.e. underline, line-through), line-height around 1.4/1.5em, text-align (i.e. left, right, center), vertical-align with inline elements, text-indent
+		- :first-letter, :first-line (pseudo-elements denoted by :pseudo-name, acts like an extra element)
+		- pseudo-class like an extra value for a class attribute; :link, :visited, :hover, :active, :focus (form input)
+	Ch. 13 Boxes:
+		- set the width and height using ems, percentages and pixels; max-width, min-width; min-height, max-height
+		- use overflow property when not enough space for the content of a box : hidden or scroll
+		- three available properties to control its appearance: border (separates the edge of one box from another), margin (sit outside the edge of the border), padding (space between the border of a box and any content contained within it)
+		- border-width (thin, medium, thick), border-style (solid, dotted, dashed, none, etc.), border-color
+		- padding/margin property not inherited by child elements so must specify in pixels
+		- if you want to center a box on the page or inside the element that it sits in you can set left-margin and right-margin to auto, and you must set a width for the box
+		- text-align is inherited by child elements
+		- display: inline, block, inline-block (causes a block-level element to flow like an inline element while retaining other features of a block-level element), none
+		- visibility: hidden, visible (allows you to hide boxes from users but it leaves a space where the element would have been)
+		- border-radius: allows for rounded borders
+	Ch. 14 Lists, Tables, and Forms:
+		- list-style-type for ul and ol, list-style-image: url('image');, list-style-position: outside/inside
+		- empty-cells: show/hide/inherit; border-spacing, border-collapse
+		- :focus on forms to change background color of text input when it is being used, :hover
+		- float to move to right or left, set width of forms and text-align
+		- cursor: allows you to control the type of mouse cursor that should be displayed to users
+	Ch. 15 Layout:
+		- block-level elements start on a new line (<h1>, <p>, <ul>, <li>), inline elements flow in between surrounding text (<img>, <b>, <i>)
+		- if one block-level element sits inside another block-level element then the outer box is known as the containing or parent element, placing in <div>s
+		- positioning schemes: normal flow, relative positioning, and absolute positioning
+			-> normal flow (position: static): every block-level element appears on a new line
+			-> relative positioning (position: relative): moves an element from the position it would be in normal flow and shifting it from where it would have been placed and does not affect the position of surrounding elements
+			-> absolute positioning (position: absolute): positions the element in relation to its containing element, taken out of normal flow and doesn't affect the position of any surrounding elements, move as users scroll up and down the page
+			-> fixed positioning (position: fixed): positions the element in relation to the browser window as opposed to the containing element, don't affect the position of the surrounding elements and they don't move when the user scrolls up or down the page
+			-> floating: allows you to take that element out of normal flow and position it to the far left or right of a containing box, floated element becomes block-level around which other content can flow, should also use the width property to indicate how wide the floated element should be
+				--> different heights of text may block other text from floating to left or right, must use clear property to say that no element within th e same containing element should touch the left or right-hand sides of a box (clear: left, right, both = neither the left nor right-hand sides of the box will touch elements appearing in the same containing element, none = can touch either side)
+				--> if a containing element only contains floated elements, some browsers will treat it as if it is zero pixels tall -> must set overflow: auto and width property to 100%
+				--> column layout example: .column { width: 300px; float: left; margin: 10px; }
+			-> control z-index (stacking context) to have boxes overlap and handle which box appears on top
+		- resolution refers to the number of dots a sccreen shows per inch, often try to create pages around 960-1000px wide, try to let the user know what the site is about within the top 570-600px, responsive web design for changing sizes, fixed width layout designs do not change size as the user increases or decreases the size of their browser window, liquid layout designs stretch and contract as the user increases or decreases the size of their browser window and tend to use percentages
+		- many web designers use a grid structure to position items on a page i.e. 960px wide grid, 12 columns
+		- CSS frameworks help with adding grid layouts that are tested across different browsers, often contain more code than needed known as bloat
+	Ch. 16 Images:
+		- better to set width and height of images for faster loading
+		- center images by using text-align: enter on the containing element or on the image itself you can use the margin: 0px auto; and display: block;
+		- background-image: allows you to place an image behind any HTML element, default repeats to fill the entire box; background-repeat, background-attachment: specifies whether a background image should stay in one position or move as the user scrolls up and down the page (fixed or scroll); background-position
+		- sprite = when a single image is used for several different parts of an interface, only needs to request one image rather than many images to make the web page load faster
+		- rollover button state changes using :hover, :active, and setting background-image/changing CSS
+		- to overlay text on a background image, the image must be low contrast to be legible or one can set a screen over the high contrast image                    
+	Ch. 17 HTML5 Layout:                
+		- replaced many divs and classes/ids with <header>, <article>, <footer>, <aside>, <nav>: semantic elements that indicate the purpose of different parts of a web page and aid in describing the structure    
+		- <header> or <footer> for the top/bottom of every page or for an individual <article> or <section> within the page
+		- <article> acts as a container for any section of a page that could stand alone and potentially be syndicated
+		- <section> groups related content together and each section would have its own heading
+		- <hgroup> for header elements, <figure>/<figcaption>
+		- can turn an entire block into a link
+		- older browsers that don't know the new HTML5 elements will automatically treat them as inline elements, in order to style elements using earlier versions of IE, you need to use simple JavaScript known as the HTML5 shiv or shim and placed inside conditional comment which checks if the browser version is less than IE9
+	Ch. 18 Process & Design:                                           
+		- create fictional visitors and outline their motivations and goals, create a site map or use card sorting -> homepages, sections, group related information needed by visitors in one page
+		- design is about communication
+		- wireframe is a simple sketch of the key information that needs to go on each page of a site, shows the hierarchy of the information and how much space it might require; create a visual hierarchy through changing the size, color, and style - refers to the order in which your eyes perceive what they see, add visual contrast between items being displayed -> items with higher contrast are recognized and processed first
+		- grouping and demonstrating similarity through proximity, closure (pattern/form), continuance (curves), manipulation of white space/color/borders, consistency, headings
+		- great navigation follows if it is concise, clear, and selective; provides context of where the user is in the website, interactive/consistent
+	Ch. 19 Practical Information:
+		- Search Engine Optimization (SEO): the practice of trying to help your site appear nearer the top of search engine results when people look for the topics that your website covers
+			-> work out which terms people are more likely to enter into a search engine to find your site and using the terms in the right places to increase the chances that search engines will show a link to your site in their results
+			-> search engines consider how many sites link to you and their relevance and at the content of the site
+			-> on-page techniques: looking at keywords and including these in the text and HTML code for your site, appropriate text in the alt attribute of images, seven key places for key words
+				--> 1. page title at the top of the browser window or on tab of a browser specified in the <title> element inside <head>
+				--> 2. url/web address, use keywords in the file name
+				--> 3. headings, in <hn> element
+				--> 4. text, repeat the keywords in the main body of the text at least 2-3 times
+				--> 5. link text, between <a> tags
+				--> 6. image alt text for image-based searches
+				--> 7. page descriptions, inside <head> element specified using a <meta> tag - a sentence that describes the content of the page
+			-> check keyword tool extensions, use Google Analytics to figure out how they found it and what they were looking at and at what point they are leaving - track visits/unique visits, page views, pages per visit, average time on site, date selector; see pages, landing pages, top exit pages information, bounce rate (the number of people who left on the same page that they arrived on); see referrers from sites who linked to you, direct, search terms in search engine to find your site
+			-> off-page techniques: getting other sites to link to you that have content related to yours, words between opening link tags
+		- domain name = web address, pay an annual fee to keep; upload site to a web server constantly connected to the Internet that is set up to serve web pages when requested run by web hosting companies -> check out disk space, bandwidth = amount of data the hosting company will send to your site's visitors, backups, email accounts, server-side languages and databases
+		- to transfer your code and images from your computer to your hosting company you use a File Transfer Protocol (FTP)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

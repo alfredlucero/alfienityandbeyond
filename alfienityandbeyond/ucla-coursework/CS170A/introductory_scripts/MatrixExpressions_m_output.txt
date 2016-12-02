@@ -1,0 +1,363 @@
+octave:1> x = [ 1 3+2i ]         %  a vector
+x =
+
+   1 + 0i   3 + 2i
+
+octave:2> y = [ 1 ; 3+2i ]       %  explicitly: a column vector
+y =
+
+   1 + 0i
+   3 + 2i
+
+octave:3> 
+octave:3> size(x)                %  obtain the dimensions of x
+ans =
+
+   1   2
+
+octave:4> size(y)                %  obtain the dimensions of y
+ans =
+
+   2   1
+
+octave:5> 
+octave:5> A = [ 1 2+2i ; 3 4 ]   %  a 2x2 matrix -- whose rows are [1 2+2i] and [3 4]
+A =
+
+   1 + 0i   2 + 2i
+   3 + 0i   4 + 0i
+
+octave:6> 
+octave:6> size(A)                %  obtain the dimensions of A
+ans =
+
+   2   2
+
+octave:7> 
+octave:7> B = A'                 %  the 'transpose' of A
+B =
+
+   1 - 0i   3 - 0i
+   2 - 2i   4 - 0i
+
+octave:8> A * B                  %  product of A and B  (a matrix)
+ans =
+
+    9 +  0i   11 +  8i
+   11 -  8i   25 +  0i
+
+octave:9> A * x'                 %  product of A and x  (a vector)
+ans =
+
+   11 +  2i
+   15 -  8i
+
+octave:10> 
+octave:10> A.'                    %  .' is the ordinary transpose of A
+ans =
+
+   1 + 0i   3 + 0i
+   2 + 2i   4 + 0i
+
+octave:11> A'                     %  ' is actually the Hermitian transpose (conjugate transpose)
+ans =
+
+   1 - 0i   3 - 0i
+   2 - 2i   4 - 0i
+
+octave:12> A - A'                 %  the difference between A's transpose and A's conjugate transpose
+ans =
+
+   0 + 0i  -1 + 2i
+   1 + 2i   0 + 0i
+
+octave:13> imag(A+A')             %  imag(z) is the imaginary part of z; so imag(A + A') should be zero
+ans =
+
+   0   2
+  -2   0
+
+octave:14> 
+octave:14> z = [ 1+2i ; 0-3i ]    %  a column vector of complex values
+z =
+
+   1 + 2i
+   0 - 3i
+
+octave:15> z'                     %  the corresponding complex conjugate row vector
+ans =
+
+   1 - 2i   0 + 3i
+
+octave:16> 
+octave:16> x = [ 1   0 ]          %  a real row vector (1x2 matrix)
+x =
+
+   1   0
+
+octave:17> x'                     %  a column vector   (2x1 matrix)
+ans =
+
+   1
+   0
+
+octave:18> 
+octave:18> 1:5                    %  the row vector of values from 1 to 5
+ans =
+
+   1   2   3   4   5
+
+octave:19> (1:5)'                 %  the column vector of values from 1 to 5
+ans =
+
+   1
+   2
+   3
+   4
+   5
+
+octave:20> 
+octave:20> 1 : 2 : 5              %  the row vector of values from 1 to 5, with steps of size 2
+ans =
+
+   1   3   5
+
+octave:21> [ 1 3 5 ]              %  the same thing
+ans =
+
+   1   3   5
+
+octave:22> [ 1;3;5 ]'             %  the same thing
+ans =
+
+   1   3   5
+
+octave:23> 
+octave:23> 1.3 : 3.3              %  the row vector [ 1.3  2.3  3.3 ]
+ans =
+
+    1.3000    2.3000    3.3000
+
+octave:24> 
+octave:24> linspace(1.3, 3.8, 6)  %  row vector of length 6 with equispaced values from 1.3 to 3.8
+ans =
+
+   1.3000   1.8000   2.3000   2.8000   3.3000   3.8000
+
+octave:25> 1.3 : 0.5 : 3.8        %  the same thing (using steps of size 0.5)
+ans =
+
+    1.3000    1.8000    2.3000    2.8000    3.3000    3.8000
+
+octave:26> 
+octave:26> x = [ 1 ; 0 ]          %  a column vector (2x1 matrix) 
+x =
+
+   1
+   0
+
+octave:27>          
+octave:27> x.^2                   %  the column vector of squares of elements in x
+ans =
+
+   1
+   0
+
+octave:28>          
+octave:28> % x^2                  %  ERROR
+octave:28> 
+octave:28> x' * x                 %  dot product of x with itself
+ans =  1
+octave:29> 
+octave:29> A = [ 1 2 ; 3 4 ]      %  a 2x2 matrix -- whose rows are [1 2] and [3 4]
+A =
+
+   1   2
+   3   4
+
+octave:30> reshape(A,4,1)         %  the 4x1 matrix obtained by inserting the elements of A column-wise
+ans =
+
+   1
+   3
+   2
+   4
+
+octave:31>     
+octave:31> A + A                  %  sum of A with itself
+ans =
+
+   2   4
+   6   8
+
+octave:32> 
+octave:32> A * x                  %  the product of A with x
+ans =
+
+   1
+   3
+
+octave:33>     
+octave:33> A * A                  %  product of A with itself
+ans =
+
+    7   10
+   15   22
+
+octave:34> A^2                    %  product of A with itself
+ans =
+
+    7   10
+   15   22
+
+octave:35> A.^2                   %  a matrix whose elements are squares of corresponding elements in A
+ans =
+
+    1    4
+    9   16
+
+octave:36> 
+octave:36> A * A * A              %  cube of A
+ans =
+
+    37    54
+    81   118
+
+octave:37> A^3                    %  cube of A
+ans =
+
+    37    54
+    81   118
+
+octave:38> 
+octave:38> det(A)                 %  determinant of A
+ans = -2
+octave:39> trace(A)               %  trace of A
+ans =  5
+octave:40> 
+octave:40> inv(A)                 %  inverse of A
+ans =
+
+  -2.00000   1.00000
+   1.50000  -0.50000
+
+octave:41> det(A) * inv(A)        %  product of the scalar det(A) with the inverse of A
+ans =
+
+   4.00000  -2.00000
+  -3.00000   1.00000
+
+octave:42> A * inv(A)             %  product of A with its inverse
+ans =
+
+   1.00000   0.00000
+   0.00000   1.00000
+
+octave:43> inv(A) * A             %  product of the inverse of A with A
+ans =
+
+   1.00000   0.00000
+   0.00000   1.00000
+
+octave:44> A \ A                  %  product of the pseudoinverse of A with A  (backslash = "divide on left")
+ans =
+
+   1   0
+   0   1
+
+octave:45> 
+octave:45> B = [ A   A ]          %  the 2x4 matrix with 2 horizontal copies of A
+B =
+
+   1   2   1   2
+   3   4   3   4
+
+octave:46> C = [ A A A ; A A A ]  %  the 4x6 matrix with 2x3 stacked copies of A
+C =
+
+   1   2   1   2   1   2
+   3   4   3   4   3   4
+   1   2   1   2   1   2
+   3   4   3   4   3   4
+
+octave:47> 
+octave:47> B(1:2, 1:2)            %  the upper left  2x2 submatrix of B (which equals A)
+ans =
+
+   1   2
+   3   4
+
+octave:48> C(3:4, 3:6)            %  the lower right 2x4 submatrix of B (which equals B)
+ans =
+
+   1   2   1   2
+   3   4   3   4
+
+octave:49> B - C(1:2, 1:4)
+ans =
+
+   0   0   0   0
+   0   0   0   0
+
+octave:50> 
+octave:50> eye(2)                 %  the 2x2 identity matrix (terrible pun)
+ans =
+
+Diagonal Matrix
+
+   1   0
+   0   1
+
+octave:51> eye(8)                 %  the 8x8 identity matrix
+ans =
+
+Diagonal Matrix
+
+   1   0   0   0   0   0   0   0
+   0   1   0   0   0   0   0   0
+   0   0   1   0   0   0   0   0
+   0   0   0   1   0   0   0   0
+   0   0   0   0   1   0   0   0
+   0   0   0   0   0   1   0   0
+   0   0   0   0   0   0   1   0
+   0   0   0   0   0   0   0   1
+
+octave:52> 
+octave:52> zeros(3)               %  a 3x3 matrix of zeros
+ans =
+
+   0   0   0
+   0   0   0
+   0   0   0
+
+octave:53> zeros(3,2)             %  a 3x2 matrix of zeros
+ans =
+
+   0   0
+   0   0
+   0   0
+
+octave:54> 
+octave:54> ones(3,2)              %  a 3x2 matrix of ones
+ans =
+
+   1   1
+   1   1
+   1   1
+
+octave:55> 
+octave:55> rand(3,2)              %  a 3x2 matrix of uniform random values
+ans =
+
+   0.060376   0.143009
+   0.810939   0.608465
+   0.965314   0.305851
+
+octave:56> rand(3)                %  a 3x3 matrix of uniform random values
+ans =
+
+   0.75259   0.57817   0.58687
+   0.89556   0.29654   0.54104
+   0.41210   0.98071   0.29055
+
+octave:57> 

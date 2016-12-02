@@ -1,0 +1,1498 @@
+MEAN STACK ZERO TO HERO NOTES: (Udemy)
+
+** Node.js **
+	- node // goes to node shell to type in JS commands
+	- node --version // gets the latest version
+	- node filename.js // runs Javascript files
+	- using require to load in files; exposing functionality using module.exports
+	i.e. require('./instantHello'); // looks into the same folder for instantHello.js
+	-- inside instantHello.js --
+	console.log("Hello World!");
+	-- cmd line --
+	node app.js // outputs Hello World!
+
+	i.e. var goodbye = require('./talk/goodbye');
+	goodbye();
+	-- goodbye.js --
+	module.exports = function() {
+		console.log("Goodbye");
+	};
+
+	i.e. exporting multiple functions
+	var hello = function() { ... };
+	var intro = function() { ... };
+	
+	module.exports = {
+		hello: hello,
+		intro: intro
+	};
+	-- app.js --
+	var talk = require('./talk');
+	talk.intro();
+
+	i.e. chaining ask function to module.exports
+	module.exports.ask = function(question) {
+		console.log(question);
+		return answer;
+	};
+	- asynchronous, non-blocking code; designed to address IO scalability not computational scalability, single threaded (one main process)
+		-> setTimeout asynchronous // will perform other actions while the timeout has not occurred
+		-> var fs = require('fs'); // read files with this
+		i.e. read file synchronously
+		var file = fs.readFileSync('readFileSync.js');
+
+		i.e. read file asynchronously with anonymous callback
+		fs.readFile('readFileSync.js', function(err, file) {
+			console.log("Got the file");
+		});
+		-> computational blocker is part of code that takes a while to process - spawn a child process in node to handle it
+		i.e.
+		var child_process = require('child_process');
+		...
+		var newProcess = child_process.spawn('node', ['fibonacci.js'], {
+			stdio:'inherit' // io in child goes to main process, doesn't block the main single thread due to computations of fibonacci anymore
+		});
+
+	- npm for dependency management (node package manager); re-usable modules, packages, and libraries; move code between environments
+		-> npm init // builds a package.json file
+		-> package.json // manage dependencies
+		-> npm install express --save // installs it into node_modules and adds it to package.json dependencies
+		-> semantic version (major, minor, patch): major - major API changes; minor - backwards compatible changes; patches - backwards compatible bug fixes; carat (^) = installs latest minor and patch version in registry
+		-> mocha: test framework
+		i.e. npm install mocha --save-dev // adds it to devDependencies
+		-> npm install // installs all dependencies (dev and production) into node_modules 
+		-> npm install --production // installs only production "dependencies"
+		-> putting node_modules in .gitignore will prevent the node_modules from being pushed onto github
+		-> add "start": "node app.js" under "scripts" in package.json to run
+		i.e.
+		node app.js OR npm start // run in the cmd line
+
+** Express.js **
+	- web application framework in the MEAN stack, listens for incoming requests, responds with JSON data
+	i.e. Start up express and listen for requests on a certain port
+	var express = require('express');
+	var app = express();
+
+	app.set('port', 3000); // Set the port
+
+	var server = app.listen(app.get('port'), function() {
+		var port = server.address().port; // Get the port from address
+		console.log("Magic happens on port " + port);
+	}); // Listen is asynchronous with callback and returns an object
+
+	// shows Cannot GET/ in localhost:3000
+
+		-> defining URL routes: listen for requests on specific URLS, do something on server and then sending response
+		i.e. Default request and response with send and status
+		app.get('/', function(req, res) { // req - request, res - response
+			console.log("GET the homepage");
+			res
+				.status(404) // Not found status chained
+				.send("Express yourself"); // send response back
+		});
+
+		i.e. Return json data
+		app.get('/json', function(req, res) {
+			console.log("GET the json");
+			res
+				.start(200)
+				.json({ "jsonData": true });
+		});
+
+		i.e. Return a file to the browser
+		var path = require('path');
+		app.get('/file', function(req, res) {
+			console.log("GET the file");
+			res
+				.status(200)
+				.sendFile(path.join(__dirname, 'app.js'));
+		});
+		// __dirname means current directory, then each argument is like saying 'public/index.html'
+		.sendFile(path.join(__dirname, 'public', 'index.html'));
+
+		-> defining "static" folders and delivering CSS, images, and JS
+		i.e. static setup of files in public folder and define subset of roots
+		app.use(express.static(path.join(__dirname, 'public'))); // sets index.html as home in localhost:3000
+		app.use('/public', express.static(path.join(__dirname, 'public'))); // localhost:3000/public/index.html
+		-> public -> images, css, jquery, js folders, index.html
+		-> express middleware (app.use): lets you interact with a request before a response is given
+		i.e. order is important, returns method and urls before moving onto the next middleware call, logging middleware
+		app.use(function(req, rest, next) {
+			console.log(req.method, req.url); // method = post/get
+			next(); // move onto the next thing since it is middleware
+		});
+
+		i.e. can specify any requests with a specific path (returns any requests to css folder)
+		app.use('/css', function(req, rest, next) {
+			console.log(req.method, req.url);
+			next();
+		});
+
+		-> using express router; separation of concerns; testing routes using Postman - place in routes folder an index.js
+		i.e. instantiate Express router with /json route and get request (can chain onto it as well)
+		var express = require('express');
+		var router = express.Router();
+
+		router
+			.route('/json') // establish path of the route
+			.get(function(req, res) {
+				console.log("GET the json");
+				res
+					.status(200)
+					.json({ "jsonData": true });
+			})
+			.post(function(req, res) {
+				console.log("POST the json route");
+				res
+					.status(200)
+					.json({ "jsonData": "POST received" });
+			});
+
+		module.exports = router;
+		-- in app.js -- must require routes and use them
+		var routes = require('./routes'); // brings in routes folder with index.js
+		app.use('/', routes); // can use a subset by doing app.use('/api', routes);
+
+		-> using controllers to define functionality and mapping to routes
+		i.e.
+		-- hotels.controllers.js --
+		module.exports.hotelsGetAll = function(req, res) {
+			console.log("GET the json");
+			res
+				.status(200)
+				.json({ "jsonData": true });
+		};
+		-- index.js --
+		var ctrlHotels = require('../controllers/hotels.controllers.js');
+
+		router
+			.route('/hotels')
+			.get(ctrlHotels.hotelsGetAll);
+		// can just require .json files and do var hotelData = require('../data/hotel-data.json'):
+		// .json( hotelData);
+
+		-> dynamic URL parameters in express
+		i.e. using :id for params
+		-- index.js --
+		router
+			.route('/hotels/:hotelId')
+			.get(ctrlHotels.hotelsGetOne);
+		-- hotels.controllers.js --
+		module.exports.hotelsGetOne = function(req, res) {
+			var hotelId = req.params.hotelId;
+			var thisHotel = hotelData[hotelId];
+			console.log("GET hotelId", hotelId);
+			res
+				.status(200)
+				.json( thisHotel );
+		};
+
+		-> querystring data in controllers and getting form data for controllers
+		i.e. using querystring (placed in req.query)
+		console.log(req.query);
+		localhost:3000/api/hotels?offset=2&count=2
+		-- hotels.controllers.js --
+		if (req.query && req.query.offset) {
+			offset = parseInt(req.query.offset, 10);
+		}
+		var returnData = hotelData.slice(offset, offset + count);
+
+		i.e. body parser to handle any posted HTML x-www-form-urlencoded (placed in req.body)
+		npm install --save body-parser
+		-- app.js --
+		app.use(bodyParser.urlencoded({ extended : false }));
+		-- hotels.controller.js --
+		module.exports.hotelsAddOne = function(req, res) {
+			console.log("POST new hotel");
+			console.log(req.body);
+			res
+				.status(200)
+				.json(req.body);
+		};
+
+		-> nodemon to help restart node filename.js whenever you make changes; for development only and install globally
+		// npm install -g nodemon; run nodemon
+		// can ignore public folder by creating nodemon.json in root
+		i.e. -- in nodemon.json --
+		{
+			"ignore" : ["public/*"],
+			"verbose" : true
+		}
+
+** NoSQL Databases: MongoDB **
+	- key-value store
+	- document store (MongoDB)
+	- graph databases (Neo4j)
+	collections in document database (nested comments within post documents rather than two separate relational tables referencing each other); don't need placeholders for missing values
+	[ // Posts collection
+		{
+			"PostId" : 1,
+			"Title" : "My first post",
+			"Content" : "Some content",
+			"Comments" : [
+				{
+					"CommentId" : 1,
+					"Content" : "Commenting on your first post"
+				},
+				...
+			],
+			"Author" : {
+				"Id": 1, // Can get user information later with this id
+				"DisplayName": "Alfie"
+			}
+		},
+		...
+	]
+	[ // Users collection
+		{
+			"UserId" : 1,
+			"UserName" : "Alfienity",
+			"DisplayName" : "Alfie",
+			"Bio" : "Full Web Stack Development"
+		},
+		...
+	]
+	// Keep number of collections to a minimum
+	// Reduce each page or view to one database query without joining multiple collections
+	// Most common operations must be fast to run even at the expense of less common operations
+	- collections (array of say User/Posts) of documents (each JS object) 
+	- work with JSON data in application code, mongoDB stores it as BSON (binary, not human-readable)
+	- creates unique _id per each document: ObjectId("...")
+	- list databases, create/retrieve databases, collections, etc.
+		-> show dbs // lists all the databases
+		-> use databaseName // uses that database
+		-> show collections // lists the collections
+		-> db.createCollection(collectionName) // creates a collection
+		-> db.collectionName.insert(jsonObj); // inserts document into collection, can also insert an array [{...},...]
+		-> db.tech.find(); // returns everything in the collection
+		-> .pretty(); // makes it better to read in json format
+		-> exit // gets out of the mongo shell
+	- querying the database to find documents, modifying the data returned, updating, and deleting documents
+		-> find document based on id field - db.tech.find({"_id": ObjectId("...")}) // db.tech.find( { "property": "key"})
+		-> db.tech.find().sort( { "propertyToSortBy": 1 }) // sorts in ascending order, -1 for descending order
+		-> limiting the fields to return by projections - db.tech.find({}, {"name": true}) // returns only the id and names
+		i.e.
+			db.tech.find({}, {"name": 1, "_id": 0}) // returns only names
+		-> update a document
+		i.e. update a key-value pair
+			db.tech.update({name: "Angular"}, { $set: { "name": "AngularJS"}})
+		i.e. update all documents by adding a key-value pair to all
+			db.tech.update({}, { $set: { "language": "JavaScript"}}, {multi: true})
+		-> deleting documents/collections
+		i.e. deleting documents
+			db.tech.remove({ "name": "Express" })
+			db.tech.remove({}) // removes all documents
+		i.e. deleting collections
+			db.tech.drop()
+	- exporting and importing JSON/BSON data and when to use different approaches
+		-> mongodump --db meantest // exports/dumps collection to current directory in a folder called dump with .bson
+		-> mongodump --db meantest --gzip // gzip the export
+		-> mongorestore --db mean2 --gzip dump/meantest // imports the gzip db files into a new database called mean2, only does inserts not updates
+		-> mongoexport --db meantest --collection tech --out filepath --jsonArray --pretty // exports .json files a collection at a time to a file, json representation and not exact
+		-> mongoimport --db mean3 --collection tech --jsonArray jsonPathName // imports json file into collection called tech inside mean3 databases
+	- installing driver, creating reusable connection, accessing the connection from controllers
+		-> install native driver to node - npm install mongodb --save
+		i.e. skeleton of dbconnection.js
+		var MongoClient = require('mongodb').MongoClient;
+		var dburl = 'mongodb://localhost:27017/meanhotel'; // URL of database
+		var _connection = null;
+		var open = function() {
+			MongoClient.connect(dburl, function(err, db) {
+				if (err) {
+					console.log("DB connection failed");
+					return;
+				}
+				_connection = db;
+				console.log("DB connection open", db);
+			});
+			// set _connection
+		};
+
+		var get = function() {
+			return _connection;
+		};
+
+		module.exports = {
+			open: open,
+			get: get
+		};
+		-- in app.js --
+		require('./api/data/dbconnection.js').open();
+		-- in hotels.controllers.js --
+		var dbconn = require('../data/dbconnection.js');
+		...
+		var db = dbconn.get();
+		console.log("db", db);
+		// best to open connection once application starts cause opening connection is expensive in terms of time and latency and can passed around the same connection from one module to another that is reusable
+	- using open database connection, finding multiple documents in a collection and returning a subset, searching for a single document by ID
+		-> define which collections to use to find them
+		-- hotels.controllers.js --
+		var db = dbconn.get();
+		var collection = db.collection('hotels');
+		collection
+			.find()
+			.skip(offset) // offset docs to skip
+			.limit(count) // number of docs to return
+			.toArray(function(err, docs) {
+				console.log("Found hotels", docs);
+				res
+					.status(200)
+					.json(docs);
+			});
+		-> find one document by ID
+		i.e. need to require objectID helper
+		var ObjectId = require('mongodb').ObjectId;
+		collection
+			.findOne({
+				_id: ObjectId(hotelId)
+			}, function(err, doc) {
+				res
+					.status(200)
+					.json(doc);
+			});
+	- adding new documents, validation, formatting data correctly
+	i.e. formatting data and validating present properties and inserting document
+		var newHotel;
+		if (req.body && req.body.name && req.body.stars) {
+			newHotel = req.body;
+			newHotel.stars = parseInt(req.body.stars, 10);
+			collection.insertOne(newHotel, function(err, response) {
+				console.log(response);
+				console.log(response.ops);
+				res
+					.status(201)
+					.json(response.ops);
+			})
+		} else {
+			console.log("Data missing from body");
+			res
+				.status(400)
+				.json({ message: "Required data missing from body"});
+		}
+** REST API (Node.js, Express.js, MongoDB) **
+	- standards, URL patterns and HTTP methods
+		-> base URL and a number of actions that depend on the HTTP method
+		i.e.
+		Method: GET Url: /api/hotels Action: Get all/multiple hotels
+		POST /api/hotels Create a new hotel
+		GET /api/hotels/12341 Get a specific hotel
+		PUT /api/hotels/12341 Update a specific hotel
+		DELETE /api/hotels/12341 Delete a specific hotel
+
+		GET /api/hotels/12341/reviews Get all reviews for a specific hotel
+		POST /api/hotels/12341/reviews Add review for a specific hotel
+		GET /api/hotels/12341/reviews/1 Get a specific review for a specific hotel
+		PUT /api/hotels/12341/reviews/1 Update a specific review for a specific hotel
+		DELETE /api/hotels/12341/reviews/1 Delete a specific review
+	- Mongoose offers a lot of helper methods to manage code and adds data schemas to define and set required fields and other models for documents rather than using the native driver
+		-> installing Mongoose: npm install --save mongoose
+		-> setting up connection, exposes events for when connected or disconnected or error, keeps on trying to connect to database
+		i.e. -- in db.js --
+		var mongoose = require('mongoose');
+		var dburl = '...';
+		mongoose.connect(dburl);
+
+		mongoose.connection.on('connected', function() {
+			console.log('Mongoose connected to ' + dburl);
+		});
+		mongoose.connection.on('disconnected', function() {
+			console.log('Mongoose disconnected');
+		});
+		mongoose.connection.on('error', function(err) {
+			console.log('Mongoose connection error: ' + dburl);
+		});
+		process.on('SIGINT', function() {
+			mongoose.connection.close(function() {
+				console.log('Mongoose disconnected through app termination (SIGINT)');
+				process.exit(0);
+			});
+		}); // Control C terminate app
+
+		process.on('SIGTERM', function() {
+			mongoose.connection.close(function() {
+				console.log('Mongoose disconnected through app termination (SIGTERM)');
+				process.exit(0);
+			});
+		});
+
+		process.once('SIGUSR2', function() {
+			mongoose.connection.close(function() {
+				console.log('Mongoose disconnected through app termination (SIGUSR2)');
+				process.kill(process.pid, 'SIGUSR2');
+			});
+		}); // type rs or restart and this fires
+		-- in app.js --
+		require('./api/data/db.js');
+
+		-> adding schemas with data types per path and basic validation (model = compiled instance of schema)
+		i.e. -- in hotels.models.js --
+		var mongoose = require('mongoose');
+		var hotelSchema = new mongoose.Schema({
+			name : {
+				type : String,
+				required : true
+			},
+			stars : {
+				type : Number,
+				min : 0,
+				max : 5,
+				"default" : 0
+			},
+			services : [String],
+			description : String,
+			photos : [String],
+			currency : String
+		});
+		// Model, ModelSchema, Collection 
+		mongoose.model('Hotel', hotelSchema, 'hotels');
+		-- in db.js --
+		require('./hotels.models.js');
+		
+		-> defining complex data structures, nested schemas and subdocuments
+		i.e. nested schemas and subdocuments
+		var reviewSchema = new mongoose.Schema({
+			name : {
+				type : String,
+				required : true
+			},
+			rating : {
+				type : Number,
+				min : 0,
+				max : 5,
+				required : true
+			},
+			review : {
+				type : String,
+				required : true
+			},
+			createdOn : {
+				type : Date,
+				"default" : Date.now
+			}
+		});
+		... in hotelSchema ...
+		reviews : [reviewSchema],
+		rooms : [roomSchema] // gets its own document id per object in array
+
+		-> geolocation coordinates, index for geospatial coordinates
+		i.e.
+		location : {
+			address : String,
+			coordinates : {
+				type : [Number],
+				index : '2dsphere'
+			}
+		}
+
+		-> creating GET routes with Mongoose queries
+		i.e. -- in hotels.controllers.js --
+		var mongoose = require('mongoose');
+		var Hotel = mongoose.model('Hotel');
+		... in hotelsGetAll ...
+		Hotel // use Hotel model instance to query the database now
+			.find()
+			.skip(offset)
+			.limit(count)
+			.exec(function(err, hotels) {
+				console.log("Found hotels", hotels.length);
+				res
+					.json(hotels);
+			});
+		... in hotelsGetOne ...
+		var hotelId = req.params.hotelId;
+		console.log("GET hotelId", hotelId);
+
+		Hotel
+			.findById(hotelId)
+			.exec(function(err, doc) {
+					res
+						.status(200)
+						.json( doc );
+			});
+
+		-> finding subdocuments in Mongoose
+		i.e. create routes to get all reviews
+		-- in routes/index.js --
+		router
+			.route('/hotels/:hotelId/reviews')
+			.get(ctrlReviews.reviewsGetAll);
+
+		router
+			.route('/hotels/:hotelId/reviews/:reviewId')
+			.get(ctrlReviews.reviewsGetOne);
+				module.exports.reviewsGetAll = function(req, res) {
+				var hotelId = req.params.hotelId;
+					console.log("GET hotelId", hotelId);
+		-- in reviews.controllers.js --
+			Hotel
+				.findById(hotelId)
+				.select('reviews')
+				.exec(function(err, hotel) {
+						console.log("Returned hotel", hotel);
+						res
+							.status(200)
+							.json( hotel.reviews );
+				});
+		};
+		var hotelId = req.params.hotelId;
+		var reviewId = req.params.reviewId;
+		console.log("GET reviewId " + reviewId + " for hotelId " + hotelId);
+
+		Hotel
+			.findById(hotelId)
+			.select('reviews')
+			.exec(function(err, hotel) {
+					console.log("Returned hotel", hotel);
+					var review = hotel.reviews.id(reviewId);
+					res
+						.status(200)
+						.json( review );
+			});
+		-- mongo shell in meanhotels --
+		// add id fields for nested reviews for imported json, mongoose adds id fields for nested subdocuments
+		db.hotels.update(
+			{},
+			{
+				$set : {
+					"reviews.0._id" : ObjectId()
+				}
+			},
+			{
+				multi : true
+			}
+		)
+
+		-> finding documents based on geo-coordinates; routes should associate with different entities, put latitude and longitude in query string
+		i.e. http://localhost:3000/api/hotels?lng=47.502649&lat=19.066785
+		var runGeoQuery = function(req, res) { // returns obj and dis
+			var lng = parseFloat(req.query.lng);
+			var lat = parseFloat(req.query.lat);
+
+			// A geoJSON point
+			var point = {
+				type : "Point",
+				coordinates : [lng, lat] 
+			};
+
+			var geoOptions = {
+				spherical : true,
+				maxDistance : 2000,
+				num : 5
+			};
+
+			Hotel
+				.geoNear(point, geoOptions, function(err, results, stats) {
+					console.log('Geo results', results);
+					console.log('Geo stats', stats);
+					res
+						.status(200)
+						.json(results);
+				});
+		};
+	- error trapping and golden rules of API design; returning appropriate HTTP status codes
+		-> golden rules: always return response with correct HTTP status code and should return contents/message
+		i.e. error trapping (500 = internal server error, 404 = not found)
+		if (isNaN(offset) || isNaN(count)) {
+			res
+				.status(400) // bad request
+				.json({
+					"message" : "If supplied in querystring count and offset should be numbers"
+				});
+			return;
+		}
+		i.e. more error trapping in mongoose calls
+		Hotel
+			.findById(hotelId)
+			.exec(function(err, hotel) {
+				var response = {
+					status : 200,
+					message : hotel
+				};
+				if (err) { // Internal server error in finding hotels
+					console.log("Error finding hotels");
+					response.status = 500;
+					response.message = err;
+				} else if (!hotel) { // No results match the ID
+					response.status = 404;
+					response.message = {
+						"message" : "Hotel ID not found"
+					};
+				} 
+				res // default 200 OK
+					.status(response.status)
+					.json(response.message);
+			});
+		- creating new documents in MongoDB using Mongoose and configuring Express router
+		i.e. creating new document
+			router
+				.route('/hotels')
+				.get(ctrlHotels.hotelsGetAll)
+				.post(ctrlHotels.hotelsAddOne); // chain methods
+			-- in hotels.controller.js --
+			var _splitArray = function(input) {
+				var output;
+				if (input && input.length > 0) {
+					output = input.split(";");
+				} else {
+					output = [];
+				}
+				return output;
+			}
+
+			module.exports.hotelsAddOne = function(req, res) {
+				Hotel
+					.create({
+						name : req.body.name,
+						description : req.body.description,
+						stars : parseInt(req.body.stars, 10),
+						services : _splitArray(req.body.services),
+						photos : _splitArray(req.body.photos),
+						currency : req.body.currency,
+						location : {
+							address : req.body.address,
+							coordinates : [
+								parseFloat(req.body.lng), 
+								parseFloat(req.body.lat)
+							]
+						}
+					}, function(err, hotel) {
+						if (err) {
+							console.log("Error creating hotel");
+							res
+								.status(400)
+								.json(err);
+						} else {
+							console.log("Hotel created", hotel);
+							res
+								.status(201) // Created
+								.json(hotel);
+						}
+					});
+			};
+		i.e. creating subdocuments - must save parent document to save the subdocument
+		var _addReview = function(req, res, hotel) {
+			hotel.reviews.push({
+				name : req.body.name,
+				rating : parseInt(req.body.rating, 10),
+				review : req.body.review
+			});
+
+			hotel.save(function(err, hotelUpdated) {
+				if (err) {
+					res
+						.status(500)
+						.json(err);
+				} else {
+					res
+						.status(201)
+						.json(hotelUpdated.reviews[hotelUpdated.reviews.length - 1]);
+				}
+			});
+		};
+		module.exports.reviewsAddOne = function(req, res) {
+			var hotelId = req.params.hotelId;
+			console.log("GET hotelId", hotelId);
+
+			Hotel
+				.findById(hotelId)
+				.select('reviews')
+				.exec(function(err, hotel) {
+					var response = {
+						status : 200,
+						message : []
+					};
+					if (err) {
+						console.log("Error finding hotel");
+						response.status = 500;
+						response.message = err;
+					} else if (!hotel) {
+						console.log("Hotel id not found in database", id);
+						response.status = 404;
+						response.message = {
+							"message" : "Hotel ID not found " + id
+						};
+					}
+
+					if (hotel) {
+						_addReview(req, res, hotel);
+					} else {
+						res
+							.status(response.status)
+							.json(response.message);
+					}
+				});
+		};
+		- updating existing methods using PUT method and updating Mongoose model instance and saving instance back as MongoDB document
+		i.e. -- routes/index.js --
+			.put(ctrlHotels.hotelsUpdateOne);
+		-- hotels.controllers.js --
+			module.exports.hotelsUpdateOne = function(req, res) {
+				var hotelId = req.params.hotelId;
+				console.log("GET hotelId", hotelId);
+
+				Hotel
+					.findById(hotelId)
+					.select("-reviews -rooms")
+					.exec(function(err, hotel) {
+						var response = {
+							status : 200,
+							message : hotel
+						};
+						if (err) {
+							console.log("Error finding hotels");
+							response.status = 500;
+							response.message = err;
+						} else if (!hotel) {
+							response.status = 404;
+							response.message = {
+								"message" : "Hotel ID not found"
+							};
+						} 
+						if (response.status !== 200) {
+							res
+								.status(response.status)
+								.json(response.message);
+						} else {
+							hotel.name = req.body.name;
+							hotel.description = req.body.description;
+							hotel.stars = parseInt(req.body.stars, 10);
+							hotel.services = _splitArray(req.body.services);
+							hotel.photos = _splitArray(req.body.photos);
+							hotel.currency = req.body.currency;
+							hotel.location = {
+								address : req.body.address,
+								coordinates : [
+									parseFloat(req.body.lng),
+									parseFloat(req.body.lat)
+								]
+							};
+
+							hotel.save(function(err, hotelUpdated) {
+								if (err) {
+									res
+										.status(500)
+										.json(err);
+								} else {
+									res
+										.status(204) // saved successfully no content
+										.json();
+								}
+							});
+						}
+					});
+			};
+		- deleting documents and subdocuments using Mongoose model methods
+		i.e. deleting document -- routes/index.js --
+			.delete(ctrlHotels.hotelsDeleteOne);
+		-- hotels.controllers.js --
+		module.exports.hotelsDeleteOne = function(req, res) {
+			var hotelId = req.params.hotelId;
+
+			Hotel
+				.findByIdAndRemove(hotelId)
+				.exec(function(err, hotel) {
+					if (err) {
+						res
+							.status(404)
+							.json(err);
+					} else {
+						console.log("Hotel deleted, id:", hotelId);
+						res
+							.status(204)
+							.json();
+					}
+				});
+			};
+		i.e. deleting subdocuments
+		module.exports.reviewsDeleteOne = function(req, res) {
+			var hotelId = req.params.hotelId;
+			var reviewId = req.params.reviewId;
+			console.log("GET reviewId " + reviewId + " for hotelId " + hotelId);
+
+			Hotel
+				.findById(hotelId)
+				.select('reviews')
+				.exec(function(err, hotel) {
+						console.log("Returned hotel", hotel);
+						var response = {
+						status : 200,
+						message : hotel
+						};
+						if (err) {
+							console.log("Error finding hotels");
+							response.status = 500;
+							response.message = err;
+						} else if (!hotel) {
+							response.status = 404;
+							response.message = {
+								"message" : "Hotel ID not found"
+							};
+						}
+						
+						var review = hotel.reviews.id(reviewId);
+						if (!review) {
+							response.status = 404;
+							response.message = {
+								"message" : "Review ID not found"
+							};
+						}
+
+						if (response.status !== 200) {
+							res
+								.status(response.status)
+								.json(response.message);
+						} else {
+							hotel.reviews.id(reviewId).remove();
+							hotel.save(function(err, hotelUpdated) {
+								if (err) {
+									res
+										.status(500)
+										.json(err);
+								} else {
+									res
+										.status(204) // saved successfully
+										.json();
+								}
+							});
+						}
+				});
+			};
+** ANGULARJS (FRONTEND FRAMEWORK) **
+	- ng-app directive to make it an angular app and include script of angularjs library cdn, place in high level to define scope of angular application
+	- expressions {{}}: 
+		i.e. 1 + 2 = {{ 1 + 2 }} -> 1 + 2 = 3 (JS must be running to evaluate)
+		i.e. {{ 'Hello' + ' ' + ' world!' }}
+	- two way data-binding (any update to the model is reflected in the view, updates to view also change the model)
+		i.e.
+		<p>Hello, {{ user }}</p>
+		<input type="text" name="" id="" ng-model="user">
+	- built-in directives
+		-> ng-init="name = 'Alfred'" // to initialize variables, not wise to bind only for demo purposes
+		-> ng-bind="name" // places variable name value inside whichever element it is on
+		-> ng-click="" // can be passed an expression to alter variable values
+		i.e.
+		<div ng-init="number = 0">
+			<button ng-click="number = number + 1">+1</button>
+			<button ng-click="number = number - 1">-1</button>
+			<p> {{ number }} </p>
+		</div>
+		-> ng-if="isChecked" // if expressions to show or hide an element, removes element from dom tree and loses styling
+			--> can use ng-show="..." // hides with css display none but doesn't lose styling
+			--> ng-hide="..."
+		i.e.
+		Show me the paragraph <input type="checkbox" ng-model="isChecked">
+			<p ng-if="isChecked">Secret Message</p>
+		-> ng-class="{red: guess != number, green: guess == number}" // modify css class dynamically based on some conditions
+		i.e.
+			-- css --
+			.red { border-color: red; }
+			.green { border-color: green; }
+			-- html --
+			<div ng-init="number = 19">
+				<input type="text" ng-model="guess" ng-class="{red: guess != number, green: guess == number}">
+			</div>
+		-> ng-repeat="number in numbers" // iterate over a collection of items
+		i.e.
+			<div ng-init="number = [0,1,2,3,4,5,6,7]">
+				<ul>
+					<li ng-repeat="number in numbers" ng-class="{red: $even, green: $odd}">{{ number }} -- {{ $even }} -- {{ $odd }}</li>
+				</ul>
+			</div>
+		i.e. ngRepeat:dupes (duplicates in repeater is not allowed, gives collections by references meaning every key should be unique -> can change by value to index)
+			<div ng-init="names = ['Smith', 'Smith']">
+				<ul>
+					<li ng-repeat="name in names track by $index"> {{ name }}</li>
+				</ul>
+			</div>
+		i.e. iterate through objects
+			<div ng-init="names = [{surname: 'Smith', firstname: 'Joe'}, 'Smith', {surname: 'Smith', firstname: 'Sue'}]">
+				<ul>
+					<li ng-repeat="name in names">{{ name.surname }}, {{ name.firstname }}</li>
+				</ul>
+			</div>
+		-> ng-options // grouping to populate select elements
+		i.e.
+			<div ng-init="rebels = [
+				{name: '...', profession: 'Jedi', weapon: '...', age: 19 },
+				...
+			]";
+
+			<select name="" id="" ng-model="rebel" ng-options="rebel.name group by rebel.weapon for rebel in rebels"></select>
+			<p>You have selected: {{ rebel.name }} ({{ rebel.profession }})</p>
+		-> ng-cloak // moving script angularjs cdn to bottom leads to flash of {{}} -> use ng-cloak to hide all that
+		i.e.
+			<style>
+				.ng-cloak, [ng-cloak], [ng\:cloak] {
+					display: none !important;
+				}
+			</style>
+			<body ng-cloak> // waits for angularjs to finish bootstrapping process and uses display none until it is done
+	- built-in filters: format data that you are about to display, selects subset of data collection (| filter)
+		-> currency // to specify for money
+		i.e.
+		<div ng-init="amount = 1250.502342">
+			<p>{{ amount | currency:"..." }}</p>
+		</div>
+		-> number // to specify how many decimals you want to print
+		i.e.
+			{{ -amount | number : 4 }}
+		-> uppercase, lowercase // to change the case of string
+		i.e.
+			{{ string | uppercase }}
+		-> date // to convert epoch value
+		i.e.
+			{{ myDate | date: 'medium' }} can do 'yyyy - MMMM - d (H:m)' for custom formatting
+		-> limitTo // to limit array to specific number of elements, can be negative to return last n elements
+		i.e.
+			{{ myArray | limitTo:2 }}
+		-> orderBy // to sort by a specific property or multiple properties
+		i.e.
+			ng-repeat="rebel in rebels | orderBy: ['profession', '-age']" -> order by profession and then descending ages
+		-> filter // accepts a string to filter by
+		i.e.
+			<input type="text" ng-model="search.weapon"> // can be search.weapon to be more specific to weapon property only on filter
+			<input type="text" ng-model="search.$"> // search on all properties of data
+			<ul>
+				<li ng-repeat="rebel in rebels | filter: search"></li>
+			</ul>
+	- controllers, $scope, controllerAs
+		-> $scope is glue between controller and view, add properties to this
+		i.e. adding properties to $scope and using in view
+			<script>
+				angular.module('myApp', [])
+					.controller('MyController', MyController)
+					.controller('MySecondController', MySecondController);
+
+				function MyController($scope) {
+					$scope.name = 'Alfred';
+				}
+			</script>
+			...
+			<div ng-controller="MyController">
+				Hello, {{ name }}!
+			</div>
+		i.e. referencing function in $scope to call in view
+			function MyController($scope) {
+				$scope.number = 0;
+				$scope.increment = function() {
+					$scope.number = $scope.number + 1;
+				}
+				$scope.decrement = function() {
+					$scope.number = $scope.number - 1;
+				}
+			}
+			...
+			<button ng-click="increment()">+1</button>
+			<button ng-click="decrement()">-1</button>
+		i.e. using this rather than $scope to call this properties anywhere under its scope
+			function MyController() {
+				var vm = this;
+				vm.name = 'Alfred';
+			}
+
+			function MySecondController() {
+				var vm = this;
+				vm.name = 'Regine';			
+			}
+			...
+			<div ng-controller="MyController as MyCtrl">
+				<div ng-controller="MySecondController as MySecondCtrl">
+					{{ MyCtrl.name }}
+					{{ MySecondCtrl.name }}
+			-- if with $scope, have to be careful with where you put name --
+			<div ng-controller="MyController">
+				{{ name }}
+				<div ng-controller="MySecondController">
+					{{ name }}
+	- modules: put dependencies such as routes, firebase library in array (dependency injection) or specify empty array, add custom filters/directives/etc.
+	i.e.
+	-- app.js (setter) --
+		angular.module('myApp', []); // empty dependency array
+	-- controller.js (getter syntax and add controller)-- 
+		angular.module('myApp').controller('MyController', MyController);
+
+		function MyController() {
+			var vm = this;
+			vm.name = 'Alfred';
+		}
+	-- angular.html --
+		<html ng-app="myApp">
+		<div ng-controller="MyController as MyCtrl">
+			<p>Hello, {{ MyCtrl.name }}</p>
+		</div>
+	- single page applications (SPA): can navigate throughout the application without refreshing, need url routes to specify the html templates to load
+		i.e. basic routes and template HTML
+			(need angular-route.min.js and inject as a dependency)
+		-- app.js --
+		angularmodule('myApp', ['ngRoute']).config(config);
+
+		function config($routeProvider) {
+			$routeProvider.when('/'. { // root
+				template: '<h1>This is the main page</h1>'
+			}).when('/about', { 
+				template: '<p>This is the about page</p>'
+			});
+		}
+		-- angular.html --
+		<div ng-view></div>
+		i.e. setting up routes with templateUrl to load HTML from separate files and assign controllers to them
+		function config($routeProvider) {
+			$routeProvider.when('/', {
+				templateUrl: 'templates/main.html'
+				controller: 'MyController',
+				controllerAs: 'vm'
+			}).when('/about', {
+				templateUrl: 'templates/about.html',
+				controller: 'AboutController',
+				controllerAs: 'vm'
+			}).otherwise({
+				redirectTo: '/'
+			});
+		}
+		// Due to Cross origin resource sharing issues, need to run HTTP server such as python -m SimpleHTTPServer 8080 -> localhost:8080/#/ and localhost:8080/#/about
+		-- controller.js --
+		angular.module('myApp').controller('MyController', MyController).controller('AboutController', AboutController);
+
+		function MyController() {
+			var vm = this;
+			vm.name = 'Alfred';
+		}
+
+		function AboutController() {
+			var vm = this;
+			vm.about = 'This is my bio';
+		}
+		-- about.html --
+		<p>{{ vm.bio }}</p>
+		-- main.html --
+		<h1>Hello, {{ vm.name }}</h1>
+	- built-in services
+		-> $http for get, post, etc. for rest web service endpoints and $routeParams to collect parameters from routes such as :id
+		i.e.
+		-- controller.js --
+			angular.module('myApp')
+			function MainController($http) {
+				var vm = this;
+				$http.get('http://swapi-tpiros.rhcloud.com/films').then(function(response) {
+					vm.films = response.data;
+				});
+
+				vm.name = 'Alfred';
+			}
+
+			function FilmController($http) {
+				var vm = this;
+				var id = $routeParams.id;
+				$http.get('http://swapi-tpiros.rhcloud.com/films/' + id).then(function(response) {
+					vm.film = response.data;
+				});
+			}
+		-- app.js (routing of application) --
+		.when('/film/:id', {
+			templateUrl: 'templates/film.html',
+			controller: 'FilmController',
+			controllerAs: 'vm'
+		})
+		-- main.html --
+		<ul>
+			<li ng-repeat="film in vm.films"> {{ film.title }}</li>
+		</ul>
+		-- film.html --
+		<h1>{{ vm.film.title }}</h1>
+		<p>{{ vm.film.plot }}</p>
+
+		// can move film.html and film-controller.js into film folder, main.html and main-controller.js into main folder
+	- service = argument provides you an instance of a function (new function keyword), factory provides you with a value that is returned by invoking function reference (object)
+		-> services provide a means for keeping data around for the lifetime of an application while also used across different controllers in a consistent manner
+		-> when you use a factory you create an object, add properties to it, then return that same object; when you pass this service into your controller, those properties on the object will now be available in that controller through your factory, .factory
+		-> when using service it's instantiated with the 'new' keyword and add properties to 'this' and service will return 'this', properties on 'this' available to controller
+		i.e. constructor function recap
+			var Person = function(name, age) {
+				this.name = name;
+				this.age = age;
+			}
+			Person.prototype.sayName = function() { // sayName available to all instances of Person 'class'
+				alert('My name is ' + this.name);
+			}
+			var alfred = new Person('Alfred', 21); // returns an object
+			alfred.sayName(); // sayName function located on prototype and not directly on Person instance, failed lookup initially
+		-> providers are the only service you can pass into your .config() function; use when you want to provide module-wide configuration for your service object before making it available, .provider, the only properties/methods that will be available in your controller are those properties/methods which are returned from the $get() function
+		-> controllers should be thin and all of logic and persistent data should be located in our service and not in our controller
+	i.e. factory, custom service
+		angular.module('myApp').factory('FilmFactory', FilmFactory);
+		function FilmFactory($http) {
+			return {
+				getAllFilms: getAllFilms,
+				getOneFilm: getOneFilm
+			}
+
+			function getOneFilm(id) {
+				return $http.get('.../' + id).then(complete).catch(failed);
+			}
+
+			function getAllFilms() {
+				return $http.get('...').then(complete).catch(failed);
+			}
+
+			function complete(response) {
+				return response.data;
+			}
+
+			function failed(error) {
+				return error.statusText;
+			}
+		}
+	-- main-controller.js --
+	function MainController(FilmFactory) {
+		var vm = this;
+		FilmFactory.getAllFilms().then(function(response) {
+			vm.films = response;
+		});
+
+		vm.name = 'Alfred';
+	}
+	-- film-controller.js --
+	function FilmController($routeParams, FilmFactory) {
+		var vm = this;
+		var id = $routeParams.id;
+		FilmFactory.getOneFilm(id).then(function(response) {
+			vm.film = response;
+		});
+	}
+	- custom filter made from your own function
+	i.e. -- in reverse-filter.js --
+		angular.module('myApp').filter('reverse', reverse);
+
+		function reverse() {
+			return function(string) {
+				if (string) {
+					return string.split('').reverse().join('');
+				}
+			};
+		}
+		...
+		Hello, {{ vm.name | reverse }}
+		// can do randomFilter:arg1:arg2 -> return function(string, arg1, arg2)
+	- building a single page application
+		npm install angular angular-route --save
+		-- node's app.js --
+		app.use('/node_modules', express.static(_dirname + '/node_modules'));
+		-- index.html --
+		ng-app="meanhotel"
+		<div ng-view></div> // ng-view loads hotels.html based on route '/'
+		-- angular's app.js --
+		angular.module('meanhotel', ['ngRoute'])
+			.config(config)
+			.controller('HotelsController', HotelsController);
+
+		function config($routeProvider) {
+			$routeProvider
+				.when('/', {
+					templateUrl: 'angular-app/hotels.html',
+					controller: HotelsController,
+					controllerAs: 'vm'
+				});
+		}
+
+		function HotelsController() {
+			var vm = this;
+			vm.title = 'MEAN Hotel App';
+		}
+	i.e. having modularity and retrieving hotel data 
+		-- angular's app.js --
+		$routeProvider
+			.when('/hotel/:id', {
+				templateUrl: 'angular-app/hotel-display/hotel.html',
+				controller: HotelController,
+				controllerAs: 'vm'
+			});
+		-- hotel-display.controller.js --
+		angular.module('meanhotel').controller('HotelController', HotelController);
+
+		function HotelController($http, $routeParams) {
+			var vm = this;
+			var id = $routeParams.id;
+			$http.get('/api/hotels' + id).then(function(response) {
+				vm.hotel = response.data;
+			});
+		}
+		// include controller file in index.html
+		-- hotel.html --
+		<h1>Information on {{ vm.hotel.name }}</h1>
+		<p>{{ vm.hotel.description }}</p>
+		-- hotels.html (make ng-hrefs to the single hotel info page) --
+		<a ng-href="#/hotel/{{ hotel._id }}">{{ hotel.name }}</a>
+	i.e. creating factories instead for easier editing of code across controllers (must inject factories into controllers)
+		angular.module('meanhotel').factory('hotelDataFactory', hotelDataFactory);
+
+		function hotelDataFactory($http) {
+			return {
+				hotelList: hotelList,
+				hotelDisplay: hotelDisplay
+			};
+
+			function hotelList() {
+				return $http.get('/api/hotels').then(complete).catch(failed);
+			}
+
+			function hotelDisplay(id) {
+				return $http.get('/api/hotels/' + id).then(complete).catch(failed);
+			}
+
+			function complete(response) {
+				return response.data;
+			}
+
+			function failed(error) {
+				console.log(error.statusText);
+			}
+		}
+		// include in your index.html scripts as well
+		-- modify HotelsController and HotelController to use hotelDataFactory --
+		function HotelsController(hotelDataFactory) {
+			var vm = this;
+			vm.title = 'MEAN Hotel App';
+
+			hotelDataFactory.hotelList().then(function(response) {
+				console.log(response.data);
+				vm.hotels = response.data;
+			});
+		}
+		function HotelController($routeParams, hotelDataFactory) {
+			var vm = this;
+			var id = $routeParams.id;
+			hotelDataFactory.hotelDisplay(id).then(function(response) {
+				vm.hotel = response.data;
+			});
+		}
+		i.e. building custom directive to reuse and display stars according to a number
+			angular.module('meanhotel').directive('hotelRating', hotelRating);
+			// <hotel-rating>
+
+			function hotelRating() {
+				return {
+					restrict: 'E',
+					template: '<span ng-repeat="star in vm.stars track by $index" class="glyphicon glyphicon-star">{{ star }}</span>',
+					bindToController: true,
+					controller: 'HotelController',
+					controllerAs: 'vm',
+					scope: {
+						stars: '@' // object or array
+					}
+				};
+			}
+			-- hotel-display.controller.js --
+				vm.stars = _getStarRating(response.stars);
+				...
+				function _getStarRating(stars) {
+					return new Array(stars);
+				}
+			-- in hotel.html --
+			<hotel-rating stars="vm.stars"></hotel-rating>
+		OR Components Way -> Angular 2 way
+		angular.module('meanhotel').component('hotelRating', {
+			bindings: {
+				stars: '='
+			},
+			template: '<span ng-repeat="star in vm.stars track by $index" class="glyphicon glyphicon-star">{{ star }}</span>',
+			controller: 'HotelController',
+			controllerAs: 'vm'
+		});
+		- basic form validation
+		i.e.
+		function MyController() {
+			var vm = this;
+			vm.isSubmitted = false;
+			vm.add = function() {
+				if (vm.myForm.$valid) {
+					console.log('Added to database...');
+				} else {
+					vm.isSubmitted = true;
+				}
+			}
+		}
+
+		<div ng-controller="MyController as vm">
+			<form name="vm.myForm">
+				<input type="text" name="name" required ng-minlength="3" ng-maxlength="10" ng-model="name">
+			</form>
+			<div ng-show="vm.myForm.name.$dirty && vm.myForm.name.$invalid && vm.isSubmitted">
+				<p>This field requires 3-10 characters</p>
+			</div>
+			<button type="submit">Add data</button>
+		</div>
+		<p> {{ myForm.name.$pristine }} </p>
+		<p> {{ myForm.name.$dirty }} </p>
+		<p> Name is : {{ myForm.name.$invalid }}</p>
+
+		// ng-pattern for regular expressions such as /^[0-9]{2,3}$/
+
+	i.e. improved form validation
+		<form name="vm.reviewForm" ng-submit="vm.addReview()">
+			Your name: <input type="text" name="name" required ng-minlength="2" ng-model="vm.name">
+			<div ng-show="vm.reviewForm.name.$dirty && vm.reviewForm.name.$invalid && vm.isSubmitted">
+				<p>Name should be more than 2 characters long</p>
+			</div>
+			
+			Your rating: <input type="number" name="rating" required ng-pattern="/^[1-5]$/" ng-model="vm.rating">
+			<div ng-show="vm.reviewForm.rating.$dirty && vm.reviewForm.rating.$invalid && vm.isSubmitted">
+					<p>Rating must be between 1-5.</p>
+			</div>
+
+			Your review: <textarea name="review" required ng-model="vm.review"></textarea>
+			<div ng-show="vm.reviewForm.review.$dirty && vm.isSubmitted">
+				<p>Please add a review</p>
+			</div>
+
+			<button type="submit" class="btn">Add review</button>
+		</form>
+		-- hotel-display.controller.js --
+			vm.addReview = function() {
+			var postData = {
+				name: vm.name,
+				rating: vm.rating,
+				review: vm.review
+			};
+			if (vm.reviewForm.$valid) {
+				hotelDataFactory.postReview(id, postData).then(function(response) {
+					if (response.status === 200) {
+						$route.reload(); // reloads part of page on successful post
+					}
+				}).catch(function(error) {
+					console.log(error);
+				})
+			} else {
+				vm.isSubmitted = true;
+			}
+		};
+		-- hotel-data-factory.js --
+		function postReview(id, review) {
+			return $http.post('/api/hotels/' + id + '/review', review).then(complete).catch(failed);
+		}
+		-- app.js --
+		app.use(bodyParser.json()); // can read JSON format returned from form submits
+** Authentication (SPA/MEAN STACK) **
+	- Server based authentication (stateless HTTP Protocol, user information stored in cookie that is serialized/deserialized)
+	- token based authentication: attached to HTTP request and must check existence of a valid token
+		-> JWT or JSON Web Tokens: 'Header', 'Payload' (Data like 'username'), 'Signature'
+	- approach backend: generate token and handle registration/login
+	- approach frontend: handle authentication from the UI
+	1. create user schema with Mongoose
+		var mongoose = requite('mongoose');
+		var userSchema = new mongoose.Schema({
+			username: {
+				type: String,
+				unique: true,
+				required: true
+			},
+			name: {
+				type: String
+			},
+			password: {
+				type: String,
+				required: true
+			}
+		});
+		mongoose.model('User', userSchema);
+		-- db.js --
+		require('./users.model.js');
+	2. fix users.controllers.js to have register and login functions; add routes to routes/index.js; install bcrypt-nodejs to encrypt passwords
+		var mongoose = require('mongoose');
+		var User = mongoose.model('User');
+		var bcrypt = require('bcrypt-nodejs');
+
+		module.exports.register = function(req, res) {
+			console.log('Registering user');
+
+			var username = req.body.username;
+			var name = req.body.name || null;
+			var password = req.body.password;
+
+			User.create({
+				username: username,
+				name: name,
+				password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+			}, function(err, user) {
+				if (err) {
+					console.log(err);
+					res.status(400).json(err);
+				} else {
+					console.log('User created', user);
+					res.status(201).json(user);
+				}
+			});
+		};
+
+		module.exports.login = function(req, res) {
+			console.log('Logging in user');
+			var username = req.body.username;
+			var password = req.body.password;
+
+			User.findOne({
+				username: username
+			}).exec(function(err, user) {
+				if (err) {
+					console.log(err);
+					res.status(400).json(err);
+				} else {
+					if (bcrypt.compareSync(password, user.password)) {
+						console.log('User found', user);
+						res.status(200).json(user);
+					} else {
+						res.status(401).json('Unauthorized');
+					}
+				}
+			})
+		};
+	3. adding JSON web tokens by installing (npm install jsonwebtoken) and applying it; middleware functions to handle req/response and authenticate before calling the next method to validate requests/endpoints
+	-- routes/index.js --
+	var jwt = require('jsonwebtoken');
+	...
+	var token = jwt.sign({ username: user.username }, 's3cr3t', { expiresIn: 3600 });
+	module.exports.authenticate = function(req, res, next) {
+		var headerExists = req.headers.authorization;
+		if (headerExists) {
+			var token = req.headers.authorization.split(' ')[1]; // --> Authorization Bearer xxx
+			jwt.verify(token, 's3cr3t', function(error, decoded) {
+				if (error) {
+					console.log(error);
+					res.status(401).json('Unauthorized');
+				} else {
+					req.user = decoded.username; 
+					next();
+				}
+			});
+		} else {
+			res.status(403).json('No token provided');
+		}
+	};
+	4. add frontend forms to post/register a user (see register.html)
+	angular.module('meanhotel').controller('RegisterController', RegisterController);
+
+	function RegisterController($http) {
+		var vm = this;
+
+		vm.register = function() {
+			var user = {
+				username: vm.username,
+				password: vm.password
+			};
+
+			if (!vm.username || !vm.password) {
+				vm.error = 'Please add a username and a password.';
+			} else {
+				if (vm.password !== vm.passwordRepeat) {
+					vm.error = 'Please make sure the passwords match';
+				} else {
+					$http.post('/api/users/register', user).then(function(result) {
+						console.log(result);
+						vm.message = 'Successful registration, please login.';
+						vm.error = '';
+					}).catch(function(error) {
+						console.log(error);
+					});
+				}
+			}
+		}
+	}
+	5. create navbar for logging in and registering, need interceptors for authentication and determining whether user is logged in or not

@@ -1,0 +1,287 @@
+<svg height="420px" viewBox="0 0 576 432" width="560px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 5.0 patchlevel 4 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect fill="none" height="432" width="576" x="0" y="0"/>
+<defs>
+
+	<circle id="gpDot" r="0.5" stroke-width="0.5"/>
+	<path d="M-1,0 h2 M0,-1 v2" id="gpPt0" stroke="currentColor" stroke-width="0.333"/>
+	<path d="M-1,-1 L1,1 M1,-1 L-1,1" id="gpPt1" stroke="currentColor" stroke-width="0.333"/>
+	<path d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1" id="gpPt2" stroke="currentColor" stroke-width="0.333"/>
+	<rect height="2" id="gpPt3" stroke="currentColor" stroke-width="0.333" width="2" x="-1" y="-1"/>
+	<rect fill="currentColor" height="2" id="gpPt4" stroke="currentColor" stroke-width="0.333" width="2" x="-1" y="-1"/>
+	<circle cx="0" cy="0" id="gpPt5" r="1" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt6" stroke="none" xlink:href="#gpPt5"/>
+	<path d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z" id="gpPt7" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt8" stroke="none" xlink:href="#gpPt7"/>
+	<use id="gpPt9" stroke="currentColor" transform="rotate(180)" xlink:href="#gpPt7"/>
+	<use fill="currentColor" id="gpPt10" stroke="none" xlink:href="#gpPt9"/>
+	<use id="gpPt11" stroke="currentColor" transform="rotate(45)" xlink:href="#gpPt3"/>
+	<use fill="currentColor" id="gpPt12" stroke="none" xlink:href="#gpPt11"/>
+	<path d="M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z" id="gpPt13" stroke="currentColor" stroke-width="0.333"/>
+	<use fill="currentColor" id="gpPt14" stroke="none" xlink:href="#gpPt13"/>
+	<filter filterUnits="objectBoundingBox" height="1" id="textbox" width="1" x="0" y="0">
+	  <feFlood flood-color="white" flood-opacity="1" result="bgnd"/>
+	  <feComposite in="SourceGraphic" in2="bgnd" operator="atop"/>
+	</filter>
+	<filter filterUnits="objectBoundingBox" height="1" id="greybox" width="1" x="0" y="0">
+	  <feFlood flood-color="lightgrey" flood-opacity="1" result="grey"/>
+	  <feComposite in="SourceGraphic" in2="grey" operator="atop"/>
+	</filter>
+</defs>
+<g color="white" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.00">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.00">
+	<g shape-rendering="crispEdges" stroke="none">
+		<polygon fill="rgb(255, 255, 255)" points="48.4,393.6 559.0,393.6 559.0,39.2 48.4,39.2 "/>
+	</g>
+</g>
+<g color="black" fill="none" stroke="rgb(255, 255, 255)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,393.6 L56.8,393.6 M559.1,393.6 L550.7,393.6  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,397.3)">
+		<text><tspan font-family="{}">-0.8</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,322.7 L56.8,322.7 M559.1,322.7 L550.7,322.7  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,326.4)">
+		<text><tspan font-family="{}">-0.6</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,251.8 L56.8,251.8 M559.1,251.8 L550.7,251.8  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,255.5)">
+		<text><tspan font-family="{}">-0.4</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,180.9 L56.8,180.9 M559.1,180.9 L550.7,180.9  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,184.6)">
+		<text><tspan font-family="{}">-0.2</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,110.0 L56.8,110.0 M559.1,110.0 L550.7,110.0  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,113.7)">
+		<text><tspan font-family="{}">0</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,39.1 L56.8,39.1 M559.1,39.1 L550.7,39.1  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="end" transform="translate(42.8,42.8)">
+		<text><tspan font-family="{}">0.2</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,393.6 L48.4,385.2 M48.4,39.1 L48.4,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(48.4,409.3)">
+		<text><tspan font-family="{}">0</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M121.4,393.6 L121.4,385.2 M121.4,39.1 L121.4,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(121.4,409.3)">
+		<text><tspan font-family="{}">0.1</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M194.3,393.6 L194.3,385.2 M194.3,39.1 L194.3,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(194.3,409.3)">
+		<text><tspan font-family="{}">0.2</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M267.3,393.6 L267.3,385.2 M267.3,39.1 L267.3,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(267.3,409.3)">
+		<text><tspan font-family="{}">0.3</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M340.2,393.6 L340.2,385.2 M340.2,39.1 L340.2,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(340.2,409.3)">
+		<text><tspan font-family="{}">0.4</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M413.2,393.6 L413.2,385.2 M413.2,39.1 L413.2,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(413.2,409.3)">
+		<text><tspan font-family="{}">0.5</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M486.1,393.6 L486.1,385.2 M486.1,39.1 L486.1,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(486.1,409.3)">
+		<text><tspan font-family="{}">0.6</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M559.1,393.6 L559.1,385.2 M559.1,39.1 L559.1,47.5  " stroke="black"/>	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(559.1,409.3)">
+		<text><tspan font-family="{}">0.7</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<path d="M48.4,39.1 L48.4,393.6 L559.1,393.6 L559.1,39.1 L48.4,39.1 Z  " stroke="black"/></g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(12.5,216.4) rotate(-90)">
+		<text><tspan font-family="{}">2nd component</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(303.7,427.3)">
+		<text><tspan font-family="{}">1st component</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="middle" transform="translate(303.7,21.8)">
+		<text xml:space="preserve"><tspan font-family="{}" xml:space="preserve">Latent Semantic Indexing:  X term vs. Y term </tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+	<g id="gnuplot_plot_1a"><title>gnuplot_plot_1a</title>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g onmousemove="gnuplot_svg.showHypertext(evt,'')" onmouseout="gnuplot_svg.hideHypertext()"><title> </title>
+	<use color="rgb(255,   0,   0)" transform="translate(60.0,263.0) scale(6.00)" xlink:href="#gpPt2"/></g>
+	<use color="rgb(255,   0,   0)" transform="translate(67.8,243.2) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(178.6,170.0) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(487.1,67.9) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(536.5,67.1) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(59.2,237.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(86.3,189.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(53.2,149.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(158.1,70.1) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(107.7,86.2) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(158.1,70.1) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(178.6,170.0) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(151.6,75.5) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(56.1,193.8) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(117.9,95.9) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(255,   0,   0)" transform="translate(198.0,303.1) scale(6.00)" xlink:href="#gpPt2"/>
+</g>
+	</g>
+	<g id="gnuplot_plot_2a"><title>gnuplot_plot_2a</title>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+	<g onmousemove="gnuplot_svg.showHypertext(evt,'')" onmouseout="gnuplot_svg.hideHypertext()"><title> </title>
+	<use color="rgb(  0,   0, 255)" transform="translate(164.5,123.4) scale(6.00)" xlink:href="#gpPt2"/></g>
+	<use color="rgb(  0,   0, 255)" transform="translate(156.1,94.5) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(90.6,330.1) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(275.7,66.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(52.0,179.9) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(66.5,149.6) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(55.0,242.2) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(316.7,45.1) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(76.8,96.2) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(277.1,64.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(343.4,192.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(343.4,192.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(288.8,58.0) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(277.1,64.7) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(252.9,79.2) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(58.5,169.3) scale(6.00)" xlink:href="#gpPt2"/>
+	<use color="rgb(  0,   0, 255)" transform="translate(94.1,257.2) scale(6.00)" xlink:href="#gpPt2"/>
+</g>
+	</g>
+<g color="white" fill="none" stroke="rgb(  0,   0, 255)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2.00">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2.00">
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(67.3,266.7)">
+		<text><tspan font-family="{}">algorithms</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(75.1,246.9)">
+		<text><tspan font-family="{}">application</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(185.9,173.7)">
+		<text><tspan font-family="{}">delay</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(494.4,71.6)">
+		<text><tspan font-family="{}">differential</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(543.8,70.8)">
+		<text><tspan font-family="{}">equations</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(66.5,241.4)">
+		<text><tspan font-family="{}">implementation</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(93.6,193.4)">
+		<text><tspan font-family="{}">integral</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(60.5,153.4)">
+		<text><tspan font-family="{}">introduction</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(165.4,73.8)">
+		<text><tspan font-family="{}">methods</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(115.0,89.9)">
+		<text><tspan font-family="{}">nonlinear</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(165.4,73.8)">
+		<text><tspan font-family="{}">ordinary</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(185.9,173.7)">
+		<text><tspan font-family="{}">oscillation</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(158.9,79.2)">
+		<text><tspan font-family="{}">partial</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(63.4,197.5)">
+		<text><tspan font-family="{}">problem</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(125.2,99.6)">
+		<text><tspan font-family="{}">systems</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(205.3,306.8)">
+		<text><tspan font-family="{}">theory</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(171.8,127.1)">
+		<text><tspan font-family="{}">B1</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(163.4,98.2)">
+		<text><tspan font-family="{}">B2</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(97.9,333.8)">
+		<text><tspan font-family="{}">B3</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(283.0,70.4)">
+		<text><tspan font-family="{}">B4</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(59.3,183.6)">
+		<text><tspan font-family="{}">B5</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(73.8,153.3)">
+		<text><tspan font-family="{}">B6</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(62.3,245.9)">
+		<text><tspan font-family="{}">B7</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(324.0,48.8)">
+		<text><tspan font-family="{}">B8</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(84.1,99.9)">
+		<text><tspan font-family="{}">B9</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(284.4,68.4)">
+		<text><tspan font-family="{}">B10</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(350.7,196.4)">
+		<text><tspan font-family="{}">B11</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(350.7,196.4)">
+		<text><tspan font-family="{}">B12</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(296.1,61.7)">
+		<text><tspan font-family="{}">B13</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(284.4,68.4)">
+		<text><tspan font-family="{}">B14</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(260.2,82.9)">
+		<text><tspan font-family="{}">B15</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(65.8,173.0)">
+		<text><tspan font-family="{}">B16</tspan></text>
+	</g>
+	<g fill="rgb(0,0,0)" font-family="{}" font-size="10.00" stroke="none" text-anchor="start" transform="translate(101.4,260.9)">
+		<text><tspan font-family="{}">B17</tspan></text>
+	</g>
+</g>
+<g color="black" fill="none" stroke="rgb(  0,   0,   0)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+<g color="black" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.50">
+</g>
+</g>
+</svg>

@@ -1,0 +1,132 @@
+FreeCodeCamp JavaScript Journey:
+
+Comments: // /* */
+Data Types: undefined, null, boolean, string, symbol, number, object
+Variables: var varName; // camelCase
+	assignment operators, initially undefined -> math leads to NaN, concatenate with strings leads to "undefined"
+	variables defined outside of a function block have Global scope or without var
+
+Comparisons: ==, === (strict equality tests both the data type and value of compared elements), !=
+if (condition is true) {
+	statement is executed
+} else {
+	statement is executed if condition is false
+}
+switch (num) {
+	case value1:
+		statement1;
+		break;
+	...
+	default:
+		defaultStatement;
+}
+
+Strings:
+	bracket notation -> myStr[0]
+	.length // size of string, "Alan Peter".length; -> 10
+	immutable, cannot be altered once created
+
+Arrays:
+	entries are mutable // var myArray = ["Alfred", 17];
+	append data to the end via push() // ourArray.push(["happy", "joy"]);
+	append data to the begining via unshift()
+	remove data from the end via pop() // var oneDown = [1,4,6].pop(); -> 6
+	remove data from the first element via shift()
+
+	iterate over arrays with map, creates a new array with values that have been modified by the callback function and return it
+	i.e.
+	var timesFour = oldArray.map(function(val){
+		return val * 4;
+	});
+	condense an array to one value with reduce for an accumulator
+	i.e.
+	singleVal = array.reduce(function(previousVal, currentVal) {
+  return previousVal + currentVal;
+}, 0);
+	filter out elements where a given condition is not true
+	i.e.
+	var newArray = oldArray.filter(function(val) {
+  return val < 6;
+});
+	sort alphabetically or numerically, pass a compare function as a callback
+	i.e.
+	array.sort(function(a, b) {
+  return a - b;
+});
+	reverse()
+	concat
+	i.e. newArray = oldArray.concat(otherArray);
+	split strings into an array, pass in delimiter as arugment
+	i.e.
+	var array = string.split(' ');
+	join each element of an array into a stirng separated by whatever delimiter use provide as an argument
+	i.e.
+	joinedString = joinMe.join(' ');
+
+Functions:
+	function functionName() {
+		console.log("Hello World!");
+		return values;
+	}
+
+Objects:
+	access data through properties
+	i.e.
+		var cat = {
+			"name": "whiskers",
+			"legs": 4,
+			"tails": 1,
+			"enemies": ["Water", "Dogs"]
+		};
+	access through dot notation // cat.name, cat.enemies
+		through bracket notation // myObj["objProperty"];
+	update through dot notation // myObj.name = "name";
+		through bracket notation // myObj["name"] = "name";
+	delete properties by doing delete myObj.propertyName
+
+	constructor format: with properties and methods
+	i.e.
+	var Car = function() {
+		this.wheels = 4;
+		this.engines = 1;
+		this.seats = 1;
+	};
+	var myCar = new Car();
+	myCar.turboType = "twin";
+	i.e.
+	var Car = function(wheels, seats, engines) {
+		var speed = 10; // private variable
+		this.wheels = wheels;
+		this.seats = seats;
+		this.engines = engines;
+
+		// public methods
+		this.accelerate = function(change) {
+			speed += change;
+		};
+
+		this.decelerate = function() {
+			speed -= 5;
+		};
+
+		this.getSpeed = function() {
+			return speed;
+		};
+	};
+
+
+Regular Expression:
+	i.e. /the/gi
+	/ is the start of the regular expression
+	the is the pattern to match
+	/ is the end of regex
+	g means global to return all matches in the string, not just the first one
+	i means that we want to ignore the case (uppercase or lowercase)
+
+	\d is to retrieve one digit of 0-9
+	+ matches one or more
+	* matches 0 or more
+	\s white space, \S match anything that isn't white space
+	\r carriage return, \t tab, \f form feed
+
+
